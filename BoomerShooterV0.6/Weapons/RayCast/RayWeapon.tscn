@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqkhhsdp8fhw5"]
+
+[ext_resource type="PackedScene" uid="uid://im071f1807vo" path="res://Weapons/weapon.tscn" id="1_63cir"]
+
+[sub_resource type="GDScript" id="GDScript_0xi1i"]
+script/source = "extends \"res://Weapons/RayCast/RayWeapon.gd\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[node name="Weapon" instance=ExtResource("1_63cir")]
+script = SubResource("GDScript_0xi1i")
+
+[node name="DisplayWeapon" parent="DisplayPos" index="0"]
+texture = null
+
+[node name="RayCast" type="RayCast3D" parent="." index="4"]
+target_position = Vector3(0, 0, 0)

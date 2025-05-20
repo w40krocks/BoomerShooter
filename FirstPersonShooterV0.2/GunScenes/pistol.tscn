@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5yerkt75kcay"]
+
+[ext_resource type="Texture2D" uid="uid://cl8itsbh4t5ra" path="res://GunSprites/Pistol/pixels_00.png" id="1_xqijq"]
+[ext_resource type="Texture2D" uid="uid://b87ugbevp2xbx" path="res://GunSprites/Pistol/pixels_01.png" id="2_yai0t"]
+[ext_resource type="Texture2D" uid="uid://bv3jpb3g2mv2" path="res://GunSprites/Pistol/pixels_02.png" id="3_y7qhf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onp47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xqijq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yai0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y7qhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_xqijq")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 9.0
+}]
+
+[node name="Pistol" type="Node2D"]
+
+[node name="Pistol" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_onp47")
+animation = &"Idle"

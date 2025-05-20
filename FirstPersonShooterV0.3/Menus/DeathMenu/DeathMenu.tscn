@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://kfd5gawo6lq2"]
+
+[ext_resource type="Texture2D" uid="uid://cq7h8o25racap" path="res://Menus/DeathMenu/Death Background.png" id="1_v2sfp"]
+[ext_resource type="Theme" uid="uid://ju8arulvecj0" path="res://Font/BaseTheme.tres" id="2_mdlb1"]
+[ext_resource type="Script" uid="uid://bhmposc20mye" path="res://Menus/DeathMenu/DeathMenu.gd" id="3_dew2m"]
+
+[node name="Death" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathBackground" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(72, 40.5)
+texture = ExtResource("1_v2sfp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Container" type="Container" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+theme = ExtResource("2_mdlb1")
+script = ExtResource("3_dew2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Container"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="Control/Container/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Control/Container/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+texture_filter = 1
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 370.0
+offset_top = 201.0
+offset_right = 472.0
+offset_bottom = 218.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+theme = ExtResource("2_mdlb1")
+text = "YOU ARE DEAD!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="pressed" from="Control/Container/VBoxContainer/Restart" to="Control/Container" method="_Restart"]
+[connection signal="pressed" from="Control/Container/VBoxContainer/Quit" to="Control/Container" method="_Quit"]

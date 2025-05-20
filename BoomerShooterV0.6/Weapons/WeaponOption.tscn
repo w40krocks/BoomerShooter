@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://588d1oc6emrt"]
+
+[ext_resource type="Script" uid="uid://dgqcxj3qa0ls7" path="res://Weapons/WeaponOption.gd" id="1_242el"]
+
+[node name="WeaponSelect" type="PanelContainer"]
+clip_children = 1
+texture_filter = 1
+offset_right = 140.0
+offset_bottom = 40.0
+size_flags_stretch_ratio = 20.0
+script = ExtResource("1_242el")
+
+[node name="WeaponName" type="Label" parent="."]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="WeaponAmmo" type="Label" parent="."]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="SpriteLocalSet" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WeaponDisplay" type="Sprite2D" parent="SpriteLocalSet"]

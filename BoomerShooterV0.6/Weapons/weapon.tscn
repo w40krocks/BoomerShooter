@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://im071f1807vo"]
+
+[ext_resource type="Script" uid="uid://d743bi7rl4p4" path="res://Weapons/weapon.gd" id="1_0jw1c"]
+[ext_resource type="Texture2D" uid="uid://b6281qx88r4ti" path="res://Weapons/RayCast/Shotgun/ShotgunV3Pickup.png" id="2_0jw1c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rphr7"]
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ue5o"]
+font_size = 28
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_0jw1c")
+
+[node name="WeaponPos" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="WeaponView" type="Sprite2D" parent="WeaponPos"]
+centered = false
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="WeaponCooldown" type="Timer" parent="Node3D"]
+one_shot = true
+
+[node name="DisplayPos" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="DisplayWeapon" type="Sprite2D" parent="DisplayPos"]
+texture = ExtResource("2_0jw1c")
+centered = false
+
+[node name="WeaponInfo" type="VBoxContainer" parent="DisplayPos"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="DisplayName" type="Label" parent="DisplayPos/WeaponInfo"]
+layout_mode = 2
+text = "WeaponName"
+label_settings = SubResource("LabelSettings_rphr7")
+
+[node name="AmmoCount" type="Label" parent="DisplayPos/WeaponInfo"]
+layout_mode = 2
+text = "AmmoCount"
+label_settings = SubResource("LabelSettings_2ue5o")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WeaponLight" type="OmniLight3D" parent="."]
+light_color = Color(0.836298, 0.385441, 0.0102461, 1)
+light_energy = 2.0
+light_bake_mode = 1
+omni_range = 0.0
+
+[connection signal="timeout" from="Node3D/WeaponCooldown" to="." method="WeaponAnimation"]

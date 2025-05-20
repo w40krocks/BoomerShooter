@@ -1,0 +1,10 @@
+res://Character/Enemy/enemy.tscn::d536006bf07715c4f64d59a024ebafd4::1745617991::res://.godot/exported/133200997/export-176d6b6e8d41d62c97a648ed0556a281-enemy.scn
+res://Character/Player/Player.tscn::c81c015ec6eceb1fb5f659556a923ab8::1745617990::res://.godot/exported/133200997/export-e3f3c13958299d5b5fecbaa27d1b1bdf-Player.scn
+res://Character/Character.tscn::78e1dd4dc793a933338349695127ee9a::1745617990::res://.godot/exported/133200997/export-539e9d77bd4f1450e072a24cbfdcd2a5-Character.scn
+res://Item/item.tscn::8b0a668a4a7425daacf4146a4ebd81a6::1745617991::res://.godot/exported/133200997/export-32e53da3c9030c5ebb4a66b6c1c94d6b-item.scn
+res://UI/death_menu.tscn::42be3f51b52d9004dad07a37ee8f53ae::1745617991::res://.godot/exported/133200997/export-9d68b87d2415d4852b091b678bdd970d-death_menu.scn
+res://UI/UI.tscn::885009905849bf7334442bb8a5d04890::1745617991::res://.godot/exported/133200997/export-99e0db414fd163b9d4cd175ed199445e-UI.scn
+res://Weapon/ProjectileWeapons/projectile.tscn::4bcc9acca8dbb40c1ead2f4ee7b69d83::1745617991::res://.godot/exported/133200997/export-254cdc755991bd26427140cdda19a97a-projectile.scn
+res://Weapon/RayWeapons/RayWeapon.tscn::9b40c115562447b0a6f88f3bd5c5da06::1745617991::res://.godot/exported/133200997/export-11b982f274fa8cd57f57bd9913eccb5f-RayWeapon.scn
+res://Weapon/GunSmoke.tscn::70f78777d2770815840fb8b35311cbe2::1745617991::res://.godot/exported/133200997/export-85dc58075a8264a4b57fe449cbc91c57-GunSmoke.scn
+res://Worlds/TestWorld.tscn::a79b4d14f3f6105f42901633ba1f56ae::1745617990::res://.godot/exported/133200997/export-b095150e46e765fa1a4f0411a0f6d62d-TestWorld.scn

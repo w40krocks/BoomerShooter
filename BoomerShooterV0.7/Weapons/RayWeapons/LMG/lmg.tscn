@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://bu3yyxrhl77r4"]
+
+[ext_resource type="Script" uid="uid://dlig706fhflw4" path="res://Weapons/RayWeapons/LMG/LMG.gd" id="1_8sscu"]
+[ext_resource type="PackedScene" uid="uid://cahev42uw2c0y" path="res://Weapons/WeaponModels/LMG V1.blend" id="2_3jlja"]
+
+[sub_resource type="Animation" id="Animation_3jlja"]
+resource_name = "Attack"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Right Exhaust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Muzzle Flash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.02),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Left Exhaust:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(0.153893, 1, 0.225313),
+"update": 0,
+"values": [Vector3(0, -0.519843, -0.470227), Vector3(0, -0.52, -0.2), Vector3(0, -0.519843, -0.470227)]
+}
+
+[sub_resource type="Animation" id="Animation_kbna8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Right Exhaust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Muzzle Flash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Left Exhaust:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.519843, -0.470227)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbna8"]
+_data = {
+&"Attack": SubResource("Animation_3jlja"),
+&"RESET": SubResource("Animation_kbna8")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbna8"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdndr"]
+material = SubResource("StandardMaterial3D_kbna8")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_0qqq5"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 0.505882, 0.505882, 0.505882, 0.392157)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv31g"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q301s"]
+material = SubResource("StandardMaterial3D_tv31g")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_l8cek"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_ivulf"]
+offsets = PackedFloat32Array(0.16, 0.846667)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="LMG" type="Node3D"]
+script = ExtResource("1_8sscu")
+WeaponSplinter = 1
+MinAmmoConsume = 2
+AmmoType = 1
+ShotAngleRandomRange = Vector2(5, 5)
+metadata/_custom_type_script = "uid://dlig706fhflw4"
+
+[node name="Ray" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
+
+[node name="Weapon Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.519843, -0.470227)
+
+[node name="LMG V1" parent="Weapon Visuals" instance=ExtResource("2_3jlja")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Weapon Animation Player" type="AnimationPlayer" parent="Weapon Visuals/LMG V1"]
+libraries = {
+&"": SubResource("AnimationLibrary_kbna8")
+}
+
+[node name="Right Exhaust" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.9)
+emitting = false
+amount = 12
+lifetime = 0.4
+mesh = SubResource("BoxMesh_jdndr")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 0.4)
+particle_flag_align_y = true
+spread = 22.5
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+scale_amount_min = 0.1
+color_initial_ramp = SubResource("Gradient_0qqq5")
+
+[node name="Left Exhaust" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(-0.999415, 0, -0.0342018, 0, 1, 0, 0.0342018, 0, -0.999415, 0, 0.15, -0.9)
+emitting = false
+amount = 12
+lifetime = 0.4
+mesh = SubResource("BoxMesh_jdndr")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 0.4)
+particle_flag_align_y = true
+spread = 22.5
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+scale_amount_min = 0.1
+color_initial_ramp = SubResource("Gradient_0qqq5")
+
+[node name="Muzzle Flash" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122118, -1.81747)
+emitting = false
+amount = 50
+lifetime = 0.8
+randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
+mesh = SubResource("BoxMesh_q301s")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.01
+scale_amount_min = 0.1
+color_ramp = SubResource("Gradient_l8cek")
+color_initial_ramp = SubResource("Gradient_ivulf")
+
+[node name="EndOfBarrel" type="Node3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104669, -1.84037)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvabyuqxa1yev"]
+
+[ext_resource type="Script" uid="uid://dij22a35pfvaw" path="res://GunImpact.gd" id="1_jcke0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6dbj"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jcke0"]
+material = SubResource("StandardMaterial3D_t6dbj")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_77tej"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.186667, 0.693333, 1)
+colors = PackedColorArray(1, 0.576307, 0.263033, 1, 0.12559, 0.057827, 0.0133256, 0.513726, 0.237539, 0.237539, 0.237539, 0.462745, 0, 0, 0, 0)
+
+[node name="Gun Trail" type="CPUParticles3D"]
+emitting = false
+amount = 100
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("BoxMesh_jcke0")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 1)
+direction = Vector3(0, 0, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 1)
+initial_velocity_max = 1.0
+scale_amount_min = 0.01
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_77tej")
+script = ExtResource("1_jcke0")
+
+[connection signal="finished" from="." to="." method="Delete"]

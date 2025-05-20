@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3dwxg7ip3ljs"]
+
+[ext_resource type="PackedScene" uid="uid://im071f1807vo" path="res://Weapons/weapon.tscn" id="1_o4r8x"]
+[ext_resource type="Script" uid="uid://dnrhsfan2f4mu" path="res://Weapons/Projectile/ProjectileWeapon.gd" id="2_vp1fj"]
+
+[node name="Weapon" instance=ExtResource("1_o4r8x")]
+script = ExtResource("2_vp1fj")
+
+[node name="ProjectileSpawnLocation" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)

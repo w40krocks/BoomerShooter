@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw6yfobhnmw56"]
+
+[ext_resource type="Script" uid="uid://6sa0gyvyidjv" path="res://explosion.gd" id="1_lp08f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lp08f"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 0.196078)
+heightmap_enabled = true
+detail_enabled = true
+detail_blend_mode = 3
+
+[sub_resource type="SphereMesh" id="SphereMesh_lp08f"]
+material = SubResource("StandardMaterial3D_lp08f")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b6hrl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6hrl"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4r6vc"]
+material = SubResource("StandardMaterial3D_b6hrl")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hj1vi"]
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_lp08f")
+
+[node name="InnerExplosion" type="Area3D" parent="."]
+
+[node name="InnerExplodeMesh" type="MeshInstance3D" parent="InnerExplosion"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+rotation_edit_mode = 1
+mesh = SubResource("SphereMesh_lp08f")
+skeleton = NodePath("../../OuterExplosion")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InnerExplosion"]
+shape = SubResource("SphereShape3D_b6hrl")
+
+[node name="OuterExplosion" type="Area3D" parent="."]
+
+[node name="OuterExplodeMesh" type="MeshInstance3D" parent="OuterExplosion"]
+mesh = SubResource("SphereMesh_4r6vc")
+skeleton = NodePath("../../InnerExplosion")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterExplosion"]
+shape = SubResource("SphereShape3D_hj1vi")
+
+[node name="Light" type="OmniLight3D" parent="OuterExplosion"]
+light_color = Color(1, 0.321569, 0.12549, 1)
+light_energy = 4.0
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[connection signal="body_entered" from="InnerExplosion" to="." method="InnerExplosionEntered"]
+[connection signal="body_entered" from="OuterExplosion" to="." method="OuterExplosionEntered"]

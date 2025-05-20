@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://h8m1qtkbtqd1"]
+
+[ext_resource type="Texture2D" uid="uid://dctfeslgw83k0" path="res://gun/pixels_00.png" id="1_kw0bs"]
+[ext_resource type="Texture2D" uid="uid://b0rrsrrhgbg44" path="res://gun/pixels_01.png" id="2_8iju2"]
+[ext_resource type="Texture2D" uid="uid://cpgtrljxrlkrn" path="res://gun/pixels_02.png" id="3_7vd5q"]
+[ext_resource type="Script" uid="uid://b0kpjikm02b1n" path="res://gun.gd" id="4_1psom"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pr6yj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kw0bs")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8iju2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7vd5q")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 2.0
+}]
+
+[node name="Gun" type="Node2D"]
+
+[node name="Gun" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pr6yj")
+animation = &"Shoot"
+script = ExtResource("4_1psom")

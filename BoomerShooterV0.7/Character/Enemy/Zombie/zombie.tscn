@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdnl8eifbs5ye"]
+
+[ext_resource type="PackedScene" uid="uid://c5sj08tuk0xvm" path="res://Character/Enemy/BaseEnemy.tscn" id="1_quj3w"]
+[ext_resource type="Script" uid="uid://b5fa8dqapvurh" path="res://Character/Enemy/States/EnemyChase.gd" id="2_vmmg3"]
+[ext_resource type="Script" uid="uid://ntks4whmokx0" path="res://Character/Enemy/States/EnemyMelee.gd" id="3_8a8v4"]
+[ext_resource type="Script" uid="uid://o43b4xs0ncr" path="res://Character/Enemy/States/EnemySearch.gd" id="4_8eeeh"]
+[ext_resource type="Script" uid="uid://dv7t6st5b64" path="res://Character/Enemy/States/EnemyDeath.gd" id="5_vmmg3"]
+
+[node name="Zombie" instance=ExtResource("1_quj3w")]
+SpriteSheet = "uid://bn3ilnyck533p"
+SpriteSheetSize = Vector2(6, 5)
+SpriteDeathMaxPos = 3
+Health = 50.0
+MaxHealth = 50.0
+MoveSpeed = 60.0
+
+[node name="StateMachine" parent="." index="0" node_paths=PackedStringArray("IntialState")]
+IntialState = NodePath("EnemySearch")
+
+[node name="EnemyChase" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("2_vmmg3")
+metadata/_custom_type_script = "uid://b5fa8dqapvurh"
+
+[node name="EnemyMelee" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("3_8a8v4")
+metadata/_custom_type_script = "uid://ntks4whmokx0"
+
+[node name="EnemySearch" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("4_8eeeh")
+metadata/_custom_type_script = "uid://o43b4xs0ncr"
+
+[node name="EnemyDeath" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("5_vmmg3")
+metadata/_custom_type_script = "uid://dv7t6st5b64"
+
+[node name="Sprite" parent="." index="2"]
+hframes = 6
+vframes = 4
+
+[node name="NavAgent" parent="." index="7"]
+debug_enabled = true

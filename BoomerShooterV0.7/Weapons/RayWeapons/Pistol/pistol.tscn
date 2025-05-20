@@ -1,0 +1,191 @@
+[gd_scene load_steps=11 format=3 uid="uid://c75krvrn1wugv"]
+
+[ext_resource type="Script" uid="uid://jktfgq7uqj7d" path="res://Weapons/RayWeapons/Pistol/Pistol.gd" id="1_nwvpy"]
+[ext_resource type="PackedScene" uid="uid://dsonj3mqqei5f" path="res://Weapons/WeaponModels/3DPistolV2.blend" id="2_2ad7a"]
+
+[sub_resource type="Animation" id="Animation_nwvpy"]
+resource_name = "Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(0.34151, 1.10957, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.15, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(0.34151, 1.18921, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.261799), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Muzzle Flash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ak2fd"]
+resource_name = "Enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2.14355, 1),
+"update": 0,
+"values": [Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_75qc3"]
+resource_name = "Exit"
+
+[sub_resource type="Animation" id="Animation_2ad7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Muzzle Flash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75qc3"]
+_data = {
+&"Attack": SubResource("Animation_nwvpy"),
+&"Enter": SubResource("Animation_ak2fd"),
+&"Exit": SubResource("Animation_75qc3"),
+&"RESET": SubResource("Animation_2ad7a")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwvpy"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ad7a"]
+material = SubResource("StandardMaterial3D_nwvpy")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_75qc3"]
+offsets = PackedFloat32Array(0.22, 1)
+colors = PackedColorArray(1, 0, 0, 0.392157, 1, 1, 0, 0.392157)
+
+[node name="Pistol" type="Node3D"]
+script = ExtResource("1_nwvpy")
+WeaponSplinter = 1
+MinAmmoConsume = 1
+AmmoType = 1
+ShotAngleRandomRange = Vector2(2.5, 2.5)
+Damage = 10.0
+metadata/_custom_type_script = "uid://jktfgq7uqj7d"
+
+[node name="Weapon Visuals" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.311, -0.23808)
+
+[node name="Weapon Model" parent="Weapon Visuals" instance=ExtResource("2_2ad7a")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Weapon Animation Player" type="AnimationPlayer" parent="Weapon Visuals/Weapon Model"]
+libraries = {
+&"": SubResource("AnimationLibrary_75qc3")
+}
+
+[node name="Muzzle Flash" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336189, 0.121464, 0)
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
+mesh = SubResource("BoxMesh_2ad7a")
+particle_flag_align_y = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.1
+color_initial_ramp = SubResource("Gradient_75qc3")
+
+[node name="EndOfBarrel" type="Node3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.337403, 0.11812, 1.47484e-08)
+
+[node name="Ray" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -20)

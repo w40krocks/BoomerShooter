@@ -1,0 +1,270 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4uy5cs5fmysb"]
+
+[ext_resource type="Script" uid="uid://w67aa8nj5qoo" path="res://Weapons/RayWeapons/Shotgun/Shotgun.gd" id="1_lq4ni"]
+[ext_resource type="PackedScene" uid="uid://c4bg5j4g617vp" path="res://Weapons/WeaponModels/ShotgunV2.blend" id="2_j1wmt"]
+
+[sub_resource type="Animation" id="Animation_lyerf"]
+resource_name = "Attack"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(0.153893, 0.420448, 1),
+"update": 0,
+"values": [Vector3(0, -0.277, -0.65), Vector3(0, -0.277, -0.2), Vector3(0, -0.277, -0.65)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun/Weapon Visuals/Gun Smoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun/Weapon Visuals/Shell Ejection:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(0.170755, 0.450625, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shotgun/Weapon Visuals/Weapon Light:omni_range")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5),
+"transitions": PackedFloat32Array(0.15, 2, 1),
+"update": 0,
+"values": [0.0, 5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lq4ni"]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.31864, 1),
+"update": 0,
+"values": [Vector3(0, -1, -0.55), Vector3(0, -0.277, -0.55)]
+}
+
+[sub_resource type="Animation" id="Animation_j1wmt"]
+resource_name = "Exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_s02ox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun/Weapon Visuals/Gun Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun/Weapon Visuals/Shell Ejection:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.277, -0.6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shotgun/Weapon Visuals/Weapon Light:omni_range")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.011]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2qen"]
+_data = {
+&"Attack": SubResource("Animation_lyerf"),
+&"Enter": SubResource("Animation_lq4ni"),
+&"Exit": SubResource("Animation_j1wmt"),
+&"RESET": SubResource("Animation_s02ox")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfddb"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_588pb"]
+material = SubResource("StandardMaterial3D_xfddb")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_jljdg"]
+offsets = PackedFloat32Array(0.233333, 0.66, 1)
+colors = PackedColorArray(0.00784314, 0.00784314, 0.00784314, 0.392157, 1, 0, 0, 0.392157, 1, 1, 0, 0.392157)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kmct"]
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7tvl5"]
+material = SubResource("StandardMaterial3D_7kmct")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 4.0
+
+[node name="Shotgun" type="Node3D"]
+script = ExtResource("1_lq4ni")
+KnockbackAmount = 10.0
+WeaponSplinter = 15
+MinAmmoConsume = 1
+AmmoType = 2
+ShotAngleRandomRange = Vector2(5, 10)
+Damage = 5.0
+metadata/_custom_type_script = "uid://w67aa8nj5qoo"
+
+[node name="Weapon Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.197697, -0.131808)
+
+[node name="Weapon Light" type="OmniLight3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00371725, -0.621751)
+light_color = Color(1, 0.473272, 0.260882, 1)
+omni_range = 0.0
+
+[node name="Weapon Model" parent="Weapon Visuals" instance=ExtResource("2_j1wmt")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.133698, -0.65)
+
+[node name="Weapon Animation Player" type="AnimationPlayer" parent="Weapon Visuals/Weapon Model"]
+root_node = NodePath("../../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_n2qen")
+}
+
+[node name="EndOfBarrel" type="Node3D" parent="Weapon Visuals/Weapon Model"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.0782676, -3.06602)
+
+[node name="Gun Smoke" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0186397, -0.628351)
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
+mesh = SubResource("BoxMesh_588pb")
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 100.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+linear_accel_min = -1.0
+linear_accel_max = -0.5
+scale_amount_min = 0.1
+color_initial_ramp = SubResource("Gradient_jljdg")
+
+[node name="Shell Ejection" type="CPUParticles3D" parent="Weapon Visuals"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, -0.0718491, 0.00221393, -0.00738013)
+emitting = false
+amount = 1
+one_shot = true
+local_coords = true
+mesh = SubResource("CylinderMesh_7tvl5")
+direction = Vector3(-1, 0, 1)
+spread = 5.0
+gravity = Vector3(0, 0, -10)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+angular_velocity_min = -40.0
+angular_velocity_max = 40.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color = Color(1, 0, 0, 1)
+anim_speed_min = 1.29
+anim_speed_max = 1.29
+
+[node name="Ray" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -40)

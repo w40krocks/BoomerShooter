@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d11meqc83cq3h"]
+
+[ext_resource type="PackedScene" uid="uid://cimm8mbdheuuw" path="res://Character/Character.tscn" id="1_ep33s"]
+[ext_resource type="Script" uid="uid://y527kvux1qs0" path="res://Character/Player/Player.gd" id="2_iytxy"]
+[ext_resource type="PackedScene" uid="uid://d3mduh6h4q4se" path="res://Character/Player/inventory.tscn" id="4_iytxy"]
+
+[node name="Character" instance=ExtResource("1_ep33s")]
+script = ExtResource("2_iytxy")
+
+[node name="Head" type="Node3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera" type="Camera3D" parent="Head" index="0"]
+
+[node name="Inventory" parent="Head/Camera" index="0" instance=ExtResource("4_iytxy")]

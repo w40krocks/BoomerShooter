@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xhbxc7ksic5t"]
+
+[ext_resource type="PackedScene" uid="uid://da3rp4rcvilip" path="res://Weapons/Projectile/projectile.tscn" id="1_sh83l"]
+[ext_resource type="Script" uid="uid://cbvoy33uhfrch" path="res://Weapons/Projectile/Bazooka/Explosive.gd" id="2_4qent"]
+
+[node name="Projectile" instance=ExtResource("1_sh83l")]
+script = ExtResource("2_4qent")
+
+[node name="AnimationTimer" parent="." index="1"]
+wait_time = 0.075
+
+[node name="ProjectileSprite" parent="." index="3"]
+render_priority = 10
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_CollideWithSurface"]

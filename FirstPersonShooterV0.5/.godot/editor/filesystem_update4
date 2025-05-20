@@ -1,0 +1,9 @@
+res://Character/Character.tscn
+res://Character/Player/Player.tscn
+res://Worlds/TestWorld.tscn
+res://UI/UI.tscn
+res://Weapon/RayWeapons/RayWeapon.tscn
+res://Item/item.tscn
+res://Character/Enemy/enemy.tscn
+res://Weapon/GunSmoke.tscn
+res://UI/death_menu.tscn

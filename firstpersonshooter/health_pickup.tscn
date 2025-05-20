@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkqvr24mevo3w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wkcxt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01648"]
+blend_mode = 1
+albedo_color = Color(0, 0.922831, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_awyve"]
+material = SubResource("StandardMaterial3D_01648")
+
+[node name="HealthPickup" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wkcxt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_awyve")

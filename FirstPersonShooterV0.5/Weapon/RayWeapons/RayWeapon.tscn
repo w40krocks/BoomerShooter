@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbqc1p07woq2a"]
+
+[ext_resource type="Script" uid="uid://2m0rb7oj2cyg" path="res://Weapon/RayWeapons/RayWeapons.gd" id="1_vtlyc"]
+[ext_resource type="FontFile" uid="uid://3jqe1hxo35ir" path="res://UI/Qablom-3looy.otf" id="2_hdm0t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdm0t"]
+font = ExtResource("2_hdm0t")
+font_size = 48
+
+[node name="RayCast3D" type="RayCast3D"]
+target_position = Vector3(0, 0, -10)
+script = ExtResource("1_vtlyc")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+centered = false
+offset = Vector2(-6.5, -26)
+hframes = 3
+
+[node name="WeaponCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -67.0
+offset_right = 55.0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_hdm0t")
+vertical_alignment = 2
+
+[node name="Display" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Display"]
+z_index = -1
+centered = false
+region_rect = Rect2(-5.11523, -4.3786, 18.3045, 16.9877)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(1, 0.676167, 0.33, 1)
+
+[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

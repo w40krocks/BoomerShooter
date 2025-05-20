@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=3 uid="uid://bjiwxbew7uq6m"]
+
+[ext_resource type="Script" uid="uid://b7tse43hsv1e6" path="res://Player/player.gd" id="1_gu6f8"]
+[ext_resource type="Script" uid="uid://d3pmfefrd66iq" path="res://Scripts/SpritePositioning.gd" id="1_p5o4e"]
+[ext_resource type="Texture2D" uid="uid://qg8gbqd23ktw" path="res://Face/pixels_03.png" id="5_pisgm"]
+[ext_resource type="Texture2D" uid="uid://dxo8idrl8ksmj" path="res://Face/pixels_04.png" id="6_b1ygp"]
+[ext_resource type="Texture2D" uid="uid://d3y5261knrtwm" path="res://Face/pixels_05.png" id="7_o28un"]
+[ext_resource type="Texture2D" uid="uid://br6mjv8l30g55" path="res://Face/pixels.png" id="8_n471f"]
+[ext_resource type="Texture2D" uid="uid://k8g7ej24f3l5" path="res://Face/pixels_00.png" id="9_7emwf"]
+[ext_resource type="Texture2D" uid="uid://bw064tcm5k6b6" path="res://Face/pixels_01.png" id="10_hshwv"]
+[ext_resource type="Texture2D" uid="uid://bkx6il7jkdiw" path="res://Face/pixels_02.png" id="11_gpjlu"]
+[ext_resource type="Texture2D" uid="uid://cqh2qg6heja2x" path="res://Health/Health.png" id="11_pisgm"]
+[ext_resource type="Texture2D" uid="uid://cy7lg7vujjkof" path="res://Health/HealthContainer.png" id="12_8mwp6"]
+[ext_resource type="Script" uid="uid://cfdu44pq75rro" path="res://Player/Weapons.gd" id="13_gu6f8"]
+[ext_resource type="PackedScene" uid="uid://b5yerkt75kcay" path="res://GunScenes/pistol.tscn" id="14_lfmf2"]
+[ext_resource type="Texture2D" uid="uid://b3gakk1lu2jqv" path="res://GunSprites/Crosshair.png" id="15_dkpta"]
+[ext_resource type="PackedScene" uid="uid://b1yhmcflc86p4" path="res://GunScenes/shotgun.tscn" id="15_pisgm"]
+[ext_resource type="PackedScene" uid="uid://cek4wdg6vdejs" path="res://Menus/PauseMenu.tscn" id="16_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://pifgijm2ce8r" path="res://GunScenes/Unarmed.tscn" id="16_pisgm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8viyr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76lrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pisgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b1ygp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o28un")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b1ygp")
+}],
+"loop": true,
+"name": &"Angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_n471f")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7emwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hshwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gpjlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hshwv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efx54"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_gu6f8")
+
+[node name="PlayerShape" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8viyr")
+
+[node name="Head" type="Node3D" parent="PlayerShape"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="PlayerCam" type="Camera3D" parent="PlayerShape/Head"]
+
+[node name="Sprites" type="Node2D" parent="PlayerShape/Head/PlayerCam"]
+script = ExtResource("1_p5o4e")
+Pistol_Set_xPos = 0.5
+Pistol_Set_yPos = 0.875
+Shotgun_Set_xPos = 0.5
+Shotgun_Set_yPos = 0.815
+Unarmed_Set_xPos = 0.8
+Unarmed_Set_yPos = 0.7
+Face_Set_xPos = 0.075
+Face_Set_yPos = 0.125
+Health_Set_xPos = 0.94
+Health_Set_yPos = 0.1
+
+[node name="Face" type="AnimatedSprite2D" parent="PlayerShape/Head/PlayerCam/Sprites"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_76lrf")
+animation = &"Idle"
+frame_progress = 0.526834
+
+[node name="HealthContainer" type="Sprite2D" parent="PlayerShape/Head/PlayerCam/Sprites"]
+texture = ExtResource("12_8mwp6")
+
+[node name="Health" type="Sprite2D" parent="PlayerShape/Head/PlayerCam/Sprites"]
+texture = ExtResource("11_pisgm")
+
+[node name="Crosshair" type="Sprite2D" parent="PlayerShape/Head/PlayerCam/Sprites"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_dkpta")
+
+[node name="Weapons" type="Node2D" parent="PlayerShape/Head/PlayerCam/Sprites"]
+script = ExtResource("13_gu6f8")
+
+[node name="Pistol" parent="PlayerShape/Head/PlayerCam/Sprites/Weapons" instance=ExtResource("14_lfmf2")]
+
+[node name="Shotgun" parent="PlayerShape/Head/PlayerCam/Sprites/Weapons" instance=ExtResource("15_pisgm")]
+
+[node name="Unarmed" parent="PlayerShape/Head/PlayerCam/Sprites/Weapons" instance=ExtResource("16_pisgm")]
+
+[node name="WeaponCast" type="RayCast3D" parent="PlayerShape/Head/PlayerCam"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -1.5)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0.392939, 0.440902, 1)
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_efx54")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 1.147
+one_shot = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("16_lfmf2")]
+
+[connection signal="timeout" from="Cooldown" to="PlayerShape/Head/PlayerCam/Sprites/Weapons" method="CooldownOver"]

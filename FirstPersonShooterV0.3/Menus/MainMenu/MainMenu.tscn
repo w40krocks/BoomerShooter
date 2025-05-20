@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://sgl5q5v4xhaw"]
+
+[ext_resource type="Script" uid="uid://0fcpvm0parqj" path="res://Menus/MainMenu/MainMenu.gd" id="1_cpfrm"]
+[ext_resource type="Theme" uid="uid://ju8arulvecj0" path="res://Font/BaseTheme.tres" id="2_jyye3"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cpfrm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+theme = ExtResource("2_jyye3")
+alignment = 1
+
+[node name="Start" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Quit" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Container/VBoxContainer/Start" to="Container" method="_StartButtonPressed"]
+[connection signal="pressed" from="Container/VBoxContainer/Quit" to="Container" method="_Quit"]

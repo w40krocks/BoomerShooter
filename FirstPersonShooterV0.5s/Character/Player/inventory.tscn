@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3mduh6h4q4se"]
+
+[ext_resource type="Script" uid="uid://d4hle2fbb3ni1" path="res://Character/Player/inventory.gd" id="1_qof0x"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 10.0
+grow_vertical = 0
+script = ExtResource("1_qof0x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+layout_direction = 2
+layout_mode = 2

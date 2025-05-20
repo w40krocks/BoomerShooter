@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbgddn7tr8cfd"]
+
+[ext_resource type="Texture2D" uid="uid://bvik4lhtv22ia" path="res://Weapon/GunSmoke.png" id="1_kfoak"]
+[ext_resource type="Script" uid="uid://wa7hal1imph" path="res://GunSmoke.gd" id="2_kq8ve"]
+
+[node name="GunSmoke" type="Sprite3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_kfoak")
+hframes = 2
+script = ExtResource("2_kq8ve")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
