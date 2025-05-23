@@ -17,7 +17,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.533333, 0.533333, 0.533333, 0.392157)
 [node name="Gun Impact" type="CPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 emitting = false
-amount = 20
+amount = 40
 one_shot = true
 explosiveness = 0.6
 randomness = 1.0

@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://by0kw0lvu70bi"]
+
+[ext_resource type="Texture2D" uid="uid://xgdn6apv1y7" path="res://Weapons/WeaponModels/textures/LMG Handle.png" id="1_h15xj"]
+[ext_resource type="Script" uid="uid://b4abc7vlotrq1" path="res://World/Environment/Torch.gd" id="1_newiv"]
+[ext_resource type="Texture2D" uid="uid://b0nikaikw2y65" path="res://Weapons/WeaponModels/textures/GunMetal.png" id="2_newiv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ob0c"]
+albedo_texture = ExtResource("1_h15xj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dclsp"]
+size = Vector3(0.5, 2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5vvi"]
+albedo_texture = ExtResource("2_newiv")
+
+[sub_resource type="BoxMesh" id="BoxMesh_71g6q"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fc47"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.392157)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_go8ma"]
+material = SubResource("StandardMaterial3D_8fc47")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01nsg"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_kckwq"]
+material = SubResource("StandardMaterial3D_01nsg")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_dnn3t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_i48s7"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_1ob0c"]
+resource_name = "Default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D3:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.366667, 0.566667, 1),
+"transitions": PackedFloat32Array(0.153893, 0.210224, 3.13834, 1.62451, 1.8025),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.79998, 0.79998, 0.79998), Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D3/OmniLight3D:omni_range")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.277392, 1.51572, 1),
+"update": 0,
+"values": [5.0, 4.0, 5.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D3/OmniLight3D:light_color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(1, 0.241484, 1),
+"update": 0,
+"values": [Color(1, 0.756863, 0, 1), Color(1, 0.576471, 0, 1), Color(1, 0.756863, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dclsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D3/OmniLight3D:omni_range")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D3/OmniLight3D:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5vvi"]
+_data = {
+&"Default": SubResource("Animation_1ob0c"),
+&"RESET": SubResource("Animation_dclsp")
+}
+
+[node name="Torch" type="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_newiv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1ob0c")
+mesh = SubResource("BoxMesh_dclsp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_u5vvi")
+mesh = SubResource("BoxMesh_71g6q")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201473, 1.18339, 0)
+mesh = SubResource("SphereMesh_go8ma")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="MeshInstance3D3"]
+amount = 40
+lifetime = 4.0
+mesh = SubResource("BoxMesh_kckwq")
+emission_shape = 2
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+color_ramp = SubResource("Gradient_dnn3t")
+color_initial_ramp = SubResource("Gradient_i48s7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D3"]
+light_color = Color(1, 1, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u5vvi")
+}

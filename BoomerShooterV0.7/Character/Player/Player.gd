@@ -7,6 +7,8 @@ var Momentum : Vector3
 @onready var MaxAirSpeed := 30
 @onready var MaxGroundSpeed := 16
 
+func _ready() -> void:
+	Engine.time_scale = 1
 
 
 
@@ -34,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			elif velocity.x < -MaxGroundSpeed:
 				velocity.x -= -MaxGroundSpeed * delta*2
 			else: 
-				velocity.x =GroundMove(direction.x,delta)
+				velocity.x = GroundMove(direction.x,delta)
 
 			if velocity.z > MaxGroundSpeed:
 				velocity.z -= MaxGroundSpeed * delta*2

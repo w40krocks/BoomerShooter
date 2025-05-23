@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://wmiod4e08l0a"]
+
+[ext_resource type="Script" uid="uid://cnngbnbw8p774" path="res://Items/Weapon Pickups/WeaponPickup.gd" id="1_x2ye8"]
+[ext_resource type="PackedScene" uid="uid://c4bg5j4g617vp" path="res://Weapons/WeaponModels/ShotgunV2.blend" id="2_fwfs3"]
+
+[sub_resource type="Animation" id="Animation_84ces"]
+resource_name = "Default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lqmyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlvny"]
+_data = {
+&"Default": SubResource("Animation_84ces"),
+&"RESET": SubResource("Animation_lqmyk")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5bsw1"]
+
+[node name="WeaponItem" type="Area3D"]
+script = ExtResource("1_x2ye8")
+HeldWeapon = "uid://c4uy5cs5fmysb"
+WeaponName = "Shotgun"
+metadata/_custom_type_script = "uid://cnngbnbw8p774"
+
+[node name="Item Visual" parent="." instance=ExtResource("2_fwfs3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Item Animator" type="AnimationPlayer" parent="Item Visual"]
+libraries = {
+&"": SubResource("AnimationLibrary_rlvny")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_5bsw1")
+
+[connection signal="body_entered" from="." to="." method="Pickup"]

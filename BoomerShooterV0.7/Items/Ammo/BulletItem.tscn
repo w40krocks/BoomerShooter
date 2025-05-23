@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://57mspsffurq5"]
+
+[ext_resource type="Script" uid="uid://cwh1o1wrmttf" path="res://Items/Ammo/AmmoPickup.gd" id="1_glbsy"]
+[ext_resource type="PackedScene" uid="uid://dg2p3jaenid7u" path="res://Items/Ammo/Bullet.blend" id="2_kfsf0"]
+
+[sub_resource type="Animation" id="Animation_glbsy"]
+resource_name = "Default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kfsf0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h5kjl"]
+_data = {
+&"Default": SubResource("Animation_glbsy"),
+&"RESET": SubResource("Animation_kfsf0")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7c2d6"]
+
+[node name="AmmoItem" type="Area3D"]
+script = ExtResource("1_glbsy")
+AmmoType = 1
+ItemAmount = 10
+metadata/_custom_type_script = "uid://cwh1o1wrmttf"
+
+[node name="Item Visuals" type="Node3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Bullet" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+
+[node name="Bullet2" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.917321, 0, -0.151142)
+
+[node name="Bullet3" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882403, 0, -0.847847)
+
+[node name="Bullet4" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.825567)
+
+[node name="Bullet5" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(0.993768, -2.72411e-10, 0.111469, -0.111469, -4.87246e-09, 0.993768, 2.72411e-10, -1, -4.87246e-09, 0, 0, -0.861854)
+
+[node name="Bullet6" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(0.796372, -0.604808, 0, 0.604808, 0.796372, 0, 0, 0, 1, 1.00526, 0, 0)
+
+[node name="Bullet7" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.956518, 0.0165369, 0.819546)
+
+[node name="Bullet8" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.892285, 0.0165369, 0.819546)
+
+[node name="Bullet9" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.78962, 0.0165369, 0.819546)
+
+[node name="Bullet10" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.37925, 0.752319, 0.777181)
+
+[node name="Bullet11" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(-0.084931, -0.881074, -0.46529, -0.0446446, -0.463143, 0.885158, -0.995386, 0.09595, 4.19411e-09, -0.384346, 0.980067, 0.873138)
+
+[node name="Bullet12" parent="Item Visuals" instance=ExtResource("2_kfsf0")]
+transform = Transform3D(0.936213, -1.53616e-08, 0.351433, -0.351433, -4.09232e-08, 0.936213, 0, -1, -4.37114e-08, 0.415628, 0.966577, -0.151142)
+
+[node name="Item Animator" type="AnimationPlayer" parent="Item Visuals"]
+libraries = {
+&"": SubResource("AnimationLibrary_h5kjl")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7c2d6")
+
+[connection signal="body_entered" from="." to="." method="Pickup"]

@@ -13,7 +13,7 @@ func Update(delta):
 	
 	if CheckIfDead():
 		Transitioned.emit(self,"EnemyDeath")
-	var TargetFound = Enemy.SearchForTarget(Enemy.Targets[1],Enemy.GetRotationalDistance(Enemy.Targets[1]))
+	var TargetFound = Enemy.SearchForTarget(Enemy.Targets[0],Enemy.GetRotationalDistance(Enemy.Targets[0]))
 	if TargetFound:
 		#ChaseState
 		Transitioned.emit(self,"EnemyChase")

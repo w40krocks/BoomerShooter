@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcs7xsk4jk6tv"]
+
+[ext_resource type="Script" uid="uid://cnngbnbw8p774" path="res://Items/Weapon Pickups/WeaponPickup.gd" id="1_kvq1r"]
+[ext_resource type="PackedScene" uid="uid://cahev42uw2c0y" path="res://Weapons/WeaponModels/LMG V1.blend" id="2_md004"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rhgcf"]
+
+[sub_resource type="Animation" id="Animation_d7ttc"]
+resource_name = "Default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t370w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuto0"]
+_data = {
+&"Default": SubResource("Animation_d7ttc"),
+&"RESET": SubResource("Animation_t370w")
+}
+
+[node name="WeaponItem" type="Area3D"]
+script = ExtResource("1_kvq1r")
+HeldWeapon = "uid://bu3yyxrhl77r4"
+WeaponName = "lmg"
+ItemAmount = 4
+metadata/_custom_type_script = "uid://cnngbnbw8p774"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_rhgcf")
+
+[node name="Item Visual" parent="." instance=ExtResource("2_md004")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+
+[node name="Item Animator" type="AnimationPlayer" parent="Item Visual"]
+libraries = {
+&"": SubResource("AnimationLibrary_nuto0")
+}
+
+[connection signal="body_entered" from="." to="." method="Pickup"]

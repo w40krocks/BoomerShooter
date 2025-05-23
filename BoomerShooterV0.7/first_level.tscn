@@ -1,0 +1,309 @@
+[gd_scene load_steps=26 format=3 uid="uid://i82vf1vw0r7i"]
+
+[ext_resource type="PackedScene" uid="uid://bwvux4ua24qq3" path="res://Character/Player/player.tscn" id="1_5puvx"]
+[ext_resource type="PackedScene" uid="uid://by0kw0lvu70bi" path="res://World/Environment/torch.tscn" id="2_fnyhn"]
+[ext_resource type="PackedScene" uid="uid://wmiod4e08l0a" path="res://Items/Weapon Pickups/ShotgunPickup.tscn" id="3_7m365"]
+[ext_resource type="PackedScene" uid="uid://dw065ua013e71" path="res://World/Environment/Door.tscn" id="4_mne6x"]
+[ext_resource type="PackedScene" uid="uid://daossivxsw4qw" path="res://World/Environment/Button.tscn" id="5_j4ciw"]
+[ext_resource type="PackedScene" uid="uid://bdnl8eifbs5ye" path="res://Character/Enemy/Zombie/zombie.tscn" id="6_j4ciw"]
+[ext_resource type="PackedScene" uid="uid://bcs7xsk4jk6tv" path="res://Items/Weapon Pickups/LMGpickup.tscn" id="7_5jff8"]
+[ext_resource type="PackedScene" uid="uid://57mspsffurq5" path="res://Items/Ammo/BulletItem.tscn" id="8_ehg42"]
+[ext_resource type="PackedScene" uid="uid://dq47k1sp27j6p" path="res://Items/Ammo/ShotgunShellItem.tscn" id="9_rfkqk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fnyhn"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_7m365"]
+sky_material = SubResource("ProceduralSkyMaterial_fnyhn")
+
+[sub_resource type="Environment" id="Environment_5nl2g"]
+background_mode = 2
+sky = SubResource("Sky_7m365")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mne6x"]
+size = Vector3(2.48242, 3.73291, 3.39624)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_j4ciw"]
+vertices = PackedVector3Array(11.6323, -2.39669, 4.16089, 12.8823, -2.39669, 4.16089, 12.8823, -2.39669, 0.41089, 11.6323, -2.39669, -0.0891099, -1.36771, -2.39669, 1.91089, 4.88229, -2.39669, 1.91089, 4.88229, -2.39669, -0.0891099, 11.1323, -2.39669, -0.58911, 10.6323, -2.39669, -1.83911, 4.88229, -2.39669, -2.33911, 4.88229, -2.39669, -4.33911, -1.36771, -2.39669, -4.33911, 5.38229, -2.39669, -0.58911, 5.38229, -2.39669, -1.83911, -7.11771, -2.39669, -1.83911, -7.11771, -2.39669, -0.58911, -3.11771, -2.39669, -0.58911, -3.11771, -2.39669, -1.83911, 9.63229, 1.35331, 13.1609, 9.13229, 1.35331, 12.6609, 9.13229, 1.35331, 13.9109, 14.8823, -2.39669, 5.91089, 14.3823, -2.39669, 6.41089, 16.6323, -2.39669, 7.66089, 16.8823, -2.39669, 7.16089, 19.3823, 1.35331, 13.9109, 19.3823, -2.39669, 1.16089, 18.1323, -2.14669, 7.41089, 18.1323, 1.35331, 12.6609, 19.3823, 1.35331, 12.4942, 19.3823, -2.39669, 6.82756, 14.8823, -2.39669, 1.16089, 17.6323, 1.35331, 13.1609, 11.6323, -2.39669, 15.9109, 12.8823, -2.39669, 16.1609, 12.8823, -2.39669, 14.4109, 11.6323, -2.39669, 14.4109, 13.3823, -2.39669, 13.9109, 17.1323, -2.39669, 12.1609, 16.6323, -2.39669, 11.6609, 10.6323, -2.39669, 13.9109, 12.8823, -2.39669, 5.91089, 11.6323, -2.39669, 5.91089, 10.6323, -2.39669, 6.41089, 19.3823, -2.39669, 13.9109, 19.3823, -2.39669, 12.1609, 4.63229, -2.39669, 6.41089, 4.63229, -2.39669, 13.9109, 7.63229, -2.39669, 13.9109, 7.63229, -2.39669, 6.41089, 11.6323, -2.39669, 17.6609, 12.8823, -2.39669, 17.6609, 11.1323, -2.39669, 18.1609, 9.13229, -2.39669, 18.1609, 9.13229, -2.39669, 25.6609, 13.3823, -2.39669, 18.1609, 15.3823, -2.39669, 25.6609, 15.3823, -2.39669, 18.1609, 18.3823, 6.35331, 17.6609, 18.3823, 6.35331, 16.4109, 13.8823, 6.35331, 16.4109, 18.8823, 6.35331, 19.1609, 23.8823, 6.35331, 19.1609, 23.8823, 6.35331, 18.1609, 18.8823, 6.35331, 18.1609, 13.8823, 6.35331, 22.4109, 18.3823, 6.35331, 19.6609, 18.3823, 6.35331, 22.4109, 4.63229, -2.39669, 18.1609, 4.63229, -2.39669, 25.6609, 19.3823, -2.39669, 25.6609, 19.3823, -2.39669, 18.1609, 20.8823, 1.85331, 18.1609, 20.8823, 1.85331, 19.1609, 25.6323, 1.85331, 19.1609, 25.6323, 1.85331, 18.1609)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(7, 8, 3), PackedInt32Array(3, 8, 2), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 8, 12), PackedInt32Array(12, 8, 7), PackedInt32Array(12, 6, 13), PackedInt32Array(13, 6, 9), PackedInt32Array(9, 6, 4), PackedInt32Array(9, 4, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(25, 28, 29), PackedInt32Array(29, 28, 27), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 26), PackedInt32Array(24, 21, 27), PackedInt32Array(27, 21, 31), PackedInt32Array(27, 31, 26), PackedInt32Array(18, 32, 20), PackedInt32Array(20, 32, 25), PackedInt32Array(32, 28, 25), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(39, 38, 37), PackedInt32Array(35, 36, 37), PackedInt32Array(37, 36, 40), PackedInt32Array(42, 0, 41), PackedInt32Array(41, 0, 1), PackedInt32Array(23, 39, 22), PackedInt32Array(22, 39, 37), PackedInt32Array(22, 37, 40), PackedInt32Array(22, 40, 43), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 22), PackedInt32Array(45, 44, 38), PackedInt32Array(38, 44, 37), PackedInt32Array(49, 48, 46), PackedInt32Array(46, 48, 47), PackedInt32Array(51, 50, 34), PackedInt32Array(34, 50, 33), PackedInt32Array(54, 53, 52), PackedInt32Array(51, 55, 50), PackedInt32Array(50, 55, 52), PackedInt32Array(52, 55, 56), PackedInt32Array(52, 56, 54), PackedInt32Array(55, 57, 56), PackedInt32Array(60, 59, 58), PackedInt32Array(64, 63, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(61, 66, 64), PackedInt32Array(64, 66, 58), PackedInt32Array(58, 66, 60), PackedInt32Array(60, 66, 65), PackedInt32Array(66, 67, 65), PackedInt32Array(69, 68, 54), PackedInt32Array(54, 68, 53), PackedInt32Array(57, 71, 56), PackedInt32Array(56, 71, 70), PackedInt32Array(75, 74, 72), PackedInt32Array(72, 74, 73)]
+agent_radius = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnyhn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7m365"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nl2g"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_ccbq8"]
+material = SubResource("StandardMaterial3D_5nl2g")
+left_to_right = 1.0
+size = Vector3(3, 3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mne6x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4ciw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jff8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5puvx"]
+material = SubResource("StandardMaterial3D_5jff8")
+size = Vector2(5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehg42"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfkqk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l1oci"]
+material = SubResource("StandardMaterial3D_rfkqk")
+size = Vector2(2, 5)
+
+[node name="First Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5nl2g")
+
+[node name="Player" parent="." instance=ExtResource("1_5puvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90649, 0.850351, -1.23001)
+
+[node name="Door" parent="." node_paths=PackedStringArray("ConnectedButton") instance=ExtResource("4_mne6x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.1179, -2.09603, 16.1056)
+ConnectedButton = NodePath("../Switch")
+
+[node name="Switch" parent="." instance=ExtResource("5_j4ciw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.42786, -1.31214, 7.59355)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20105, 0.296143, 0.268188)
+shape = SubResource("BoxShape3D_mne6x")
+
+[node name="Enemy" type="Node3D" parent="."]
+process_priority = -3
+
+[node name="Zombie" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(0.999992, -0.00390953, 0, 0.00390953, 0.999992, 0, 0, 0, 1, 12.3773, -1.06673, 5.81723)
+Targets = []
+
+[node name="Zombie2" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(-0.99853, 0, 0.0542007, 0, 1, 0, -0.0542007, 0, -0.99853, 15.9446, -1.19063, 2.44081)
+
+[node name="Zombie3" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(-0.99853, 0, 0.0542007, 0, 1, 0, -0.0542007, 0, -0.99853, 17.4034, -1.19063, 2.44081)
+
+[node name="Zombie4" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(0.96677, 0, 0.255648, 0, 1, 0, -0.255648, 0, 0.96677, 15.0221, -0.00353217, 20.7469)
+
+[node name="Zombie5" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(0.968148, 0, -0.25038, 0, 1, 0, 0.25038, 0, 0.968148, 7.34156, -0.393872, 21.3935)
+
+[node name="Zombie6" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(0.74694, 0, 0.664891, 0, 1, 0, -0.664891, 0, 0.74694, 19.4709, 2.18048, 20.1205)
+
+[node name="Zombie7" parent="Enemy" instance=ExtResource("6_j4ciw")]
+transform = Transform3D(0.882414, 0, -0.470473, 0, 1, 0, 0.470473, 0, 0.882414, 3.83387, -0.19715, 22.5008)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Torch5" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(0.141421, 0, 0.141421, 0, 0.2, 0, -0.141421, 0, 0.141421, 12.0568, -1.36904, -1.41684)
+
+[node name="Torch6" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 12.2118, 0.391593, 5.68795)
+
+[node name="Torch7" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 5.69232, -1.36904, 5.93708)
+
+[node name="Torch4" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 5.69232, -1.36904, -3.07998)
+
+[node name="Torch3" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 5.69232, -1.36904, 0.298924)
+
+[node name="Torch2" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, -4.05231, -1.36904, 0.0982606)
+
+[node name="Torch" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, -4.05231, -1.36904, -2.77069)
+
+[node name="Torch8" parent="Environment" instance=ExtResource("2_fnyhn")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 25.5065, 6.77063, 17.5716)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
+navigation_mesh = SubResource("NavigationMesh_j4ciw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72095, 1.14948, -1.33911)
+calculate_tangents = false
+use_collision = true
+flip_faces = true
+size = Vector3(8, 8, 8)
+material = SubResource("StandardMaterial3D_fnyhn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -2.5, 0)
+use_collision = true
+flip_faces = true
+size = Vector3(6, 3, 3)
+material = SubResource("StandardMaterial3D_7m365")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 4.5, 0, 0)
+flip_faces = true
+mesh = SubResource("PrismMesh_ccbq8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.528, -2.5, 12.8624)
+use_collision = true
+flip_faces = true
+size = Vector3(3, 3, 22.9248)
+material = SubResource("StandardMaterial3D_mne6x")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.83867, -2.5, 0)
+use_collision = true
+flip_faces = true
+size = Vector3(6, 3, 3)
+material = SubResource("StandardMaterial3D_j4ciw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -4, -3.04617, 0)
+mesh = SubResource("PlaneMesh_5puvx")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3439, -0.486633, 11.5665)
+use_collision = true
+flip_faces = true
+size = Vector3(16.562, 7.02197, 9.192)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99164, -1.92344, 0.157156)
+operation = 2
+use_collision = true
+flip_faces = true
+size = Vector3(1.25623, 4.54466, 9.74719)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D4/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0219256, 0.960854)
+operation = 2
+use_collision = true
+flip_faces = true
+size = Vector3(1.25623, 1.29024, 4.97594)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34779, -0.224151, 3.66329)
+operation = 2
+use_collision = true
+flip_faces = true
+size = Vector3(11.9351, 0.887436, 2.73492)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 0.820581, 0.57153, 0, -0.57153, 0.820581, 6.83151, -3.19406, -1.81395)
+operation = 2
+use_collision = true
+flip_faces = true
+size = Vector3(2.96767, 0.887436, 10.6336)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1683, -1.40796, -7.18735)
+use_collision = true
+flip_faces = true
+size = Vector3(6.2254, 4.18408, 5.39883)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3439, -0.486633, 23.2422)
+use_collision = true
+flip_faces = true
+size = Vector3(16.562, 7.02197, 9.192)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.40799, 2.16644, -3.22793)
+use_collision = true
+flip_faces = true
+size = Vector3(10.0013, 2.68909, 2.73614)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4609, 4.07352, -3.22793)
+use_collision = true
+flip_faces = true
+size = Vector3(1.8954, 6.50323, 2.73614)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.40799, 6.57422, -3.22793)
+use_collision = true
+flip_faces = true
+size = Vector3(10.0013, 2.68909, 2.73614)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5/CSGBox3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.09565, 0, -1.368)
+mesh = SubResource("PlaneMesh_l1oci")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.10445, 6.57422, -7.1855)
+use_collision = true
+flip_faces = true
+size = Vector3(1.4, 2.689, 10.651)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/NavigationRegion3D/CSGBox3D/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06626, 6.47495, -2.50907)
+use_collision = true
+flip_faces = true
+size = Vector3(6.39481, 2.49054, 7.85939)
+material = SubResource("StandardMaterial3D_ehg42")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="WeaponItem" parent="Items" instance=ExtResource("3_7m365")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1246, -2.10118, 10.461)
+
+[node name="WeaponItem2" parent="Items" instance=ExtResource("7_5jff8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2854, 7.37302, 18.6342)
+
+[node name="AmmoItem" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54808, -2.17682, -0.641442)
+
+[node name="AmmoItem2" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80666, -2.79606, -2.05395)
+
+[node name="AmmoItem3" parent="Items" instance=ExtResource("9_rfkqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.86244, -2.38452, 13.6563)
+
+[node name="AmmoItem4" parent="Items" instance=ExtResource("9_rfkqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14925, -2.35848, 13.7808)
+
+[node name="AmmoItem5" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2605, 6.72194, 19.5025)
+
+[node name="AmmoItem6" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7946, 6.18602, 20.9091)
+
+[node name="AmmoItem7" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0691, 6.67837, 16.3152)
+
+[node name="AmmoItem8" parent="Items" instance=ExtResource("8_ehg42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2082, 6.4389, 22.1164)
+
+[node name="Torch" parent="." instance=ExtResource("2_fnyhn")]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 20.8959, 2.61445, 19.9776)
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-0.995443, 0, -0.0953594, 0, 1, 0, 0.0953594, 0, -0.995443, 6.00724, -0.894612, 14.2436)
+text = "Switch between 
+weapons with the scroll wheel"
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.0477341, 0, -0.99886, 0, 1, 0, 0.99886, 0, 0.0477341, 8.38037, -0.447306, 7.50647)
+text = "Press Q to interact
+ with buttons"

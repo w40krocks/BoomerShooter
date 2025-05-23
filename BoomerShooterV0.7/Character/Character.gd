@@ -7,3 +7,6 @@ class_name Character
 
 func Death():
 	pass
+
+func HealthChange(HealthChange : float):
+	Health = Health + HealthChange

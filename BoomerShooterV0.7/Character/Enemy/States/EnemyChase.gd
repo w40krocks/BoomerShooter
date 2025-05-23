@@ -14,15 +14,15 @@ func Update(delta):
 		Enemy.MoveAnimation(Enemy.SpriteMoveMinPos,Enemy.SpriteMoveMaxPos)
 		Enemy.AnimationTimer.start()
 
-	if Enemy.MeleeAttackDistance > Enemy.position.distance_to(Enemy.Targets[1].global_position):
+	if Enemy.MeleeAttackDistance > Enemy.position.distance_to(Enemy.Targets[0].global_position):
 		Transitioned.emit(self,"EnemyMelee")
 func PhysicsUpdate(delta):
 	Chase(delta)
 
 func Chase(delta):
-	var ChasePos : Vector3 = Enemy.Targets[1].global_position
+	var ChasePos : Vector3 = Enemy.Targets[0].global_position
 	
-	Enemy.NavigationAgent.target_position = Enemy.Targets[1].global_position
+	Enemy.NavigationAgent.target_position = Enemy.Targets[0].global_position
 	var DirectionToTarget = (Enemy.NavigationAgent.get_next_path_position() - Enemy.global_position).normalized()
 	
 	Enemy.velocity = DirectionToTarget * Enemy.MoveSpeed * delta*2

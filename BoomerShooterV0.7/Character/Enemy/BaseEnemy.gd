@@ -1,7 +1,7 @@
 extends Character
 class_name BaseEnemy
 
-var Targets : Array = [Player]
+@export var Targets : Array = []
 
 
 @onready var MeleeRay : RayCast3D = find_child("MeleeAttack")
@@ -63,6 +63,13 @@ var SelfVector : Vector2
 var TargetPos : Vector2
 
 #Attack Stuff
+
+
+func HealthChange(HealthChange):
+	Health = Health + HealthChange
+	if find_child("StateMachine").CurrentState.name == "EnemySearch":
+		find_child("StateMachine")._StateTransition(find_child("StateMachine").CurrentState, "EnemyChase")
+
 
 func SearchForTarget(Target,RotationalDistance : float):
 	var ReturnValue := false
@@ -141,14 +148,14 @@ func _ready() -> void:
 	EnemySprite.hframes = SpriteSheetSize.x
 	EnemySprite.vframes = SpriteSheetSize.y
 	EnemySprite.texture = load(SpriteSheet)
-	Targets.insert(1,get_parent().find_child("Player"))
+	Targets.insert(0,get_parent().get_parent().find_child("Player"))
 	SetRays(MeleeRay,MRaycastXScale,MRaycastYScale,MRaycastZTarget)
 
 
 func _process(delta: float) -> void:
 
 	if Health > 0:
-		SetSprite(GetRotationalDistance(Targets[1]),Targets[1])
+		SetSprite(GetRotationalDistance(Targets[0]),Targets[0])
 	EnemySprite.frame_coords = SpriteCoords
 	
 

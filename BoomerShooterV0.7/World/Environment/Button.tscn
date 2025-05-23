@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://daossivxsw4qw"]
+
+[ext_resource type="Script" uid="uid://be5k2fnycvna2" path="res://World/Button.gd" id="1_mqjng"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0om6"]
+albedo_color = Color(0.633757, 0.633757, 0.633757, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ec0hd"]
+material = SubResource("StandardMaterial3D_l0om6")
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cwv3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rt3tm"]
+material = SubResource("StandardMaterial3D_8cwv3")
+height = 0.2
+
+[sub_resource type="Animation" id="Animation_bgyp0"]
+resource_name = "Pressed"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.15, 0, 0), Vector3(0.05, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfu2x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.151908, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57luw"]
+_data = {
+&"Pressed": SubResource("Animation_bgyp0"),
+&"RESET": SubResource("Animation_wfu2x")
+}
+
+[node name="Switch" type="Area3D"]
+script = ExtResource("1_mqjng")
+metadata/_custom_type_script = "uid://be5k2fnycvna2"
+
+[node name="Button Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ec0hd")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.93403e-08, -0.9, 0, 0.9, -3.93403e-08, 0, 0, 0, 0.9, 0.151908, 0, 0)
+mesh = SubResource("CylinderMesh_rt3tm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button"]
+libraries = {
+&"": SubResource("AnimationLibrary_57luw")
+}
+
+[connection signal="body_entered" from="." to="." method="_ButtonCanBePressed"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

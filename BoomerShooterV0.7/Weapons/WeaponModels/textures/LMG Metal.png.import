@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck4ptjvivc6da"
 path.s3tc="res://.godot/imported/LMG Metal.png-3253ab56b16ffdb509f3b1b42b93c44a.s3tc.ctex"
+path.etc2="res://.godot/imported/LMG Metal.png-3253ab56b16ffdb509f3b1b42b93c44a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://Weapons/WeaponModels/textures/LMG Metal.png"
-dest_files=["res://.godot/imported/LMG Metal.png-3253ab56b16ffdb509f3b1b42b93c44a.s3tc.ctex"]
+dest_files=["res://.godot/imported/LMG Metal.png-3253ab56b16ffdb509f3b1b42b93c44a.s3tc.ctex", "res://.godot/imported/LMG Metal.png-3253ab56b16ffdb509f3b1b42b93c44a.etc2.ctex"]
 
 [params]
 

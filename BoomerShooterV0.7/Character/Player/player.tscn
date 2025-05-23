@@ -1,34 +1,44 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwvux4ua24qq3"]
 
 [ext_resource type="Script" uid="uid://cisgbykaev5q3" path="res://Character/Player/Player.gd" id="1_vnk41"]
-[ext_resource type="Script" uid="uid://dtp8usgsa0jne" path="res://State Machine/StateMachine.gd" id="2_2h1g1"]
 [ext_resource type="Script" uid="uid://ch2njs03stwyn" path="res://Character/Player/PlayerCam.gd" id="3_2h1g1"]
 [ext_resource type="Script" uid="uid://b2ox8gt0vtvho" path="res://Weapons/WeaponManager.gd" id="4_1spju"]
-[ext_resource type="PackedScene" uid="uid://bu3yyxrhl77r4" path="res://Weapons/RayWeapons/LMG/lmg.tscn" id="5_1spju"]
+[ext_resource type="PackedScene" uid="uid://c75krvrn1wugv" path="res://Weapons/RayWeapons/Pistol/pistol.tscn" id="5_1spju"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t67c"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_7t67c"]
+font_size = 48
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_vnk41")
+JumpSpeed = 6.0
 Health = 100.0
+MoveSpeed = 1000.0
 metadata/_custom_type_script = "uid://cisgbykaev5q3"
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_2h1g1")
-metadata/_custom_type_script = "uid://dtp8usgsa0jne"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7t67c")
+debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="PlayerCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("3_2h1g1")
 metadata/_custom_type_script = "uid://ch2njs03stwyn"
 
-[node name="WeaponManager" type="Node3D" parent="PlayerCam"]
+[node name="WeaponManager" type="Node3D" parent="PlayerCam" node_paths=PackedStringArray("StartingWeapon")]
 script = ExtResource("4_1spju")
+StartingWeapon = NodePath("Pistol")
 metadata/_custom_type_script = "uid://b2ox8gt0vtvho"
 
-[node name="LMG" parent="PlayerCam/WeaponManager" instance=ExtResource("5_1spju")]
-MinAmmoConsume = 1
-Damage = 15.0
+[node name="Pistol" parent="PlayerCam/WeaponManager" instance=ExtResource("5_1spju")]
+
+[node name="Ammo Label" type="Label" parent="PlayerCam"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "10"
+label_settings = SubResource("LabelSettings_7t67c")

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cm0u3hre6bwdg"
 path.s3tc="res://.godot/imported/PistolMetal.png-4eb8edc2fb2cf77d1c11813afa9ca72a.s3tc.ctex"
+path.etc2="res://.godot/imported/PistolMetal.png-4eb8edc2fb2cf77d1c11813afa9ca72a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://Weapons/WeaponModels/textures/PistolMetal.png"
-dest_files=["res://.godot/imported/PistolMetal.png-4eb8edc2fb2cf77d1c11813afa9ca72a.s3tc.ctex"]
+dest_files=["res://.godot/imported/PistolMetal.png-4eb8edc2fb2cf77d1c11813afa9ca72a.s3tc.ctex", "res://.godot/imported/PistolMetal.png-4eb8edc2fb2cf77d1c11813afa9ca72a.etc2.ctex"]
 
 [params]
 

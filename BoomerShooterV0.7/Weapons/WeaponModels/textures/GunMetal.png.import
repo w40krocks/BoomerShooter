@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0nikaikw2y65"
 path.s3tc="res://.godot/imported/GunMetal.png-dd2b509cdce281a3dc5da0f982767be1.s3tc.ctex"
+path.etc2="res://.godot/imported/GunMetal.png-dd2b509cdce281a3dc5da0f982767be1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Weapons/WeaponModels/textures/GunMetal.png"
-dest_files=["res://.godot/imported/GunMetal.png-dd2b509cdce281a3dc5da0f982767be1.s3tc.ctex"]
+dest_files=["res://.godot/imported/GunMetal.png-dd2b509cdce281a3dc5da0f982767be1.s3tc.ctex", "res://.godot/imported/GunMetal.png-dd2b509cdce281a3dc5da0f982767be1.etc2.ctex"]
 
 [params]
 

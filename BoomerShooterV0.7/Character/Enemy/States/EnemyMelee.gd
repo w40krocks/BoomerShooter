@@ -13,7 +13,7 @@ func Update(_delta : float):
 	if Enemy.AnimationTimer.is_stopped():
 		if Enemy.SpriteHframe == Enemy.SpriteAttackMaxPos:
 			Attack()
-			Transitioned.emit(self,"EnemySearch")
+			Transitioned.emit(self,"EnemyChase")
 		else:
 			Enemy.MoveAnimation(Enemy.SpriteAttackMinPos,Enemy.SpriteAttackMaxPos)
 			Enemy.AnimationTimer.start()

@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq47k1sp27j6p"]
+
+[ext_resource type="Script" uid="uid://cwh1o1wrmttf" path="res://Items/Ammo/AmmoPickup.gd" id="1_we6l1"]
+[ext_resource type="PackedScene" uid="uid://csimu8bdcacjm" path="res://Items/Ammo/ShotgunShell.blend" id="2_22mnr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s3c62"]
+
+[sub_resource type="Animation" id="Animation_ifjx5"]
+resource_name = "Default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0pa3g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyhth"]
+_data = {
+&"Default": SubResource("Animation_ifjx5"),
+&"RESET": SubResource("Animation_0pa3g")
+}
+
+[node name="AmmoItem" type="Area3D"]
+script = ExtResource("1_we6l1")
+AmmoType = 2
+ItemAmount = 5
+metadata/_custom_type_script = "uid://cwh1o1wrmttf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_s3c62")
+
+[node name="Item VIsual" type="Node3D" parent="."]
+
+[node name="ShotgunShell" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.05, 0, 0.05)
+
+[node name="ShotgunShell2" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.05, 0, -0.05)
+
+[node name="ShotgunShell3" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.05, 0, 0.05)
+
+[node name="ShotgunShell4" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.05, 0, -0.05)
+
+[node name="ShotgunShell5" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0580007, 0.0814612, 0, -0.0814612, 0.0580007, 0.15, 0, 0.0419036)
+
+[node name="ShotgunShell6" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(-4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, 0.186, -0.0409672, -0.048)
+
+[node name="ShotgunShell7" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.15, 0, 0.05)
+
+[node name="ShotgunShell8" parent="Item VIsual" instance=ExtResource("2_22mnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.15, 0, -0.05)
+
+[node name="Item Animator" type="AnimationPlayer" parent="Item VIsual"]
+libraries = {
+&"": SubResource("AnimationLibrary_oyhth")
+}
+
+[connection signal="body_entered" from="." to="." method="Pickup"]

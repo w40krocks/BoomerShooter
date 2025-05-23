@@ -17,6 +17,7 @@ func ResetRay():
 func AttackCheck(AttackName : String):
 	if CanShoot(AttackName):
 		match IsAttacking(AttackName):
+			
 			#Single Fire
 			0:
 				for i in WeaponSplinter:
@@ -25,6 +26,7 @@ func AttackCheck(AttackName : String):
 					else:
 						ResetRay()
 					Attack()
+				TakeAmmo()
 				WeaponAni.play(AttackName)
 				return true
 			#Refiring
@@ -32,11 +34,12 @@ func AttackCheck(AttackName : String):
 				for i in WeaponSplinter:
 					RandomiseRay()
 					Attack()
+				TakeAmmo()
 				WeaponAni.play(AttackName)
 				return true
 			#Not Firing
 			2:
-				pass
+				return false
 
 func _process(delta: float) -> void:
 	AttackCheck("Attack")
@@ -44,17 +47,18 @@ func _process(delta: float) -> void:
 
 func Attack():
 	if WeaponRay.is_colliding():
+	
 		var GunSmoke = load("res://Weapons/gun_impact.tscn").instantiate()
 		GunSmoke.position = WeaponRay.get_collision_point()
 		CreateBulletTrail()
-		find_parent("TestWorld").add_child(GunSmoke)
+		get_tree().current_scene.add_child(GunSmoke)
 
 		if WeaponRay.get_collider() is BaseEnemy:
-			WeaponRay.get_collider().Health -= Damage
+			WeaponRay.get_collider().HealthChange(-Damage)
 
 func CreateBulletTrail():
 	var temp = load("res://Weapons/RayWeapons/Gun Trail.tscn").instantiate()
 	temp.emission_box_extents = Vector3(0.1,0.1,EndOfBarrel.global_position.distance_to(WeaponRay.get_collision_point())*0.5)
 	temp.amount = temp.emission_box_extents.z * 5
 	temp.look_at_from_position((EndOfBarrel.global_position + WeaponRay.get_collision_point())/2,WeaponRay.get_collision_point())
-	find_parent("TestWorld").add_child(temp)
+	get_tree().current_scene.add_child(temp)

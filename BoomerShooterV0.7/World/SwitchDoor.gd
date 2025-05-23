@@ -2,14 +2,12 @@ extends Node3D
 class_name Door
 
 @onready var isOpening := false
-@export var OpenPos : Vector3
+@export var ConnectedButton : Switch
 
-func SwitchPressed(delta : float):
+
+func _ready() -> void:
+	ConnectedButton.JustPressed.connect(SwitchPressed)
+
+func SwitchPressed():
 	isOpening = true
-	OpenPos =Vector3(position.x,position.y+5,position.z)
-
-func _physics_process(delta: float) -> void:
-	if isOpening:
-		position =position.move_toward(OpenPos,delta*2)
-
-		
+	$AnimationPlayer.play("Open")

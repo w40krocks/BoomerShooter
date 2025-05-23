@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bvfwpwg46f4ug"]
+
+[ext_resource type="Texture2D" uid="uid://dsmh4s7s85u1e" path="res://Items/Health/textures/Medkit Texture.png" id="1_asp1o"]
+
+[resource]
+resource_name = "Joe Biden"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_asp1o")
+texture_filter = 0

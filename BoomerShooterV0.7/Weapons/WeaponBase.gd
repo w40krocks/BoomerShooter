@@ -15,7 +15,7 @@ class_name BaseWeapon
 @onready var WeaponManage = find_parent("WeaponManager")
 @onready var WeaponVisualsParent = find_child("Weapon Visuals")
 
-
+signal Exited
 
 
 func HasEnoughAmmoToShoot():
@@ -28,13 +28,17 @@ func HasEnoughAmmoToShoot():
 			return true
 
 func CanShoot(AttackName : String):
+
 	var ReturningValue := false
 	if HasEnoughAmmoToShoot():
-		if WeaponAni.current_animation != AttackName:
+
+		if WeaponAni.current_animation != AttackName and WeaponAni.current_animation != "Enter":
+
 			ReturningValue = true
 	return ReturningValue
 
 func IsAttacking(AttackName : String):
+
 	if Input.is_action_just_pressed(AttackName):
 		#single press
 		return 0
@@ -45,9 +49,25 @@ func IsAttacking(AttackName : String):
 		return 2
 
 func Enter():
-	WeaponManage.WeaponsInventory[name] = true
 	WeaponAni.play("Enter")
 
 func Exit():
-	WeaponManage.WeaponsInventory[name] = false
+	WeaponManage.isSwitching = true
 	WeaponAni.play("Exit")
+
+func HasEntered():
+	WeaponManage.isSwitching = false
+
+func HasExited():
+	print("this is running")
+	Exited.emit()
+
+func IsInUse():
+	var temp = false
+	if  WeaponManage.isSwitching == false and WeaponAni.current_animation != "Enter":
+		if WeaponManage.WeaponsInventory[name]:
+			temp = true
+	return temp
+
+func TakeAmmo():
+	get_parent().AmmoUpdate(AmmoType, -MinAmmoConsume)

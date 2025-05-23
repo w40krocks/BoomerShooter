@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdnl8eifbs5ye"]
+[gd_scene load_steps=7 format=3 uid="uid://bdnl8eifbs5ye"]
 
 [ext_resource type="PackedScene" uid="uid://c5sj08tuk0xvm" path="res://Character/Enemy/BaseEnemy.tscn" id="1_quj3w"]
 [ext_resource type="Script" uid="uid://b5fa8dqapvurh" path="res://Character/Enemy/States/EnemyChase.gd" id="2_vmmg3"]
@@ -6,7 +6,11 @@
 [ext_resource type="Script" uid="uid://o43b4xs0ncr" path="res://Character/Enemy/States/EnemySearch.gd" id="4_8eeeh"]
 [ext_resource type="Script" uid="uid://dv7t6st5b64" path="res://Character/Enemy/States/EnemyDeath.gd" id="5_vmmg3"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_vmmg3"]
+size = Vector3(0.1, 0.1, 1)
+
 [node name="Zombie" instance=ExtResource("1_quj3w")]
+Targets = [null]
 SpriteSheet = "uid://bn3ilnyck533p"
 SpriteSheetSize = Vector2(6, 5)
 SpriteDeathMaxPos = 3
@@ -37,5 +41,7 @@ metadata/_custom_type_script = "uid://dv7t6st5b64"
 hframes = 6
 vframes = 4
 
-[node name="NavAgent" parent="." index="7"]
-debug_enabled = true
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.597249)
+visible = false
+mesh = SubResource("BoxMesh_vmmg3")

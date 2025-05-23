@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6mbbvqmyaiaf"]
+
+[ext_resource type="Script" uid="uid://cmvjmtoxeuttp" path="res://Items/Health/Health.gd" id="1_y18o4"]
+[ext_resource type="PackedScene" uid="uid://dfonoucq43ruv" path="res://Items/Health/Medkit.blend" id="2_4m04l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4m04l"]
+
+[sub_resource type="Animation" id="Animation_g1yx7"]
+resource_name = "Default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l6ewy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or41r"]
+_data = {
+&"Default": SubResource("Animation_g1yx7"),
+&"RESET": SubResource("Animation_l6ewy")
+}
+
+[node name="HealthItem" type="Area3D"]
+script = ExtResource("1_y18o4")
+metadata/_custom_type_script = "uid://cmvjmtoxeuttp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_4m04l")
+
+[node name="Item Visual" parent="." instance=ExtResource("2_4m04l")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Item Animator" type="AnimationPlayer" parent="Item Visual"]
+libraries = {
+&"": SubResource("AnimationLibrary_or41r")
+}
+
+[connection signal="body_entered" from="." to="." method="Pickup"]

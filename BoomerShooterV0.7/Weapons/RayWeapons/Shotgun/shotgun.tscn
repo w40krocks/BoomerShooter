@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.75, 1.5),
 "transitions": PackedFloat32Array(0.153893, 0.420448, 1),
 "update": 0,
-"values": [Vector3(0, -0.277, -0.65), Vector3(0, -0.277, -0.2), Vector3(0, -0.277, -0.65)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0.2), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -79,7 +79,33 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.31864, 1),
 "update": 0,
-"values": [Vector3(0, -1, -0.55), Vector3(0, -0.277, -0.55)]
+"values": [Vector3(0, -1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HasEntered"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_j1wmt"]
@@ -88,13 +114,51 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Shotgun/Weapon Visuals/Weapon Model:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": []
+"values": [Vector3(0, 0, 0), Vector3(0, -1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HasExited"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shotgun/Weapon Visuals/Weapon Light:omni_range")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_s02ox"]
@@ -133,7 +197,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.277, -0.6)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -157,7 +221,19 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.011]
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shotgun:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n2qen"]
@@ -202,7 +278,7 @@ Damage = 5.0
 metadata/_custom_type_script = "uid://w67aa8nj5qoo"
 
 [node name="Weapon Visuals" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.197697, -0.131808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.387548, -0.549463)
 
 [node name="Weapon Light" type="OmniLight3D" parent="Weapon Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00371725, -0.621751)
@@ -210,7 +286,7 @@ light_color = Color(1, 0.473272, 0.260882, 1)
 omni_range = 0.0
 
 [node name="Weapon Model" parent="Weapon Visuals" instance=ExtResource("2_j1wmt")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.133698, -0.65)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Weapon Animation Player" type="AnimationPlayer" parent="Weapon Visuals/Weapon Model"]
 root_node = NodePath("../../../..")
