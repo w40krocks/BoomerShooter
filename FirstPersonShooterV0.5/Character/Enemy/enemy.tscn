@@ -36,8 +36,8 @@ wait_time = 2.0
 
 [node name="AnimationTimer" type="Timer" parent="." index="7"]
 
-[connection signal="timeout" from="DetectionTimer" to="." method="_on_detection_timer_timeout"]
 [connection signal="timeout" from="DetectionTimer" to="." method="_DetectionTimerOver"]
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DetectionTimer" to="." method="_on_detection_timer_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_Attack"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="AnimationTimer" to="." method="_Animation"]

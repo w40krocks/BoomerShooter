@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="FirstPersonShooterV0.2"
+config/version="V0.2"
 run/main_scene="res://Menus/MainMenu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://bw064tcm5k6b6"
+config/icon="uid://bw064tcm5k6b6"
 
 [display]
 

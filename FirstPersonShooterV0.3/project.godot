@@ -13,7 +13,8 @@ config_version=5
 config/name="FirstPersonShooterV0.3"
 run/main_scene="uid://sgl5q5v4xhaw"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cn4dsv4ptg2kh"
+config/icon="uid://cn4dsv4ptg2kh"
 
 [dotnet]
 

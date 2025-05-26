@@ -14,7 +14,9 @@ config/name="BoomerShooterV0.7"
 run/main_scene="uid://i82vf1vw0r7i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.113537, 0.170044, 0.285269, 1)
-config/icon="res://icon.svg"
+boot_splash/use_filter=false
+boot_splash/image="uid://bjkkal3ihuyq7"
+config/icon="uid://bjkkal3ihuyq7"
 
 [editor]
 

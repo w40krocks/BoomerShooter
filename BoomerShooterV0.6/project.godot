@@ -13,7 +13,8 @@ config_version=5
 config/name="BoomerShooterV0.6"
 run/main_scene="res://TestWorld.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://dnk7s6m1ap2gk"
+config/icon="uid://dnk7s6m1ap2gk"
 
 [input]
 

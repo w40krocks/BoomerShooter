@@ -13,7 +13,8 @@ config_version=5
 config/name="FirstPersonShooterV0.5D"
 run/main_scene="res://Worlds/TestWorld.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://ciwtbjsko7xhs"
+config/icon="uid://ciwtbjsko7xhs"
 
 [input]
 

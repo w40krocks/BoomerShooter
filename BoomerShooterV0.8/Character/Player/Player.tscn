@@ -1,0 +1,174 @@
+[gd_scene load_steps=13 format=3 uid="uid://bw1nqibf71vxe"]
+
+[ext_resource type="Script" uid="uid://dghuo244ti0ew" path="res://Character/Player/Player.gd" id="1_4otma"]
+[ext_resource type="Script" uid="uid://byv6238haa58l" path="res://Character/Player/Playercam/PlayerCam.gd" id="2_m6j64"]
+[ext_resource type="Script" uid="uid://ceeema6gf5aq2" path="res://Character/Player/GroundSlam.gd" id="3_ep33s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6j64"]
+
+[sub_resource type="Compositor" id="Compositor_m6j64"]
+
+[sub_resource type="Animation" id="Animation_ep33s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/GroundSlam/CollisionShape3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/GroundSlam:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerCam:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iytxy"]
+resource_name = "GroundSlam"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/GroundSlam/CollisionShape3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.233333, 1, 8, 1, 8, 0.3, 1, 1, 1, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/GroundSlam:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerCam:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iytxy"]
+_data = {
+&"GroundSlam": SubResource("Animation_iytxy"),
+&"RESET": SubResource("Animation_ep33s")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86gxa"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5k01n"]
+material = SubResource("StandardMaterial3D_86gxa")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_ry8fs"]
+offsets = PackedFloat32Array(0.246667, 1)
+colors = PackedColorArray(0.28485, 0.28485, 0.28485, 0.690196, 0.454524, 0.454524, 0.454524, 0.682353)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m6j64"]
+height = 0.1
+
+[node name="PlayerCharacter" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_4otma")
+MoveSpeed = 800.0
+JumpSpeed = 5.0
+metadata/_custom_type_script = "uid://dghuo244ti0ew"
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_m6j64")
+
+[node name="PlayerCam" type="Camera3D" parent="."]
+compositor = SubResource("Compositor_m6j64")
+script = ExtResource("2_m6j64")
+metadata/_custom_type_script = "uid://byv6238haa58l"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iytxy")
+}
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+emitting = false
+amount = 400
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("BoxMesh_5k01n")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 19.0
+initial_velocity_max = 19.0
+scale_amount_min = 0.1
+color_initial_ramp = SubResource("Gradient_ry8fs")
+
+[node name="GroundSlam" type="Area3D" parent="Node3D"]
+monitoring = false
+script = ExtResource("3_ep33s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/GroundSlam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+shape = SubResource("CylinderShape3D_m6j64")
+
+[connection signal="body_entered" from="Node3D/GroundSlam" to="Node3D/GroundSlam" method="BodyEntered"]
