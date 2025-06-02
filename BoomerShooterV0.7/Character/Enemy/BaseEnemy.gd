@@ -76,7 +76,7 @@ func SearchForTarget(Target,RotationalDistance : float):
 	if position.distance_to(Target.position) < AwarenessZone:
 		ReturnValue = true
 		#TargetFound
-	elif position.distance_to(Target.position) < SearchDistance and GetRotationalDistance(Target) > ConeOfVision:
+	elif position.distance_to(Target.position) < SearchDistance and RotationalDistance > ConeOfVision:
 		#check for obstruction
 		ReturnValue = IsTargetUnobstructed(Target)
 	

@@ -41,6 +41,9 @@ metadata/_custom_type_script = "uid://dv7t6st5b64"
 hframes = 6
 vframes = 4
 
+[node name="NavAgent" parent="." index="7"]
+debug_enabled = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.597249)
 visible = false

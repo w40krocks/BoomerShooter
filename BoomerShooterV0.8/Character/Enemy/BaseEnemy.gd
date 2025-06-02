@@ -1,11 +1,21 @@
-extends Node
+extends BaseCharacter
+class_name BaseEnemy
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export_category("Target Information")
+@export var Target : BaseCharacter
 
+@export_category("In Scene Stuff")
+@export var ObstructionCheck : RayCast3D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func HealthChange(HealthChange : float):
+	pass
+
+func Death():
+	pass
+
+func GetRotaionalDistanceToTarget(Target):
+	pass
+
+func SearchForTarget(Target):
 	pass

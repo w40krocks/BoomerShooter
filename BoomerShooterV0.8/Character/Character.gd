@@ -4,17 +4,17 @@ class_name BaseCharacter
 
 
 @export_category("Movement")
-@export var MoveSpeed : float
+@export var MoveSpeed : float ##Player uses this as acceleration stat
 @export var JumpSpeed : float
 
 @export_category("Health Info")
-@export var CurrentHealth : float
-@export var MaxHealth : float
-@export var MaxOverHealth : float
+@export var CurrentHealth : float ##The health that the character is currently on
+@export var MaxHealth : float ##the maximum amount of health a character can have, the HealthChange function should check if the Characters new health exceeds the max, if so set current health as max health
+@export var MaxOverHealth : float ##not sure if i will make use of this
 
 
-func HealthChange(HealthChange : float):
+func HealthChange(HealthChange : float): ##ran anytime a characters health is to change ALWAYS USE THIS, do not directly change the characters health (if this is being used to deal damage, make sure the variable is negative)
 	pass
 
-func Death():
+func Death(): ##ran when the character reaches the death state
 	pass

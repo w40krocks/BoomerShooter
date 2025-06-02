@@ -270,7 +270,7 @@ height = 4.0
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_lq4ni")
 KnockbackAmount = 10.0
-WeaponSplinter = 15
+WeaponSplinter = 4
 MinAmmoConsume = 1
 AmmoType = 2
 ShotAngleRandomRange = Vector2(5, 10)

@@ -12,7 +12,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D/CPUParticles3D:emitting")
+tracks/0/path = NodePath("GroundSlamStuff/CPUParticles3D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,14 +24,14 @@ tracks/0/keys = {
 tracks/1/type = "scale_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/GroundSlam/CollisionShape3D")
+tracks/1/path = NodePath("GroundSlamStuff/GroundSlam/CollisionShape3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.233333, 1, 8, 1, 8, 0.3, 1, 1, 1, 1)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/GroundSlam:monitoring")
+tracks/2/path = NodePath("GroundSlamStuff/GroundSlam:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -58,7 +58,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D/CPUParticles3D:emitting")
+tracks/0/path = NodePath("GroundSlamStuff/CPUParticles3D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,14 +70,14 @@ tracks/0/keys = {
 tracks/1/type = "scale_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/GroundSlam/CollisionShape3D")
+tracks/1/path = NodePath("GroundSlamStuff/GroundSlam/CollisionShape3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/GroundSlam:monitoring")
+tracks/2/path = NodePath("GroundSlamStuff/GroundSlam:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -122,8 +122,8 @@ height = 0.1
 
 [node name="PlayerCharacter" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4otma")
-MoveSpeed = 20.0
-JumpSpeed = 7.5
+MoveSpeed = 0.75
+JumpSpeed = 5.0
 metadata/_custom_type_script = "uid://dghuo244ti0ew"
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
@@ -139,9 +139,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_iytxy")
 }
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="GroundSlamStuff" type="Node3D" parent="."]
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Node3D"]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="GroundSlamStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 emitting = false
 amount = 400
@@ -161,12 +161,12 @@ initial_velocity_max = 19.0
 scale_amount_min = 0.1
 color_initial_ramp = SubResource("Gradient_ry8fs")
 
-[node name="GroundSlam" type="Area3D" parent="Node3D"]
+[node name="GroundSlam" type="Area3D" parent="GroundSlamStuff"]
 monitoring = false
 script = ExtResource("3_ep33s")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/GroundSlam"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundSlamStuff/GroundSlam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_m6j64")
 
-[connection signal="body_entered" from="Node3D/GroundSlam" to="Node3D/GroundSlam" method="BodyEntered"]
+[connection signal="body_entered" from="GroundSlamStuff/GroundSlam" to="GroundSlamStuff/GroundSlam" method="BodyEntered"]

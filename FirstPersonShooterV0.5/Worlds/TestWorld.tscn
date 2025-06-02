@@ -88,7 +88,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.548, 1, -10.744)
 [node name="W0_000_10" parent="Items" instance=ExtResource("2_xwxi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.842, 1, 4.238)
 
-[node name="A0_000_12" parent="Items" instance=ExtResource("2_xwxi3")]
+[node name="A0_000_20" parent="Items" instance=ExtResource("2_xwxi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.842, 1, 6.01365)
 
 [node name="H0_000_00" parent="Items" instance=ExtResource("2_xwxi3")]
