@@ -12,6 +12,8 @@ class_name BaseCharacter
 @export var MaxHealth : float ##the maximum amount of health a character can have, the HealthChange function should check if the Characters new health exceeds the max, if so set current health as max health
 @export var MaxOverHealth : float ##not sure if i will make use of this
 
+@export_category("Damage Particle")
+@export var DamageParticle : PackedScene
 
 func HealthChange(HealthChange : float): ##ran anytime a characters health is to change ALWAYS USE THIS, do not directly change the characters health (if this is being used to deal damage, make sure the variable is negative)
 	pass

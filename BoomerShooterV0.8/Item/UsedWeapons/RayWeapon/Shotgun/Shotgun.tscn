@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsx4h0f2gbuyi"]
+
+[ext_resource type="Script" uid="uid://bq2i575wdkwgb" path="res://Item/UsedWeapons/RayWeapon/RayWeapon.gd" id="1_spg0q"]
+[ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_yswfx"]
+
+[node name="RayWeapon" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
+script = ExtResource("1_spg0q")
+WeaponSplinter = 5
+RayRandomRange = Vector2(5, 5)
+WeaponRay = NodePath("RayCast3D")
+EndOfBarrel = NodePath("Weapon Visuals/EndOfBarrel")
+MinDamage = 2.0
+MaxDamage = 10.0
+AmmoType = 2
+WeaponVisuals = NodePath("Weapon Visuals")
+WeaponAnimator = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://bq2i575wdkwgb"
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -25)
+
+[node name="Weapon Visuals" type="Node3D" parent="."]
+
+[node name="ShotgunV3" parent="Weapon Visuals" instance=ExtResource("2_yswfx")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="EndOfBarrel" type="Node3D" parent="Weapon Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.47789)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://8xsmq7a4ecm6"]
+[gd_scene load_steps=13 format=3 uid="uid://8xsmq7a4ecm6"]
 
 [ext_resource type="Texture2D" uid="uid://cutrgj6reoiuw" path="res://Worlds/Floor.png" id="1_787pe"]
 [ext_resource type="PackedScene" uid="uid://bw1nqibf71vxe" path="res://Character/Player/Player.tscn" id="1_ndknc"]
 [ext_resource type="Script" uid="uid://dm2wginji033j" path="res://Worlds/EnvronmentNodes/LevelArea/LevelArea.gd" id="3_1jyk2"]
 [ext_resource type="Script" uid="uid://cspiwsbtfqlv6" path="res://Worlds/EnvronmentNodes/Relocator/Relocator.gd" id="4_1epbv"]
-[ext_resource type="Script" uid="uid://uh2qgfsp34mp" path="res://Item/Weapons/BaseWeapon.gd" id="5_787pe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ndknc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -77,8 +76,3 @@ shape = SubResource("BoxShape3D_787pe")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ndknc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.98625, 0)
-
-[node name="BaseWeapon" type="Node3D" parent="."]
-script = ExtResource("5_787pe")
-AmmoType = 1
-metadata/_custom_type_script = "uid://uh2qgfsp34mp"

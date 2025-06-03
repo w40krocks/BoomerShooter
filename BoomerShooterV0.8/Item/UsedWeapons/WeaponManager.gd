@@ -3,6 +3,7 @@ class_name WeaponManager
 
 @export var IntialWeapon : BaseWeapon
 
+@onready var Player : PlayerCharacter = find_parent("Player")
 var CurrentWeapon : BaseWeapon
 var Weapons : Dictionary = {}
 
@@ -20,7 +21,6 @@ var HeldAmmo : Dictionary = { ## holds the current and maximum amount of ammo he
 	"3-MaxAmmo" : 0
 }
 
-
 func _ready() -> void:
 	for child in get_children():
 		if child is BaseWeapon:
@@ -30,7 +30,6 @@ func _ready() -> void:
 	if IntialWeapon:
 		IntialWeapon.Enter()
 		CurrentWeapon = IntialWeapon
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

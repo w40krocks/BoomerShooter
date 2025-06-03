@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bw1nqibf71vxe"]
+[gd_scene load_steps=13 format=3 uid="uid://bw1nqibf71vxe"]
 
 [ext_resource type="Script" uid="uid://dghuo244ti0ew" path="res://Character/Player/Player.gd" id="1_4otma"]
+[ext_resource type="PackedScene" uid="uid://bakfud3kf4o5j" path="res://Character/Player/human_blood.tscn" id="2_iytxy"]
 [ext_resource type="Script" uid="uid://byv6238haa58l" path="res://Character/Player/Playercam/PlayerCam.gd" id="2_m6j64"]
 [ext_resource type="Script" uid="uid://ceeema6gf5aq2" path="res://Character/Player/GroundSlam.gd" id="3_ep33s"]
 
@@ -124,6 +125,7 @@ height = 0.1
 script = ExtResource("1_4otma")
 MoveSpeed = 0.75
 JumpSpeed = 5.0
+DamageParticle = ExtResource("2_iytxy")
 metadata/_custom_type_script = "uid://dghuo244ti0ew"
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://mcyndiu5wsyh"
-path="res://.godot/imported/ShotgunV3.glb-d07151f81370972517f75d66c40c0edd.scn"
+path="res://.godot/imported/ShotgunV3.glb-8748ab6f44b11b98c19bf88f8cee085d.scn"
 
 [deps]
 
-source_file="res://Item/Weapons/RayWeapon/Shotgun/Model/ShotgunV3.glb"
-dest_files=["res://.godot/imported/ShotgunV3.glb-d07151f81370972517f75d66c40c0edd.scn"]
+source_file="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb"
+dest_files=["res://.godot/imported/ShotgunV3.glb-8748ab6f44b11b98c19bf88f8cee085d.scn"]
 
 [params]
 

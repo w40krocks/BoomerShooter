@@ -29,8 +29,8 @@ movie_writer/movie_file="C:/Users/alexj/Documents/Godot Games/BoomerShooter/Boom
 folder_colors={
 "res://Character/": "red",
 "res://Item/": "orange",
-"res://Item/Weapons/ProjectileWeapon/": "yellow",
-"res://Item/Weapons/RayWeapon/": "red",
+"res://Item/UsedWeapons/ProjectileWeapon/": "yellow",
+"res://Item/UsedWeapons/RayWeapon/": "red",
 "res://Worlds/": "blue"
 }
 
