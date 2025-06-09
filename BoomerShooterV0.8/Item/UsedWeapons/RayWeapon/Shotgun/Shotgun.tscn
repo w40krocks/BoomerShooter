@@ -1,30 +1,186 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsx4h0f2gbuyi"]
+[gd_scene load_steps=12 format=3 uid="uid://ki86jrhl08c6"]
 
-[ext_resource type="Script" uid="uid://bq2i575wdkwgb" path="res://Item/UsedWeapons/RayWeapon/RayWeapon.gd" id="1_spg0q"]
-[ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_yswfx"]
+[ext_resource type="Script" uid="uid://djh8juius1dhw" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Shotgun.gd" id="1_ywklo"]
+[ext_resource type="PackedScene" uid="uid://di7dixdjyfbv1" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ShotgunHitParticle.tscn" id="2_hav5h"]
+[ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_kwtx2"]
+[ext_resource type="PackedScene" uid="uid://dkmtm7lci0mw7" path="res://Item/UsedWeapons/RayWeapon/WeaponTrail/Gun Trail.tscn" id="3_utiq8"]
 
-[node name="RayWeapon" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
-script = ExtResource("1_spg0q")
-WeaponSplinter = 5
-RayRandomRange = Vector2(5, 5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hav5h"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 0.25098, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_utiq8"]
+material = SubResource("StandardMaterial3D_hav5h")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="Gradient" id="Gradient_dobkn"]
+offsets = PackedFloat32Array(0, 0.0674603, 0.678571)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_cw8jm"]
+colors = PackedColorArray(1, 0.658824, 0, 0.392157, 1, 0, 0, 0.392157)
+
+[sub_resource type="Animation" id="Animation_hav5h"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVisuals:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.170755, 1.36604, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponVisuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.203063, 1.56917, 1),
+"update": 0,
+"values": [Vector3(0, -0.6, -1), Vector3(0, -0.4, -0.6), Vector3(0, -0.6, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel/CPUParticles3D:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1),
+"transitions": PackedFloat32Array(1, 0.406126, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(0.8, 0.8, 0.8), Vector3(0.2, 0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_utiq8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVisuals:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponVisuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.5, -0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel/CPUParticles3D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dobkn"]
+_data = {
+&"Attack": SubResource("Animation_hav5h"),
+&"RESET": SubResource("Animation_utiq8")
+}
+
+[node name="Shotgun" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
+script = ExtResource("1_ywklo")
+KnockbackAmount = 7.5
+WeaponSplinter = 15
+RayRandomRange = Vector2(5, 10)
 WeaponRay = NodePath("RayCast3D")
-EndOfBarrel = NodePath("Weapon Visuals/EndOfBarrel")
-MinDamage = 2.0
+HitMarker = ExtResource("2_hav5h")
+BulletTrail = ExtResource("3_utiq8")
+EndOfBarrel = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel")
+MinDamage = 5.0
 MaxDamage = 10.0
 AmmoType = 2
-WeaponVisuals = NodePath("Weapon Visuals")
+MinAmmoConsume = 1
+WeaponNumber = 1
+WeaponVisuals = NodePath("WeaponVisuals")
 WeaponAnimator = NodePath("AnimationPlayer")
-metadata/_custom_type_script = "uid://bq2i575wdkwgb"
+metadata/_custom_type_script = "uid://djh8juius1dhw"
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -25)
+[node name="WeaponVisuals" type="Node3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.5, -0.8)
 
-[node name="Weapon Visuals" type="Node3D" parent="."]
+[node name="ShotgunV3" parent="WeaponVisuals" instance=ExtResource("2_kwtx2")]
 
-[node name="ShotgunV3" parent="Weapon Visuals" instance=ExtResource("2_yswfx")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+[node name="EndOfBarrel" type="Node3D" parent="WeaponVisuals/ShotgunV3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.8176)
 
-[node name="EndOfBarrel" type="Node3D" parent="Weapon Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.47789)
+[node name="CPUParticles3D" type="CPUParticles3D" parent="WeaponVisuals/ShotgunV3/EndOfBarrel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.538506)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("SphereMesh_utiq8")
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(1, 0, -1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 5.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_dobkn")
+color_initial_ramp = SubResource("Gradient_cw8jm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dobkn")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -20)

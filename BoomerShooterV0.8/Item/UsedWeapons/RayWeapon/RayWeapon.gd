@@ -10,6 +10,10 @@ class_name RayWeapon
 @export var BulletTrail : PackedScene ##a particle trail that goes from the end of the guns barrel to the point the ray has collided with
 @export var EndOfBarrel : Node3D ##a node used to get the position at the end of the weapons barrel
 
+func _ready() -> void:
+	WeaponRay.add_exception(Manager.get_parent().get_parent())
+	pass
+
 func RayReset(): ##resets the rotation of the raycast to 0
 	WeaponRay.rotation = Vector3(0,0,0)
 	WeaponRay.force_raycast_update()
@@ -26,16 +30,18 @@ func AttackCheck(AnimationName : String):
 				0:
 					WeaponAnimator.play(AnimationName)
 					for i in WeaponSplinter:
-						if i == WeaponSplinter:
+						if i +1 == WeaponSplinter:
 							RayReset()
 						else:
 							WeaponRayRandomiser()
 						Attack()
+					return true
 				1:
 					WeaponAnimator.play(AnimationName)
 					for i in WeaponSplinter:
 						WeaponRayRandomiser()
 						Attack()
+					return true
 				2:
 					#isnt firing
 					pass
@@ -44,22 +50,22 @@ func Attack():
 	if WeaponRay.is_colliding():
 		CreateBulletTrail(WeaponRay.get_collision_point())
 		if WeaponRay.get_collider() is BaseCharacter:
-			var temp = WeaponRay.get_collider().DamageParticle.instaniate()
+			var temp = WeaponRay.get_collider().DamageParticle.instantiate()
 			temp.global_position = WeaponRay.get_collision_point()
 			get_tree().current_scene.add_child(temp)
-
 			WeaponRay.get_collider().HealthChange(randf_range(MinDamage,MaxDamage))
 		else:
 			var temp = HitMarker.instantiate()
-			temp.global_position = WeaponRay.get_collision_point()
+			temp.position = WeaponRay.get_collision_point()
 			get_tree().current_scene.add_child(temp)
-	else:
-		#get gun smoke trail and its length to the z target
-		pass
 
-func CreateBulletTrail(EndPoint : Vector3):
+func CreateBulletTrail(EndPoint : Vector3): ##creates a smoke trail from the end of the guns barrel
 	var temp = BulletTrail.instantiate()
 	temp.emission_box_extents = Vector3(0.1,0.1,EndOfBarrel.global_position.distance_to(EndPoint)*0.5)
-	temp.amount = temp.emission_box_extents.z * 5
+	if temp.emission_box_extents.z * 2 >= 1:
+		temp.amount = temp.emission_box_extents.z * 2
+	else:
+		temp.amount = 1
 	temp.look_at_from_position((EndOfBarrel.global_position + EndPoint)*0.5,WeaponRay.get_collision_point())
 	get_tree().current_scene.add_child(temp)
+	temp.emitting = true

@@ -1,13 +1,15 @@
-extends Node
+extends Node3D
 class_name WeaponManager
 
 @export var IntialWeapon : BaseWeapon
 
-@onready var Player : PlayerCharacter = find_parent("Player")
+@onready var Player = self.get_parent().get_parent()
+@onready var WeaponChoice : int
+@export var WeaponInventory : Node3D
 var CurrentWeapon : BaseWeapon
 var Weapons : Dictionary = {}
 
-var HeldAmmo : Dictionary = { ## holds the current and maximum amount of ammo held by the player
+@export var HeldAmmo : Dictionary = { ## holds the current and maximum amount of ammo held by the player
 	"0-CurrentAmmo" : 0, # test
 	"0-MaxAmmo" : 0,
 	
@@ -22,8 +24,10 @@ var HeldAmmo : Dictionary = { ## holds the current and maximum amount of ammo he
 }
 
 func _ready() -> void:
-	for child in get_children():
+	for child in WeaponInventory.get_children():
 		if child is BaseWeapon:
+			if child != CurrentWeapon:
+				child.hide()
 			Weapons[child.name] = child
 			child.Transitioned.connect(_WeaponsTransition)
 	
@@ -35,11 +39,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if CurrentWeapon:
 		CurrentWeapon.Update(delta)
+	WeaponSwitching()
 	
 func _physics_process(delta: float) -> void:
 	if CurrentWeapon:
 		CurrentWeapon.PhysicsUpdate(delta)
-
+	
 func _WeaponsTransition(Weapon, NewWeaponName):
 	if Weapon != CurrentWeapon:
 		return
@@ -51,5 +56,24 @@ func _WeaponsTransition(Weapon, NewWeaponName):
 	if CurrentWeapon:
 		CurrentWeapon.Exit()
 	NewWeapon.Enter()
-	NewWeapon.PreviousState = CurrentWeapon
+	NewWeapon.PreviousWeapon = CurrentWeapon
 	CurrentWeapon = NewWeapon
+
+func WeaponSwitching():
+	if Input:
+		if Input.is_action_just_pressed("ScrollUp"):
+			WeaponChoice += 1
+		elif Input.is_action_just_pressed("ScrollDown"):
+			WeaponChoice -= 1
+		if WeaponChoice < 0:
+			WeaponChoice = WeaponInventory.get_child_count() -1
+		elif WeaponChoice > WeaponInventory.get_child_count() -1:
+			WeaponChoice = 0
+		
+		if CurrentWeapon.WeaponAnimator.is_playing() and CurrentWeapon.WeaponAnimator.current_animation != "RESET":
+			pass
+		
+		elif WeaponInventory.get_child(WeaponChoice) != CurrentWeapon:
+				_WeaponsTransition(CurrentWeapon, WeaponInventory.get_child(WeaponChoice).name)
+	
+	

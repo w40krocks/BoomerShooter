@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://di7dixdjyfbv1"]
+
+[ext_resource type="Script" uid="uid://dht3htxnwj4t2" path="res://Worlds/Environment Impact/HitParticle.gd" id="1_dlh0m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlh0m"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8myfi"]
+material = SubResource("StandardMaterial3D_dlh0m")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_dlh0m"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_5vxfd"]
+colors = PackedColorArray(0.0430392, 0.0430391, 0.0430392, 0.784314, 0.389287, 0.389287, 0.389287, 0.784314)
+
+[node name="ShotgunHitParticle" type="CPUParticles3D"]
+emitting = false
+amount = 25
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("BoxMesh_8myfi")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, -0.1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_dlh0m")
+color_initial_ramp = SubResource("Gradient_5vxfd")
+script = ExtResource("1_dlh0m")
+metadata/_custom_type_script = "uid://dht3htxnwj4t2"

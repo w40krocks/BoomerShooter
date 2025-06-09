@@ -13,12 +13,13 @@ enum AmmoTypes {
 @export var MaxDamage : float ## the Maximum amount of damage the Weapon will deal per hit
 @export var AmmoType : AmmoTypes ## the ammo type consumed by the Weapon
 @export var MinAmmoConsume : int ## the minimum amount of ammo used per shot
+@export var WeaponNumber : int ##used to determine the weapon switching order
 
 @export_category("Weapon Scene Resources")
 @export var WeaponVisuals : Node3D ## the parent node of all weapon visuals
 @export var WeaponAnimator : AnimationPlayer ## the animation player used by all weapon actions
 
-@onready var Manager : WeaponManager = get_parent()
+@onready var Manager : WeaponManager = get_parent().get_parent()
 
 
 signal Transitioned ## Called when switching between Weapons
@@ -47,19 +48,21 @@ func IsAttacking(): ##Checks if the Player has fired once, is holding down the f
 		return 2 # not firing
 
 func HasAmmoToFire(): ##checks if the weapon manager holds the needed amount of ammo to fire, and then takes away the per shot ammo consumption amount
-	if Manager.HeldAmmo[str(AmmoType)+"CurrentAmmo"] >= MinAmmoConsume:
-		Manager.HeldAmmo[str(AmmoType)+"CurrentAmmo"] - MinAmmoConsume
+	if Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] >= MinAmmoConsume:
+		Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] - MinAmmoConsume
 		return true
 	else:
 		return false
 
 func CanAttack(AnimationName : String): ##checks if the weapon is playing an animation with the same name that has been entered into it
+
 	if WeaponAnimator.current_animation == AnimationName:
 		#is playing animation
 		return false
 	else:
 		#is not playing animation
 		return true
+
 
 func AttackCheck(AnimationName : String):
 	pass
