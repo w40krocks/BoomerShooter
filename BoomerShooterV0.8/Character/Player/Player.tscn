@@ -124,7 +124,7 @@ colors = PackedColorArray(0.28485, 0.28485, 0.28485, 0.690196, 0.454524, 0.45452
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m6j64"]
 height = 0.1
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" groups=["ExplosionTrigger", "Player"]]
 script = ExtResource("1_4otma")
 MoveSpeed = 0.75
 JumpSpeed = 5.0

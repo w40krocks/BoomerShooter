@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://bktf3kbahlk5k"]
+
+[ext_resource type="Script" uid="uid://c00wdnnn0dso3" path="res://Item/UsedWeapons/explosion.gd" id="1_s077j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_40q1i"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_s077j"]
+resource_name = "Explosion"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.00999999, 0.00999999, 0.00999999)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Delete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_40q1i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_naj1l"]
+_data = {
+&"Explosion": SubResource("Animation_s077j"),
+&"RESET": SubResource("Animation_40q1i")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x158l"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.25098)
+emission_enabled = true
+emission = Color(1, 0.607843, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_6uohn"]
+material = SubResource("StandardMaterial3D_x158l")
+radius = 2.0
+height = 4.0
+radial_segments = 12
+rings = 10
+
+[node name="Explosion" type="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_s077j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_40q1i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_naj1l")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_6uohn")
+
+[connection signal="body_entered" from="." to="." method="ExplosionEntered"]

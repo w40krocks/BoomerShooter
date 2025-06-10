@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ru3fw6beddmo"]
+
+[ext_resource type="Script" uid="uid://bu1apcscjiixh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ExplosiveShell.gd" id="1_q85sh"]
+[ext_resource type="PackedScene" uid="uid://lg1uof4gvwey" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunShell.glb" id="1_ro1ux"]
+[ext_resource type="PackedScene" uid="uid://bktf3kbahlk5k" path="res://Item/UsedWeapons/Explosion.tscn" id="2_b28mb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ro1ux"]
+bounce = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q85sh"]
+radius = 0.75
+height = 3.0
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_ro1ux")
+gravity_scale = 0.5
+script = ExtResource("1_q85sh")
+Explosion = ExtResource("2_b28mb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-16, 4.37114e-09, 0.1, 0.1, -4.37114e-09, 0, 4.37114e-09, 0.1, -4.37114e-09, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_q85sh")
+
+[node name="ShotgunShell" parent="." instance=ExtResource("1_ro1ux")]
+transform = Transform3D(1.91069e-16, 4.37114e-09, -0.1, 0.1, -4.37114e-09, 0, -4.37114e-09, -0.1, -4.37114e-09, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="Collided"]
+[connection signal="timeout" from="Timer" to="." method="Explode"]

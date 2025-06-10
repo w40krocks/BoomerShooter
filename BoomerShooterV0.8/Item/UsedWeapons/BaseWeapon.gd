@@ -55,7 +55,6 @@ func HasAmmoToFire(): ##checks if the weapon manager holds the needed amount of 
 		return false
 
 func CanAttack(AnimationName : String): ##checks if the weapon is playing an animation with the same name that has been entered into it
-
 	if WeaponAnimator.current_animation == AnimationName:
 		#is playing animation
 		return false
@@ -67,5 +66,5 @@ func CanAttack(AnimationName : String): ##checks if the weapon is playing an ani
 func AttackCheck(AnimationName : String):
 	pass
 
-func Attack():
+func Attack(AttackMinDamage,AttackMaxDamage):
 	pass

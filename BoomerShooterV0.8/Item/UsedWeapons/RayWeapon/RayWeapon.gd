@@ -34,19 +34,19 @@ func AttackCheck(AnimationName : String):
 							RayReset()
 						else:
 							WeaponRayRandomiser()
-						Attack()
+						Attack(MinDamage,MaxDamage)
 					return true
 				1:
 					WeaponAnimator.play(AnimationName)
 					for i in WeaponSplinter:
 						WeaponRayRandomiser()
-						Attack()
+						Attack(MinDamage,MaxDamage)
 					return true
 				2:
 					#isnt firing
 					pass
 
-func Attack():
+func Attack(AttackMinDamage,AttackMaxDamage):
 	if WeaponRay.is_colliding():
 		CreateBulletTrail(WeaponRay.get_collision_point())
 		if WeaponRay.get_collider() is BaseCharacter:

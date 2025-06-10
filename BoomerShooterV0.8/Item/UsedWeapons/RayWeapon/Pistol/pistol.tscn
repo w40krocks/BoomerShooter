@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dpbly3s8vqiu"]
+[gd_scene load_steps=23 format=4 uid="uid://dpbly3s8vqiu"]
 
 [ext_resource type="Script" uid="uid://d1m1pt5sx1e03" path="res://Item/UsedWeapons/RayWeapon/Pistol/Pistol.gd" id="1_fs367"]
 [ext_resource type="Texture2D" uid="uid://cn8sctd61wpn1" path="res://Item/UsedWeapons/RayWeapon/Pistol/Model/PistolV3_PistolHandle.png" id="2_dssv8"]
@@ -139,6 +139,50 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_s7nki"]
 colors = PackedColorArray(1, 1, 1, 0.784314, 0.268147, 0, 0.00779771, 0.784314)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_j4luq"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_j4luq"]
+resource_name = "Alt Attack"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVisuals/BarrelController:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponVisuals:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.174533, 0, -0.1309), Vector3(-0.349066, 0, -0.1309)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponVisuals/BarrelController/Barrel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_jalo8"]
 resource_name = "Attack"
 length = 0.25
@@ -149,7 +193,7 @@ tracks/0/path = NodePath("WeaponVisuals:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.25),
+"times": PackedFloat32Array(0, 0.0667, 0.25),
 "transitions": PackedFloat32Array(0.594603, 1.41421, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.349066, 0, 0), Vector3(0, 0, 0)]
@@ -177,6 +221,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponVisuals/BarrelController:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tlgb4"]
@@ -217,9 +273,22 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponVisuals/BarrelController:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uhaiu"]
 _data = {
+&"Alt Attack": SubResource("Animation_j4luq"),
 &"Attack": SubResource("Animation_jalo8"),
 &"RESET": SubResource("Animation_tlgb4")
 }
@@ -281,6 +350,13 @@ initial_velocity_max = 1.0
 color_ramp = SubResource("Gradient_yugek")
 color_initial_ramp = SubResource("Gradient_s7nki")
 
+[node name="PistolWhip" type="Area3D" parent="WeaponVisuals/EndOfBarrel"]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponVisuals/EndOfBarrel/PistolWhip"]
+transform = Transform3D(0.999769, 0.00175605, -0.0214298, 0.00175602, 0.986662, 0.162775, 0.0214298, -0.162775, 0.98643, 0, 0, -3.272)
+shape = SubResource("SphereShape3D_j4luq")
+
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -10)
 
@@ -290,3 +366,5 @@ libraries = {
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[connection signal="body_entered" from="WeaponVisuals/EndOfBarrel/PistolWhip" to="." method="WhipContact"]

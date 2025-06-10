@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ki86jrhl08c6"]
+[gd_scene load_steps=14 format=3 uid="uid://ki86jrhl08c6"]
 
 [ext_resource type="Script" uid="uid://djh8juius1dhw" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Shotgun.gd" id="1_ywklo"]
 [ext_resource type="PackedScene" uid="uid://di7dixdjyfbv1" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ShotgunHitParticle.tscn" id="2_hav5h"]
 [ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_kwtx2"]
+[ext_resource type="PackedScene" uid="uid://ru3fw6beddmo" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ExplosiveShotgunShell.tscn" id="2_utiq8"]
 [ext_resource type="PackedScene" uid="uid://dkmtm7lci0mw7" path="res://Item/UsedWeapons/RayWeapon/WeaponTrail/Gun Trail.tscn" id="3_utiq8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hav5h"]
@@ -126,8 +127,24 @@ tracks/3/keys = {
 "values": [Vector3(1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_dobkn"]
+resource_name = "Alt Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVisuals:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.6, -1), Vector3(0, -0.6, -0.7), Vector3(0, -0.6, -1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dobkn"]
 _data = {
+&"Alt Attack": SubResource("Animation_dobkn"),
 &"Attack": SubResource("Animation_hav5h"),
 &"RESET": SubResource("Animation_utiq8")
 }
@@ -135,6 +152,7 @@ _data = {
 [node name="Shotgun" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
 script = ExtResource("1_ywklo")
 KnockbackAmount = 7.5
+ExplosiveShell = ExtResource("2_utiq8")
 WeaponSplinter = 15
 RayRandomRange = Vector2(5, 10)
 WeaponRay = NodePath("RayCast3D")
@@ -184,3 +202,5 @@ libraries = {
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -20)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
