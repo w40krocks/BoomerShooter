@@ -41,26 +41,30 @@ func PhysicsUpdate(_delta : float):## Ran every frame when it is the active weap
 
 func IsAttacking(): ##Checks if the Player has fired once, is holding down the fire button or is not firing (0: Single fire, 1: Refiring, 2: Not Firing)
 	if Input.is_action_just_pressed("Attack"):
+		Manager.Player.IsAttacking = true
 		return 0 # single fire
 	elif Input.is_action_pressed("Attack"):
+		Manager.Player.IsAttacking = true
 		return 1 # refiring
 	else:
+		Manager.Player.IsAttacking = false
 		return 2 # not firing
 
 func HasAmmoToFire(): ##checks if the weapon manager holds the needed amount of ammo to fire, and then takes away the per shot ammo consumption amount
 	if Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] >= MinAmmoConsume:
-		Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] - MinAmmoConsume
 		return true
 	else:
 		return false
 
 func CanAttack(AnimationName : String): ##checks if the weapon is playing an animation with the same name that has been entered into it
-	if WeaponAnimator.current_animation == AnimationName:
-		#is playing animation
-		return false
-	else:
-		#is not playing animation
-		return true
+	if Engine.time_scale == 1:
+		if WeaponAnimator.current_animation == AnimationName:
+			#is playing animation
+			return false
+		else:
+			#is not playing animation
+			return true
+	else: return false
 
 
 func AttackCheck(AnimationName : String):

@@ -4,14 +4,14 @@ class_name State
 signal Transitioned ## Called when switching between states
 var PreviousState : State
 
-func Enter():
+func Enter(): ##runs when the state is switched into
 	pass
 
-func Exit():
+func Exit(): ##runs when the state is switched out of
 	pass
 
-func Update(_delta : float):
+func Update(_delta : float): ##runs every frame when state is active
 	pass
 
-func PhysicsUpdate(_delta : float):
+func PhysicsUpdate(_delta : float): ##runs every frame when state is active
 	pass

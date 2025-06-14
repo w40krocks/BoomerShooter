@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy0rc7xble0je"]
+
+[ext_resource type="Texture2D" uid="uid://7j2l5erh3nms" path="res://UI/PlayerFace/FaceV3.png" id="1_hriva"]
+[ext_resource type="Script" uid="uid://patir5vcq0fj" path="res://UI/PlayerUI.gd" id="1_rjpm0"]
+[ext_resource type="Script" uid="uid://dg12rou6imy5g" path="res://UI/PlayerFace/PlayerHealthUI.gd" id="2_yaiyv"]
+[ext_resource type="LabelSettings" uid="uid://d0sdryi63q5en" path="res://UI/Fonts/HealthLabel.tres" id="4_yaiyv"]
+[ext_resource type="LabelSettings" uid="uid://d3w7fisj12yf0" path="res://UI/Fonts/AmmoLabel.tres" id="5_6t71k"]
+
+[node name="PlayerUI" type="CanvasLayer"]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.95
+script = ExtResource("1_rjpm0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("FaceTimer", "FaceSprite", "CurrentHealthLabel", "HealthDividerLabel", "MaxHealthLabel", "CurrentAmmoLabel", "AmmoDividerLabel", "MaxAmmoLabel")]
+texture_filter = 1
+offset_right = 67.0
+offset_bottom = 98.0
+scale = Vector2(2.5, 2.5)
+script = ExtResource("2_yaiyv")
+FaceTimer = NodePath("Container/FaceV3/Timer")
+FaceSprite = NodePath("Container/FaceV3")
+CurrentHealthLabel = NodePath("HealthInfo/CurrentHealth")
+HealthDividerLabel = NodePath("HealthInfo/Divider")
+MaxHealthLabel = NodePath("HealthInfo/MaxHealth")
+CurrentAmmoLabel = NodePath("AmmoInfo/CurrentAmmo")
+AmmoDividerLabel = NodePath("AmmoInfo/Divider")
+MaxAmmoLabel = NodePath("AmmoInfo/MaxAmmo")
+
+[node name="Container" type="Container" parent="VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FaceV3" type="Sprite2D" parent="VBoxContainer/Container"]
+position = Vector2(0, 6.10352e-06)
+scale = Vector2(2, 2)
+texture = ExtResource("1_hriva")
+centered = false
+hframes = 6
+vframes = 11
+
+[node name="Timer" type="Timer" parent="VBoxContainer/Container/FaceV3"]
+autostart = true
+
+[node name="HealthInfo" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentHealth" type="Label" parent="VBoxContainer/HealthInfo"]
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("4_yaiyv")
+vertical_alignment = 1
+
+[node name="Divider" type="Label" parent="VBoxContainer/HealthInfo"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_yaiyv")
+
+[node name="MaxHealth" type="Label" parent="VBoxContainer/HealthInfo"]
+layout_mode = 2
+text = "100"
+label_settings = ExtResource("4_yaiyv")
+
+[node name="AmmoInfo" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentAmmo" type="Label" parent="VBoxContainer/AmmoInfo"]
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("5_6t71k")
+vertical_alignment = 1
+
+[node name="Divider" type="Label" parent="VBoxContainer/AmmoInfo"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("5_6t71k")
+
+[node name="MaxAmmo" type="Label" parent="VBoxContainer/AmmoInfo"]
+layout_mode = 2
+text = "100"
+label_settings = ExtResource("5_6t71k")
+
+[connection signal="timeout" from="VBoxContainer/Container/FaceV3/Timer" to="VBoxContainer" method="_FaceXCoordChange"]

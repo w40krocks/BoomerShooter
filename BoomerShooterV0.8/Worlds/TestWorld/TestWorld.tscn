@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://8xsmq7a4ecm6"]
+[gd_scene load_steps=14 format=3 uid="uid://8xsmq7a4ecm6"]
 
 [ext_resource type="Texture2D" uid="uid://cutrgj6reoiuw" path="res://Worlds/Floor.png" id="1_787pe"]
 [ext_resource type="PackedScene" uid="uid://bw1nqibf71vxe" path="res://Character/Player/Player.tscn" id="1_ndknc"]
 [ext_resource type="Script" uid="uid://dm2wginji033j" path="res://Worlds/EnvronmentNodes/LevelArea/LevelArea.gd" id="3_1jyk2"]
 [ext_resource type="Script" uid="uid://cspiwsbtfqlv6" path="res://Worlds/EnvronmentNodes/Relocator/Relocator.gd" id="4_1epbv"]
+[ext_resource type="PackedScene" uid="uid://cb26x3o0h38cy" path="res://Character/Enemy/GrassRaptor/GrassRaptor.tscn" id="5_787pe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ndknc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -75,9 +76,13 @@ metadata/_custom_type_script = "uid://cspiwsbtfqlv6"
 shape = SubResource("BoxShape3D_787pe")
 
 [node name="Player" parent="." instance=ExtResource("1_ndknc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8373, 3.02352, 6.59663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8373, 3.02352, 29.6405)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67798, 1.85107, -9.09421)
 use_collision = true
 size = Vector3(6.35596, 4.70215, 1)
+
+[node name="GrassRaptor" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("5_787pe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6965, 1.41348, 25.194)
+Target = NodePath("../Player")

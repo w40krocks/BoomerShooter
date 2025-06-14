@@ -4,6 +4,7 @@ extends RigidBody3D
 
 
 func Collided(body: Node) -> void:
+	print("hellos")
 	if body.is_in_group("ExplosionTrigger"):
 		Explode()
 

@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func ExplosionEntered(body : Node3D):
 	if body is BaseCharacter:
-		body.HealthChange(Damage)
+		body.HealthChange(-Damage)
 
 func Delete():
 	self.queue_free()

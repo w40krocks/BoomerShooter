@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bw1nqibf71vxe"]
+[gd_scene load_steps=18 format=3 uid="uid://bw1nqibf71vxe"]
 
 [ext_resource type="Script" uid="uid://dghuo244ti0ew" path="res://Character/Player/Player.gd" id="1_4otma"]
 [ext_resource type="PackedScene" uid="uid://bakfud3kf4o5j" path="res://Character/Player/human_blood.tscn" id="2_iytxy"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://cj8j7mo3pjvuh" path="res://Item/UsedWeapons/WeaponManager.gd" id="4_ve82l"]
 [ext_resource type="PackedScene" uid="uid://ki86jrhl08c6" path="res://Item/UsedWeapons/RayWeapon/Shotgun/shotgun.tscn" id="5_86gxa"]
 [ext_resource type="PackedScene" uid="uid://dpbly3s8vqiu" path="res://Item/UsedWeapons/RayWeapon/Pistol/pistol.tscn" id="6_86gxa"]
+[ext_resource type="PackedScene" uid="uid://dy0rc7xble0je" path="res://UI/PlayerUI.tscn" id="7_5k01n"]
+[ext_resource type="PackedScene" uid="uid://b7yga2qvwu7vr" path="res://UI/PauseScreen/PauseMenu.tscn" id="9_ry8fs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6j64"]
 
@@ -128,8 +130,13 @@ height = 0.1
 script = ExtResource("1_4otma")
 MoveSpeed = 0.75
 JumpSpeed = 5.0
+CurrentHealth = 100.0
+MaxHealth = 100.0
 DamageParticle = ExtResource("2_iytxy")
 metadata/_custom_type_script = "uid://dghuo244ti0ew"
+
+[node name="Control" parent="." instance=ExtResource("9_ry8fs")]
+z_index = 2
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_m6j64")
@@ -147,7 +154,7 @@ HeldAmmo = {
 "0-CurrentAmmo": 0,
 "0-MaxAmmo": 0,
 "1-CurrentAmmo": 4,
-"1-MaxAmmo": 10,
+"1-MaxAmmo": 20,
 "2-CurrentAmmo": 5,
 "2-MaxAmmo": 6,
 "3-CurrentAmmo": 0,
@@ -160,6 +167,9 @@ metadata/_custom_type_script = "uid://cj8j7mo3pjvuh"
 [node name="Shotgun" parent="PlayerCam/WeaponManager/WeaponInventory" instance=ExtResource("5_86gxa")]
 
 [node name="Pistol" parent="PlayerCam/WeaponManager/WeaponInventory" instance=ExtResource("6_86gxa")]
+
+[node name="CanvasLayer" parent="PlayerCam" node_paths=PackedStringArray("Player") instance=ExtResource("7_5k01n")]
+Player = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

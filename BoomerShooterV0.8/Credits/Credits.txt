@@ -1,0 +1,28 @@
+(
+Format:
+	Name
+	"FileLocation"
+	LinkToThing
+	DateGrabbed
+)
+
+1:
+(
+	m6x11
+	"res://UI/Fonts/m6x11.ttf"
+	https://itch.io/queue/c/733269/godot-pixel-fonts?game_id=298771
+	13/06/2025
+)
+
+2:
+(
+	PixelAE
+	res://UI/Fonts/PixelAE-Regular.ttf
+	https://essssam.itch.io/pixel-ae
+	14/06/2025
+)
+
+3:
+(
+	
+)

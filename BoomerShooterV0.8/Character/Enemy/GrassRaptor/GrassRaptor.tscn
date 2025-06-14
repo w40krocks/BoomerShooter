@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb26x3o0h38cy"]
+
+[ext_resource type="Script" uid="uid://4jnsviivm8vc" path="res://Character/Enemy/GrassRaptor/GrassRaptor.gd" id="1_71078"]
+[ext_resource type="PackedScene" uid="uid://bakfud3kf4o5j" path="res://Character/Player/human_blood.tscn" id="2_1iiw7"]
+[ext_resource type="PackedScene" uid="uid://cmhhwnp51cshq" path="res://Character/Enemy/GrassRaptor/GrassRaptorModel/GrassRaptorV1.tscn" id="2_r8j86"]
+[ext_resource type="Script" uid="uid://dtp8usgsa0jne" path="res://State Machine/StateMachine.gd" id="4_kvke0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1iiw7"]
+size = Vector3(0.590454, 1.85172, 2.69467)
+
+[node name="GrassRaptor" type="CharacterBody3D" node_paths=PackedStringArray("ObstructionCheck", "EnemyModel") groups=["ExplosionTrigger", "Launchable"]]
+script = ExtResource("1_71078")
+AwarenessZone = 2.0
+SearchDistance = 20.0
+ConeOfVision = 0.75
+ObstructionCheck = NodePath("ObstructionCheck")
+EnemyModel = NodePath("GrassRaptorV1")
+MoveSpeed = 5.0
+CurrentHealth = 200.0
+MaxHealth = 200.0
+DamageParticle = ExtResource("2_1iiw7")
+metadata/_custom_type_script = "uid://4jnsviivm8vc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00970459, -0.123986, -0.532516)
+shape = SubResource("BoxShape3D_1iiw7")
+
+[node name="GrassRaptorV1" parent="." instance=ExtResource("2_r8j86")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.831258, 0)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88466, 0)
+billboard = 2
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_kvke0")
+metadata/_custom_type_script = "uid://dtp8usgsa0jne"
+
+[node name="ObstructionCheck" type="RayCast3D" parent="."]

@@ -16,7 +16,12 @@ class_name BaseCharacter
 @export var DamageParticle : PackedScene
 
 func HealthChange(HealthChange : float): ##ran anytime a characters health is to change ALWAYS USE THIS, do not directly change the characters health (if this is being used to deal damage, make sure the variable is negative)
-	pass
+	CurrentHealth += HealthChange
+	
+	if CurrentHealth >= MaxHealth:
+		CurrentHealth = MaxHealth
+	if CurrentHealth <= 0:
+		Death()
 
 func Death(): ##ran when the character reaches the death state
 	pass

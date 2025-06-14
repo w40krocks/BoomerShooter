@@ -35,12 +35,14 @@ func AttackCheck(AnimationName : String):
 						else:
 							WeaponRayRandomiser()
 						Attack(MinDamage,MaxDamage)
+					Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
 					return true
 				1:
 					WeaponAnimator.play(AnimationName)
 					for i in WeaponSplinter:
 						WeaponRayRandomiser()
 						Attack(MinDamage,MaxDamage)
+					Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
 					return true
 				2:
 					#isnt firing
@@ -51,9 +53,9 @@ func Attack(AttackMinDamage,AttackMaxDamage):
 		CreateBulletTrail(WeaponRay.get_collision_point())
 		if WeaponRay.get_collider() is BaseCharacter:
 			var temp = WeaponRay.get_collider().DamageParticle.instantiate()
-			temp.global_position = WeaponRay.get_collision_point()
+			temp.position = WeaponRay.get_collision_point()
 			get_tree().current_scene.add_child(temp)
-			WeaponRay.get_collider().HealthChange(randf_range(MinDamage,MaxDamage))
+			WeaponRay.get_collider().HealthChange(-randf_range(MinDamage,MaxDamage))
 		else:
 			var temp = HitMarker.instantiate()
 			temp.position = WeaponRay.get_collision_point()

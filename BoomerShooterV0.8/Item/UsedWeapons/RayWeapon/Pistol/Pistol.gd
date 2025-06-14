@@ -8,11 +8,8 @@ class_name Pistol
 func Update(delta : float):
 	if AttackCheck("Attack"):
 		pass
-	
 	else:
 		AltAttack()
-	
-
 
 func AltAttack():
 	if WeaponAnimator.current_animation == "Alt Attack":
@@ -24,7 +21,7 @@ func AltAttack():
 			PistolWhip.monitoring = false
 			WeaponAnimator.speed_scale = 1
 			if HasAmmoToFire():
-				
+				Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
 				WeaponAnimator.play("Attack")
 				Attack(MinDamage + WeaponAnimator.speed_scale /2,MaxDamage *WeaponAnimator.speed_scale /2)
 			else:
@@ -34,10 +31,13 @@ func AltAttack():
 			WeaponAnimator.play("Alt Attack")
 
 func WhipContact(body : Node3D):
-	if body.is_in_group("Player"):
-		pass
-	elif body is RigidBody3D:
-		print(transform.basis.z)
-		var temp = Vector3(-Manager.Player.transform.basis.z)
-		temp.y = 4
-		body.apply_force(temp * WeaponAnimator.speed_scale * 10)
+	var temp = Vector3(-Manager.Player.transform.basis.z)
+	temp.y = 0.1
+	if body.is_in_group("Launchable"):
+		if body is BaseCharacter:
+			print("made contact with basecharacter")
+			body.velocity += temp * WeaponAnimator.speed_scale * 5
+			body.HealthChange(-1 *WeaponAnimator.speed_scale)
+			
+		if body is RigidBody3D:
+			body.apply_force(temp * WeaponAnimator.speed_scale * 10)

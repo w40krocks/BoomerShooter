@@ -1,0 +1,126 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7yga2qvwu7vr"]
+
+[ext_resource type="Script" uid="uid://b1ipbfxpfl6ev" path="res://UI/PauseScreen/PauseMenu.gd" id="1_1ojev"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("MainPauseOptions", "OptionsMenu", "CamSenseSlider", "FOVSlider", "FOVLabel", "CamSenseLabel")]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ojev")
+MainPauseOptions = NodePath("BasePauseOptions")
+OptionsMenu = NodePath("OptionsMenu")
+CamSenseSlider = NodePath("OptionsMenu/OptionSliders/CamSenseContainer/CameraSensitivity")
+FOVSlider = NodePath("OptionsMenu/OptionSliders/FOVContainer/FOV")
+FOVLabel = NodePath("OptionsMenu/OptionSliders/FOVContainer/FOVvalue")
+CamSenseLabel = NodePath("OptionsMenu/OptionSliders/CamSenseContainer/MSenseValue")
+
+[node name="BasePauseOptions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -68.0
+offset_right = 50.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="BasePauseOptions"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Options" type="Button" parent="BasePauseOptions"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="BasePauseOptions"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Restart" type="Button" parent="BasePauseOptions"]
+layout_mode = 2
+text = "Reset Scene"
+
+[node name="OptionsMenu" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -52.0
+offset_right = 163.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Option Buttons" type="VBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="OptionsMenu/Option Buttons"]
+layout_mode = 2
+text = "Back"
+
+[node name="Reset" type="Button" parent="OptionsMenu/Option Buttons"]
+layout_mode = 2
+text = "Reset
+Values"
+
+[node name="OptionSliders" type="VBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Mouse Sensitivity" type="Label" parent="OptionsMenu/OptionSliders"]
+layout_mode = 2
+text = "Mouse sensitivity"
+
+[node name="CamSenseContainer" type="HBoxContainer" parent="OptionsMenu/OptionSliders"]
+layout_mode = 2
+
+[node name="CameraSensitivity" type="HSlider" parent="OptionsMenu/OptionSliders/CamSenseContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 0.001
+max_value = 0.1
+step = 0.001
+value = 0.01
+
+[node name="MSenseValue" type="Label" parent="OptionsMenu/OptionSliders/CamSenseContainer"]
+layout_mode = 2
+text = "Msense"
+
+[node name="Field of view" type="Label" parent="OptionsMenu/OptionSliders"]
+layout_mode = 2
+text = "Field of view"
+
+[node name="FOVContainer" type="HBoxContainer" parent="OptionsMenu/OptionSliders"]
+layout_mode = 2
+
+[node name="FOV" type="HSlider" parent="OptionsMenu/OptionSliders/FOVContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 150.0
+step = 5.0
+value = 75.0
+
+[node name="FOVvalue" type="Label" parent="OptionsMenu/OptionSliders/FOVContainer"]
+layout_mode = 2
+text = "FOV"
+
+[connection signal="pressed" from="BasePauseOptions/Resume" to="." method="Button_ResumePressed"]
+[connection signal="pressed" from="BasePauseOptions/Options" to="." method="Button_OptionsPressed"]
+[connection signal="pressed" from="BasePauseOptions/Exit" to="." method="Button_ExitPressed"]
+[connection signal="pressed" from="BasePauseOptions/Restart" to="." method="Button_RestartPressed"]
+[connection signal="pressed" from="OptionsMenu/Option Buttons/Back" to="." method="Button_BackPressed"]
+[connection signal="pressed" from="OptionsMenu/Option Buttons/Reset" to="." method="Button_ResetPressed"]
+[connection signal="value_changed" from="OptionsMenu/OptionSliders/CamSenseContainer/CameraSensitivity" to="." method="SensitivitySliderAltered"]
+[connection signal="value_changed" from="OptionsMenu/OptionSliders/FOVContainer/FOV" to="." method="FOVSliderAltered"]

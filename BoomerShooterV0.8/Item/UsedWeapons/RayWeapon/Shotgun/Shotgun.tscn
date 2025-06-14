@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ki86jrhl08c6"]
+[gd_scene load_steps=13 format=3 uid="uid://ki86jrhl08c6"]
 
 [ext_resource type="Script" uid="uid://djh8juius1dhw" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Shotgun.gd" id="1_ywklo"]
 [ext_resource type="PackedScene" uid="uid://di7dixdjyfbv1" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ShotgunHitParticle.tscn" id="2_hav5h"]
 [ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_kwtx2"]
-[ext_resource type="PackedScene" uid="uid://ru3fw6beddmo" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ExplosiveShotgunShell.tscn" id="2_utiq8"]
 [ext_resource type="PackedScene" uid="uid://dkmtm7lci0mw7" path="res://Item/UsedWeapons/RayWeapon/WeaponTrail/Gun Trail.tscn" id="3_utiq8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hav5h"]
@@ -24,6 +23,21 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_cw8jm"]
 colors = PackedColorArray(1, 0.658824, 0, 0.392157, 1, 0, 0, 0.392157)
+
+[sub_resource type="Animation" id="Animation_dobkn"]
+resource_name = "Alt Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVisuals:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.203063, 0.31864, 0.203063),
+"update": 0,
+"values": [Vector3(0, -0.4, -0.5), Vector3(0, -0.5, -0.2), Vector3(0, -0.4, -0.5)]
+}
 
 [sub_resource type="Animation" id="Animation_hav5h"]
 resource_name = "Attack"
@@ -49,7 +63,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.203063, 1.56917, 1),
 "update": 0,
-"values": [Vector3(0, -0.6, -1), Vector3(0, -0.4, -0.6), Vector3(0, -0.6, -1)]
+"values": [Vector3(0, -0.4, -0.5), Vector3(0, -0.5, -0.2), Vector3(0, -0.4, -0.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -100,7 +114,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.5, -0.8)]
+"values": [Vector3(0, -0.4, -0.45)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -127,21 +141,6 @@ tracks/3/keys = {
 "values": [Vector3(1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_dobkn"]
-resource_name = "Alt Attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponVisuals:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.733333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -0.6, -1), Vector3(0, -0.6, -0.7), Vector3(0, -0.6, -1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dobkn"]
 _data = {
 &"Alt Attack": SubResource("Animation_dobkn"),
@@ -152,7 +151,6 @@ _data = {
 [node name="Shotgun" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
 script = ExtResource("1_ywklo")
 KnockbackAmount = 7.5
-ExplosiveShell = ExtResource("2_utiq8")
 WeaponSplinter = 15
 RayRandomRange = Vector2(5, 10)
 WeaponRay = NodePath("RayCast3D")
@@ -169,7 +167,7 @@ WeaponAnimator = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://djh8juius1dhw"
 
 [node name="WeaponVisuals" type="Node3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.5, -0.8)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.4, -0.45)
 
 [node name="ShotgunV3" parent="WeaponVisuals" instance=ExtResource("2_kwtx2")]
 
@@ -203,4 +201,4 @@ libraries = {
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -20)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]

@@ -1,7 +1,7 @@
 extends BaseCharacter
 class_name PlayerCharacter
 
-
+@onready var IsAttacking : bool = false
 
 @export var LastVisitedArea : LevelArea ##stores the last level area entered, this is used for the relocation function
 
@@ -41,11 +41,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func HealthChange(HealthChange : float):
-	CurrentHealth + HealthChange
-	if CurrentHealth > MaxHealth:
+	print(CurrentHealth)
+	CurrentHealth += HealthChange
+	
+	if CurrentHealth >= MaxHealth:
 		CurrentHealth = MaxHealth
 	if CurrentHealth <= 0:
 		Death()
+	print(CurrentHealth)
 
 
 func Death():
