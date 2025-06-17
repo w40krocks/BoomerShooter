@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func Entered(body :Node3D):
 	if body is PlayerCharacter:
-		body.LastVisitedArea = self
+		body.CharacterStat.LastVisitedArea = self

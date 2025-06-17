@@ -35,24 +35,25 @@ func AttackCheck(AnimationName : String):
 						else:
 							WeaponRayRandomiser()
 						Attack(MinDamage,MaxDamage)
-					Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
+					Manager.Inventory.HeldAmmo[str(AmmoR.AmmoChoice)+"-CurrentAmmo"] -= MinAmmoConsume
 					return true
 				1:
 					WeaponAnimator.play(AnimationName)
 					for i in WeaponSplinter:
 						WeaponRayRandomiser()
 						Attack(MinDamage,MaxDamage)
-					Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
+					Manager.Inventory.HeldAmmo[str(AmmoR.AmmoChoice)+"-CurrentAmmo"] -= MinAmmoConsume
 					return true
 				2:
 					#isnt firing
 					pass
+	IsAttacking()
 
 func Attack(AttackMinDamage,AttackMaxDamage):
 	if WeaponRay.is_colliding():
 		CreateBulletTrail(WeaponRay.get_collision_point())
 		if WeaponRay.get_collider() is BaseCharacter:
-			var temp = WeaponRay.get_collider().DamageParticle.instantiate()
+			var temp = WeaponRay.get_collider().CharacterStat.DamageParticle.instantiate()
 			temp.position = WeaponRay.get_collision_point()
 			get_tree().current_scene.add_child(temp)
 			WeaponRay.get_collider().HealthChange(-randf_range(MinDamage,MaxDamage))

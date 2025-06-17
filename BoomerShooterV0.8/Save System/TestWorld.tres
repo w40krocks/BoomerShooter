@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WorldSaveResource" load_steps=5 format=3 uid="uid://batxuv8q07iis"]
+
+[ext_resource type="PackedScene" uid="uid://bakfud3kf4o5j" path="res://Character/Player/human_blood.tscn" id="1_6lm1g"]
+[ext_resource type="Script" uid="uid://bjr5ugkmjcqll" path="res://Character/Player/PlayerStats/PlayerStats.gd" id="3_lv1q1"]
+[ext_resource type="Script" uid="uid://d2hohvpegiff0" path="res://Save System/WorldSaveResource.gd" id="4_coddf"]
+
+[sub_resource type="Resource" id="Resource_bp3se"]
+script = ExtResource("3_lv1q1")
+JumpSpeed = 5
+MaxAirSpeed = 30
+MaxGroundSpeed = 16
+MoveSpeed = 0.75
+CurrentHealth = 100.0
+MaxHealth = 100.0
+DamageParticle = ExtResource("1_6lm1g")
+SpawnPos = Vector3(0, 0, 0)
+IsAlive = false
+CharacterName = "Player"
+metadata/_custom_type_script = "uid://bjr5ugkmjcqll"
+
+[resource]
+script = ExtResource("4_coddf")
+PlayerInfo = SubResource("Resource_bp3se")
+Enemies = []
+tempVal = 1.0

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://bu3ejtvmmmsgl"]
+
+[ext_resource type="PackedScene" uid="uid://bakfud3kf4o5j" path="res://Character/Player/human_blood.tscn" id="1_f5ycj"]
+[ext_resource type="Script" uid="uid://c5mlaxjvs071m" path="res://Character/Enemy/EnemyStats.gd" id="1_grdoo"]
+
+[resource]
+script = ExtResource("1_grdoo")
+AwarenessZone = 2.0
+SearchDistance = 20.0
+ConeOfVision = 0.75
+MoveSpeed = 4.0
+CurrentHealth = 200.0
+MaxHealth = 200.0
+DamageParticle = ExtResource("1_f5ycj")
+SpawnPos = Vector3(0, 0, 0)
+SpawnRotation = Vector3(0, 0, 0)
+IsAlive = true
+CharacterName = ""
+metadata/_custom_type_script = "uid://c5mlaxjvs071m"

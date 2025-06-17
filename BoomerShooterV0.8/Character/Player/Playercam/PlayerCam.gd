@@ -12,3 +12,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			rotation.x = clamp(rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	elif Engine.time_scale == 0 :
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event is InputEventJoypadMotion:
+		var CamDirection = Input.get_vector("CamLeft","CamRight","CamUp","CamDown")
+		CamDirection
+		get_parent().rotate_y(-CamDirection.x * CamSense)
+		rotate_x(-CamDirection.y * CamSense)

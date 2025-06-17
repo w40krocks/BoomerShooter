@@ -1,17 +1,12 @@
 extends Node3D 
 class_name BaseWeapon
 
-enum AmmoTypes {
-	TEST, ##purely for test purposes
-	BULLETS, ## Used by the Pistol and LMG
-	SHELLS, ## Used by the shotgun
-	BOMBS ## Used by the Rocket Launcher
-	}
+
 
 @export_category("Weapon Stats")
 @export var MinDamage : float ## the Minimum amount of damage the Weapon will deal per hit
 @export var MaxDamage : float ## the Maximum amount of damage the Weapon will deal per hit
-@export var AmmoType : AmmoTypes ## the ammo type consumed by the Weapon
+@export var AmmoR : AmmoResource ## the ammo type consumed by the Weapon
 @export var MinAmmoConsume : int ## the minimum amount of ammo used per shot
 @export var WeaponNumber : int ##used to determine the weapon switching order
 
@@ -28,6 +23,7 @@ var PreviousWeapon : BaseWeapon ## the last Weapon that was active
 func Enter(): ## Ran when the weapon is first switched to
 	WeaponAnimator.play("RESET")
 	self.show()
+	
 
 func Exit(): ## Ran when the weapon is being switched out
 	WeaponAnimator.play("RESET")
@@ -51,7 +47,7 @@ func IsAttacking(): ##Checks if the Player has fired once, is holding down the f
 		return 2 # not firing
 
 func HasAmmoToFire(): ##checks if the weapon manager holds the needed amount of ammo to fire, and then takes away the per shot ammo consumption amount
-	if Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] >= MinAmmoConsume:
+	if Manager.Inventory.HeldAmmo[str(AmmoR.AmmoChoice)+"-CurrentAmmo"] >= MinAmmoConsume:
 		return true
 	else:
 		return false

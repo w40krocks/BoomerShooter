@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://qucospve3rsr"]
+
+[ext_resource type="PackedScene" uid="uid://qdht8lhiey1v" path="res://Item/Item Pickup/Ammo/BaseAmmoPickup.tscn" id="1_yb7ew"]
+[ext_resource type="Resource" uid="uid://lwqiba67g782" path="res://Item/Item Pickup/Ammo/Bullet/BulletPickupResource.tres" id="2_ymf4l"]
+[ext_resource type="PackedScene" uid="uid://dpub330vurg78" path="res://Item/Item Pickup/Ammo/Bullet/Model/Bullet.glb" id="3_hho77"]
+
+[node name="BulletPickup" instance=ExtResource("1_yb7ew")]
+AmmoR = ExtResource("2_ymf4l")
+ConsumableAmount = 10.0
+
+[node name="ItemVisual" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Bullet" parent="ItemVisual" index="1" instance=ExtResource("3_hho77")]
+
+[node name="Bullet2" parent="ItemVisual" index="2" instance=ExtResource("3_hho77")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0806604, 0, 0)
+
+[node name="Bullet3" parent="ItemVisual" index="3" instance=ExtResource("3_hho77")]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -0.0877287, 0, 0)
+
+[node name="Bullet4" parent="ItemVisual" index="4" instance=ExtResource("3_hho77")]
+transform = Transform3D(1, 0, 0, 0, 0.894115, -0.447837, 0, 0.447837, 0.894115, 0, 0.0173128, -0.0911961)
+
+[node name="Bullet5" parent="ItemVisual" index="5" instance=ExtResource("3_hho77")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.0821852, 0, -0.096783)
+
+[node name="Bullet6" parent="ItemVisual" index="6" instance=ExtResource("3_hho77")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.0949071)
+
+[node name="Bullet7" parent="ItemVisual" index="7" instance=ExtResource("3_hho77")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.0733186, 0.0572482)
+
+[node name="Bullet8" parent="ItemVisual" index="8" instance=ExtResource("3_hho77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0947587, 0, 0.108136)
+
+[node name="Bullet9" parent="ItemVisual" index="9" instance=ExtResource("3_hho77")]
+transform = Transform3D(1, 0, 0, 0, 0.135681, -0.990753, 0, 0.990753, 0.135681, -0.10295, 0.0826876, 0.0391602)

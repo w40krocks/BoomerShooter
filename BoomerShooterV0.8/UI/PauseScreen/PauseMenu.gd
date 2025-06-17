@@ -14,10 +14,7 @@ extends Control
 
 func _ready() -> void:
 	FOVLabel.text = str(BaseFOV).get_slice(".",0)
-	CamSenseLabel.text = str(BaseCamSense * 10000).get_slice(".",0)
-	
-	
-	pass
+	CamSenseLabel.text = str(BaseCamSense * 1000).get_slice(".",0)
 
 func PauseSwitch():
 	if Engine.time_scale == 1:
@@ -45,10 +42,14 @@ func Button_OptionsPressed():
 	OptionsMenu.show()
 
 func Button_ExitPressed():
-	pass
+	var sSystem = SaveSystem.new()
+	sSystem.CreateSaveFile(get_tree().current_scene)
+	get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
+
 
 func Button_RestartPressed():
-	pass
+	get_tree().reload_current_scene()
+	Engine.time_scale = 1
 
 func Button_BackPressed():
 	MainPauseOptions.show()
@@ -65,8 +66,12 @@ func Button_ResetPressed():
 
 func SensitivitySliderAltered(NewValue : float):
 	find_parent("Player").find_child("PlayerCam").CamSense = NewValue
-	CamSenseLabel.text = str(NewValue * 10000).get_slice(".",0)
+	CamSenseLabel.text = str(NewValue * 1000).get_slice(".",0)
 
 func FOVSliderAltered(NewValue : float):
 	find_parent("Player").find_child("PlayerCam").fov = NewValue
 	FOVLabel.text = str(NewValue).get_slice(".",0)
+
+func Button_CheckpointRestart():
+	var sSaveSystem = SaveSystem.new()
+	sSaveSystem.LoadSaveFile(get_tree().current_scene)

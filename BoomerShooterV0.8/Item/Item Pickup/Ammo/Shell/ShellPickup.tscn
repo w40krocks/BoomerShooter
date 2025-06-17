@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuks85c3r4gjv"]
+
+[ext_resource type="PackedScene" uid="uid://qdht8lhiey1v" path="res://Item/Item Pickup/Ammo/BaseAmmoPickup.tscn" id="1_hdt3a"]
+[ext_resource type="Resource" uid="uid://cmwhthgeciib0" path="res://Item/Item Pickup/Ammo/Shell/ShellPickupResource.tres" id="2_k535s"]
+[ext_resource type="PackedScene" uid="uid://c3deyslfawod3" path="res://Item/Item Pickup/Ammo/Shell/Model/ShotgunShell.glb" id="2_op431"]
+
+[node name="ShellPickup" instance=ExtResource("1_hdt3a")]
+AmmoR = ExtResource("2_k535s")
+ConsumableAmount = 6.0
+
+[node name="ItemVisual" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="ShotgunShell" parent="ItemVisual" index="1" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+
+[node name="ShotgunShell2" parent="ItemVisual" index="2" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
+
+[node name="ShotgunShell3" parent="ItemVisual" index="3" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0.1)
+
+[node name="ShotgunShell4" parent="ItemVisual" index="4" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0.1)
+
+[node name="ShotgunShell5" parent="ItemVisual" index="5" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, -0.1)
+
+[node name="ShotgunShell6" parent="ItemVisual" index="6" instance=ExtResource("2_op431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, -0.1)

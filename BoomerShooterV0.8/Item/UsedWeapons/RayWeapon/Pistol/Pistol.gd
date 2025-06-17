@@ -21,7 +21,7 @@ func AltAttack():
 			PistolWhip.monitoring = false
 			WeaponAnimator.speed_scale = 1
 			if HasAmmoToFire():
-				Manager.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] -= MinAmmoConsume
+				Manager.Inventory.HeldAmmo[str(AmmoR.AmmoChoice)+"-CurrentAmmo"] -= MinAmmoConsume
 				WeaponAnimator.play("Attack")
 				Attack(MinDamage + WeaponAnimator.speed_scale /2,MaxDamage *WeaponAnimator.speed_scale /2)
 			else:

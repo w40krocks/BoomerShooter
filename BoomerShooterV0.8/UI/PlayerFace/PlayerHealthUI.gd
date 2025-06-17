@@ -4,7 +4,6 @@ extends Container
 @export var IdleFace : Array = [0,1,2]
 @export var AngryFace : Array = [3,4,5]
 @export var FaceCoords = Vector2(0,0)
-#----FaceCoords
 
 @export_category("InSceneInfo")
 @export var FaceTimer : Timer
@@ -22,25 +21,21 @@ extends Container
 func _process(_delta: float) -> void: 
 	_FaceLocation()
 	
-	HealthLabelUpdate(CurrentHealthLabel, get_parent().Player.CurrentHealth)
-	HealthLabelUpdate(MaxHealthLabel, get_parent().Player.MaxHealth)
-	
-	AmmoLabelUpdate(get_parent().Player.find_child("WeaponManager"),CurrentAmmoLabel,MaxAmmoLabel)
+	HealthLabelUpdate(CurrentHealthLabel, get_parent().Player.CharacterStat.CurrentHealth)
+	HealthLabelUpdate(MaxHealthLabel, get_parent().Player.CharacterStat.MaxHealth)
+	if get_parent().Player.find_child("WeaponManager").Inventory.CurrentWeapon:
+		AmmoLabelUpdate(get_parent().Player.find_child("WeaponManager"),CurrentAmmoLabel,MaxAmmoLabel)
 	
 func HealthLabelUpdate(LabelToUpdate: Label, PlayerHealth : float):
 	var temp : String = str(PlayerHealth)
 	LabelToUpdate.text = temp.get_slice(".",0)
 
 func AmmoLabelUpdate(WManager : WeaponManager, CAmmo : Label, MAmmo : Label):
-	WManager.CurrentWeapon.AmmoType
+	CAmmo.text = str(WManager.Inventory.HeldAmmo[str(WManager.Inventory.CurrentWeapon.AmmoR.AmmoChoice)+"-CurrentAmmo"])
+	MAmmo.text = str(WManager.Inventory.HeldAmmo[str(WManager.Inventory.CurrentWeapon.AmmoR.AmmoChoice)+"-MaxAmmo"])
 	
-	CAmmo.text = str(WManager.HeldAmmo[str(WManager.CurrentWeapon.AmmoType)+"-CurrentAmmo"])
-	MAmmo.text = str(WManager.HeldAmmo[str(WManager.CurrentWeapon.AmmoType)+"-MaxAmmo"])
-	
-
-
 func _FaceLocation():
-	var temp = get_parent().Player.CurrentHealth/ get_parent().Player.MaxHealth
+	var temp = get_parent().Player.CharacterStat.CurrentHealth/ get_parent().Player.CharacterStat.MaxHealth
 	if str(temp).length() >= 4:
 		temp = float(str(temp).substr(0,-1))
 	temp = temp *10

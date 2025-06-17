@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AmmoResource" load_steps=2 format=3 uid="uid://cmwhthgeciib0"]
+
+[ext_resource type="Script" uid="uid://cqpk7gff3sgda" path="res://Item/Item Pickup/Ammo/AmmoTypes.gd" id="1_k3ug4"]
+
+[resource]
+script = ExtResource("1_k3ug4")
+AmmoChoice = 2
+metadata/_custom_type_script = "uid://cqpk7gff3sgda"

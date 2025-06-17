@@ -3,61 +3,63 @@ class_name WeaponManager
 
 @export var IntialWeapon : BaseWeapon
 
-@onready var Player = self.get_parent().get_parent()
+@onready var Player = find_parent("Player")
 @onready var WeaponChoice : int
 @export var WeaponInventory : Node3D
-var CurrentWeapon : BaseWeapon
-var Weapons : Dictionary = {}
 
-@export var HeldAmmo : Dictionary = { ## holds the current and maximum amount of ammo held by the player
-	"0-CurrentAmmo" : 0, # test
-	"0-MaxAmmo" : 0,
-	
-	"1-CurrentAmmo" : 0, # bullet
-	"1-MaxAmmo" : 0,
-	
-	"2-CurrentAmmo" : 0, # shell
-	"2-MaxAmmo" : 0,
-	
-	"3-CurrentAmmo" : 0, # bomb
-	"3-MaxAmmo" : 0
-}
+@export var Inventory : WeaponINV
+
 
 func _ready() -> void:
+	InventoryCheck()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func InventoryCheck():
 	for child in WeaponInventory.get_children():
 		if child is BaseWeapon:
-			if child != CurrentWeapon:
+			if child != Inventory.CurrentWeapon:
 				child.hide()
-			Weapons[child.name] = child
-			child.Transitioned.connect(_WeaponsTransition)
+			Inventory.Weapons[child.name] = child
+			
+			if !child.Transitioned.is_connected(_WeaponsTransition):
+				child.Transitioned.connect(_WeaponsTransition)
 	
 	if IntialWeapon:
 		IntialWeapon.Enter()
-		CurrentWeapon = IntialWeapon
+		Inventory.CurrentWeapon = IntialWeapon
+		Inventory.CurrentWeaponName = IntialWeapon.name
+	else:
+		WeaponInventory.get_child(0).Enter()
+		Inventory.CurrentWeapon = WeaponInventory.get_child(0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if CurrentWeapon:
-		CurrentWeapon.Update(delta)
+	if Inventory.CurrentWeapon:
+		Inventory.CurrentWeapon.Update(delta)
+	else:
+		Inventory.CurrentWeapon = find_child(Inventory.CurrentWeaponName)
 	WeaponSwitching()
 	
+	if !Inventory.CurrentWeapon:
+		Inventory.CurrentWeapon = IntialWeapon
+	
 func _physics_process(delta: float) -> void:
-	if CurrentWeapon:
-		CurrentWeapon.PhysicsUpdate(delta)
+	if Inventory.CurrentWeapon:
+		Inventory.CurrentWeapon.PhysicsUpdate(delta)
 	
 func _WeaponsTransition(Weapon, NewWeaponName):
-	if Weapon != CurrentWeapon:
+	if Weapon != Inventory.CurrentWeapon:
 		return
 	
-	var NewWeapon = Weapons.get(NewWeaponName)
+	var NewWeapon = Inventory.Weapons.get(NewWeaponName)
 	if not NewWeapon:
 		return
 	
-	if CurrentWeapon:
-		CurrentWeapon.Exit()
+	if Inventory.CurrentWeapon:
+		Inventory.CurrentWeapon.Exit()
 	NewWeapon.Enter()
-	NewWeapon.PreviousWeapon = CurrentWeapon
-	CurrentWeapon = NewWeapon
+	NewWeapon.PreviousWeapon = Inventory.CurrentWeapon
+	Inventory.CurrentWeapon = NewWeapon
 
 func WeaponSwitching():
 	if Input:
@@ -69,11 +71,17 @@ func WeaponSwitching():
 			WeaponChoice = WeaponInventory.get_child_count() -1
 		elif WeaponChoice > WeaponInventory.get_child_count() -1:
 			WeaponChoice = 0
+		if Inventory.CurrentWeapon:
+			
+			if Inventory.CurrentWeapon.WeaponAnimator.is_playing() and Inventory.CurrentWeapon.WeaponAnimator.current_animation != "RESET":
+				pass
+			
+			elif WeaponInventory.get_child(WeaponChoice) != Inventory.CurrentWeapon:
+				_WeaponsTransition(Inventory.CurrentWeapon, WeaponInventory.get_child(WeaponChoice).name)
 		
-		if CurrentWeapon.WeaponAnimator.is_playing() and CurrentWeapon.WeaponAnimator.current_animation != "RESET":
-			pass
 		
-		elif WeaponInventory.get_child(WeaponChoice) != CurrentWeapon:
-				_WeaponsTransition(CurrentWeapon, WeaponInventory.get_child(WeaponChoice).name)
-	
-	
+
+func AddAmmo(AmmoToAdd: int, AmmoType : int):
+	Inventory.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] += AmmoToAdd
+	if Inventory.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] > Inventory.HeldAmmo[str(AmmoType)+"-MaxAmmo"]:
+		Inventory.HeldAmmo[str(AmmoType)+"-CurrentAmmo"] = Inventory.HeldAmmo[str(AmmoType)+"-MaxAmmo"]

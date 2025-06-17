@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponINV" load_steps=2 format=3 uid="uid://cls2h775vnfbr"]
+
+[ext_resource type="Script" uid="uid://ceev0u7n08ayg" path="res://Item/UsedWeapons/WeaponINVstuff.gd" id="1_6rfs0"]
+
+[resource]
+script = ExtResource("1_6rfs0")
+HeldAmmo = {
+"0-CurrentAmmo": 0,
+"0-MaxAmmo": 0,
+"1-CurrentAmmo": 25,
+"1-MaxAmmo": 80,
+"2-CurrentAmmo": 10,
+"2-MaxAmmo": 40,
+"3-CurrentAmmo": 0,
+"3-MaxAmmo": 10
+}
+metadata/_custom_type_script = "uid://ceev0u7n08ayg"

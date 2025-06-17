@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d2pjues8c5d2t"]
+
+[sub_resource type="GDScript" id="GDScript_anj1j"]
+script/source = "extends Resource
+
+var Num : int
+"
+
+[resource]
+script = SubResource("GDScript_anj1j")

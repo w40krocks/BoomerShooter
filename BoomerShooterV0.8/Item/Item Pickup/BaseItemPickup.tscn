@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7lxe3q03acna"]
+
+[ext_resource type="Script" uid="uid://cm4gwok52wof" path="res://Item/Item Pickup/BaseItem.gd" id="1_fnvoj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3dsa7"]
+
+[sub_resource type="Animation" id="Animation_ivwew"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4vlf"]
+_data = {
+&"Idle": SubResource("Animation_ivwew")
+}
+
+[node name="BaseItem" type="Area3D" node_paths=PackedStringArray("ItemModel", "ItemModelAnimator")]
+script = ExtResource("1_fnvoj")
+ItemModel = NodePath("ItemVisual")
+ItemModelAnimator = NodePath("ItemVisual/AnimationPlayer")
+metadata/_custom_type_script = "uid://cm4gwok52wof"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3dsa7")
+
+[node name="ItemVisual" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemVisual"]
+libraries = {
+&"": SubResource("AnimationLibrary_v4vlf")
+}

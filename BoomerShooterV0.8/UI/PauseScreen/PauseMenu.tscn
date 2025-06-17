@@ -26,10 +26,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = -68.0
-offset_right = 50.5
-offset_bottom = 68.0
+offset_left = -98.0
+offset_top = -85.5
+offset_right = 98.0
+offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,6 +48,10 @@ text = "Exit"
 [node name="Restart" type="Button" parent="BasePauseOptions"]
 layout_mode = 2
 text = "Reset Scene"
+
+[node name="Restart from Checkpoint" type="Button" parent="BasePauseOptions"]
+layout_mode = 2
+text = "Restart from checkpoint"
 
 [node name="OptionsMenu" type="HBoxContainer" parent="."]
 visible = false
@@ -120,6 +124,7 @@ text = "FOV"
 [connection signal="pressed" from="BasePauseOptions/Options" to="." method="Button_OptionsPressed"]
 [connection signal="pressed" from="BasePauseOptions/Exit" to="." method="Button_ExitPressed"]
 [connection signal="pressed" from="BasePauseOptions/Restart" to="." method="Button_RestartPressed"]
+[connection signal="pressed" from="BasePauseOptions/Restart from Checkpoint" to="." method="Button_CheckpointRestart"]
 [connection signal="pressed" from="OptionsMenu/Option Buttons/Back" to="." method="Button_BackPressed"]
 [connection signal="pressed" from="OptionsMenu/Option Buttons/Reset" to="." method="Button_ResetPressed"]
 [connection signal="value_changed" from="OptionsMenu/OptionSliders/CamSenseContainer/CameraSensitivity" to="." method="SensitivitySliderAltered"]

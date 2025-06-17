@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://duvgof244xkw1"]
+
+[ext_resource type="Texture2D" uid="uid://6tq5iykw7xql" path="res://Item/Item Pickup/Ammo/Shell/Model/Shotgun Shell texture.png" id="1_bfo6f"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_bfo6f")
+texture_filter = 0

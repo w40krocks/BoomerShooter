@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://8xsmq7a4ecm6"]
+[gd_scene load_steps=23 format=3 uid="uid://8xsmq7a4ecm6"]
 
 [ext_resource type="Texture2D" uid="uid://cutrgj6reoiuw" path="res://Worlds/Floor.png" id="1_787pe"]
 [ext_resource type="PackedScene" uid="uid://bw1nqibf71vxe" path="res://Character/Player/Player.tscn" id="1_ndknc"]
+[ext_resource type="Script" uid="uid://bbdf26j5ies4v" path="res://Worlds/TestWorld/TestWorld.gd" id="1_rgd82"]
 [ext_resource type="Script" uid="uid://dm2wginji033j" path="res://Worlds/EnvronmentNodes/LevelArea/LevelArea.gd" id="3_1jyk2"]
 [ext_resource type="Script" uid="uid://cspiwsbtfqlv6" path="res://Worlds/EnvronmentNodes/Relocator/Relocator.gd" id="4_1epbv"]
 [ext_resource type="PackedScene" uid="uid://cb26x3o0h38cy" path="res://Character/Enemy/GrassRaptor/GrassRaptor.tscn" id="5_787pe"]
+[ext_resource type="Script" uid="uid://bu4u8bhfranf1" path="res://TestingStuff/HealthChangingOrb.gd" id="6_y37wn"]
+[ext_resource type="PackedScene" uid="uid://qucospve3rsr" path="res://Item/Item Pickup/Ammo/Bullet/bulletPickup.tscn" id="7_va0em"]
+[ext_resource type="PackedScene" uid="uid://cuks85c3r4gjv" path="res://Item/Item Pickup/Ammo/Shell/ShellPickup.tscn" id="8_5cjsl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ndknc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,11 +37,34 @@ radius = 10.37
 [sub_resource type="BoxShape3D" id="BoxShape3D_787pe"]
 size = Vector3(1000, 1, 1000)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_va0em"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cjsl"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 1, 0, 0.588235)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rgd82"]
+material = SubResource("StandardMaterial3D_5cjsl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25jo2"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.588235)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uxij1"]
+material = SubResource("StandardMaterial3D_25jo2")
+
+[node name="TestWorld" type="Node3D"]
+script = ExtResource("1_rgd82")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.398749, 0.91706, 0, -0.91706, -0.398749, 0, 3.20946, 0)
+light_bake_mode = 0
 shadow_enabled = true
+shadow_blur = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1jyk2")
@@ -84,5 +111,35 @@ use_collision = true
 size = Vector3(6.35596, 4.70215, 1)
 
 [node name="GrassRaptor" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("5_787pe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6965, 1.41348, 25.194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68142, 1.41348, 2.68217)
 Target = NodePath("../Player")
+
+[node name="HealOrb" type="Area3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.16076, 9.13528)
+script = ExtResource("6_y37wn")
+HealthChange = 10.0
+metadata/_custom_type_script = "uid://bu4u8bhfranf1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealOrb"]
+shape = SubResource("SphereShape3D_va0em")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealOrb"]
+mesh = SubResource("SphereMesh_rgd82")
+
+[node name="HealOrb2" type="Area3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.16076, 2.72526)
+script = ExtResource("6_y37wn")
+HealthChange = -10.0
+metadata/_custom_type_script = "uid://bu4u8bhfranf1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealOrb2"]
+shape = SubResource("SphereShape3D_va0em")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealOrb2"]
+mesh = SubResource("SphereMesh_uxij1")
+
+[node name="BulletPickup" parent="." instance=ExtResource("7_va0em")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.726, 1, 0)
+
+[node name="AmmoPickup" parent="." instance=ExtResource("8_5cjsl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.235, 1, 1.29019)

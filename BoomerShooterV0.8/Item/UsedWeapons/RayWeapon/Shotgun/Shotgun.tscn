@@ -1,16 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://ki86jrhl08c6"]
+[gd_scene load_steps=15 format=3 uid="uid://ki86jrhl08c6"]
 
 [ext_resource type="Script" uid="uid://djh8juius1dhw" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Shotgun.gd" id="1_ywklo"]
 [ext_resource type="PackedScene" uid="uid://di7dixdjyfbv1" path="res://Item/UsedWeapons/RayWeapon/Shotgun/ShotgunHitParticle.tscn" id="2_hav5h"]
 [ext_resource type="PackedScene" uid="uid://mcyndiu5wsyh" path="res://Item/UsedWeapons/RayWeapon/Shotgun/Model/ShotgunV3.glb" id="2_kwtx2"]
 [ext_resource type="PackedScene" uid="uid://dkmtm7lci0mw7" path="res://Item/UsedWeapons/RayWeapon/WeaponTrail/Gun Trail.tscn" id="3_utiq8"]
+[ext_resource type="Script" uid="uid://cqpk7gff3sgda" path="res://Item/Item Pickup/Ammo/AmmoTypes.gd" id="4_utiq8"]
+
+[sub_resource type="Resource" id="Resource_utiq8"]
+script = ExtResource("4_utiq8")
+AmmoChoice = 2
+metadata/_custom_type_script = "uid://cqpk7gff3sgda"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hav5h"]
 transparency = 1
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(1, 0.25098, 0, 1)
-emission_energy_multiplier = 16.0
+emission_energy_multiplier = 40.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_utiq8"]
 material = SubResource("StandardMaterial3D_hav5h")
@@ -157,9 +163,9 @@ WeaponRay = NodePath("RayCast3D")
 HitMarker = ExtResource("2_hav5h")
 BulletTrail = ExtResource("3_utiq8")
 EndOfBarrel = NodePath("WeaponVisuals/ShotgunV3/EndOfBarrel")
-MinDamage = 5.0
-MaxDamage = 10.0
-AmmoType = 2
+MinDamage = 2.0
+MaxDamage = 5.0
+AmmoR = SubResource("Resource_utiq8")
 MinAmmoConsume = 1
 WeaponNumber = 1
 WeaponVisuals = NodePath("WeaponVisuals")

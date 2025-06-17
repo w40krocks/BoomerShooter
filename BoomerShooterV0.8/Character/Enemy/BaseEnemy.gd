@@ -1,10 +1,6 @@
 extends BaseCharacter
 class_name BaseEnemy
 
-@export_category("Enemy Stats")
-@export var AwarenessZone : float ##the distance around the enemy, where the player will be spotted immediately
-@export var SearchDistance : float ##the distance from the enemy where the player can be spotted
-@export var ConeOfVision : float ##the rotational distance from the front enemy, determines how wide or narrow the enemies distance
 var TargetVector : Vector2 ##the Targets horizontal position
 var SelfVector : Vector2 ##the Enemies horizontal position
 
@@ -15,15 +11,17 @@ var SelfVector : Vector2 ##the Enemies horizontal position
 @export var ObstructionCheck : RayCast3D ##raycast used to check if the enemy has an unobstructed view to the target
 @export var EnemyModel : Node3D  ##the EnemyModel
 
+func SetInstance():
+	CharacterStat = CharacterStat.duplicate()
+
 func HealthChange(HealthChange : float): ## Adds the entered amount of health to the current health of the enemy
-	print(HealthChange)
 	if HealthChange > 0 and !is_on_floor():
 		HealthChange *= 1.5
-	CurrentHealth += HealthChange
+	CharacterStat.CurrentHealth += HealthChange
 	
-	if CurrentHealth >= MaxHealth:
-		CurrentHealth = MaxHealth
-	if CurrentHealth <= 0:
+	if CharacterStat.CurrentHealth >= CharacterStat.MaxHealth:
+		CharacterStat.CurrentHealth = CharacterStat.MaxHealth
+	if CharacterStat.CurrentHealth <= 0:
 		Death()
 
 func Death(): ##runs when the player runs out of health
@@ -34,10 +32,10 @@ func Giblet(): ##runs if the enemy has under a certain amount of health, destroy
 
 func SearchForTarget(Target,RotationalDistance : float): ##checks if the enemy can spot the target
 	var ReturnValue := false
-	if position.distance_to(Target.position) < AwarenessZone:
+	if position.distance_to(Target.position) < CharacterStat.AwarenessZone:
 		ReturnValue = true
 		#TargetFound
-	elif position.distance_to(Target.position) < SearchDistance and RotationalDistance > ConeOfVision:
+	elif position.distance_to(Target.position) < CharacterStat.SearchDistance and RotationalDistance > CharacterStat.ConeOfVision:
 		#check for obstruction
 		ReturnValue = IsTargetUnobstructed(Target)
 	return ReturnValue
