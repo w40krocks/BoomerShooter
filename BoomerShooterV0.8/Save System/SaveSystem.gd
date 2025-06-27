@@ -15,15 +15,15 @@ func SceneChildrenSearchSAVE(Parent : Node3D): ##searches through the entire sce
 			SaveFile.PlayerInfo = Parent.get_child(i).CharacterStat.duplicate()
 			SaveFile.PlayerInfo.SpawnPos = Parent.get_child(i).global_position
 			SaveFile.PlayerInfo.SpawnRotation = Parent.get_child(i).rotation
-			
-			
-			
 			SaveFile.PlayerINV = Parent.get_child(i).find_child("WeaponManager").Inventory.duplicate()
 			
-			
 		elif Parent.get_child(i) is BaseEnemy:
+			Parent.get_child(i).CharacterStat.CurrentStateName = Parent.get_child(i).find_child("StateMachine").CurrentState.name
+			print("Saved Enemy State: " + Parent.get_child(i).CharacterStat.CurrentStateName)
+			Parent.get_child(i).CharacterStat.SpawnPos = Parent.get_child(i).global_position
+			Parent.get_child(i).CharacterStat.SpawnRotation = Parent.get_child(i).rotation
 			SaveFile.Enemies.append(Parent.get_child(i).CharacterStat)
-			
+			SaveFile.Enemies[SaveFile.Enemies.size() -1].CurrentStateName =Parent.get_child(i).find_child("StateMachine").CurrentState.name
 		else:
 			if Parent.get_child(i).get_child_count() != 0:
 				SceneChildrenSearchSAVE(Parent.get_child(i))
@@ -38,8 +38,6 @@ func DoesSaveFileExist(SaveFileLocation : String):
 	if !DirAccess.dir_exists_absolute(SaveFileLocation):
 		DirAccess.make_dir_absolute(SaveFileLocation)
 
-	
-
 func LoadSaveFile(World):
 	var SaveFileLocation = "user://Save System/SaveDir/" + World.name + ".tres"
 	DoesSaveFileExist("user://Save System/SaveDir/")
@@ -51,20 +49,17 @@ func LoadSaveFile(World):
 	Player.position = Player.CharacterStat.SpawnPos
 	Player.rotation = Player.CharacterStat.SpawnRotation
 	
-	
-
-	
-	
 	Player.find_child("WeaponManager").Inventory = SaveFile.PlayerINV.duplicate()
 	Player.find_child("WeaponManager").InventoryCheck()
 	for i in SaveFile.Enemies.size():
-		print(SaveFile.Enemies[i].CharacterName)
 		var tempEnemy = World.find_child(SaveFile.Enemies[i].CharacterName)
-		print(tempEnemy)
 		if tempEnemy is not BaseEnemy:
 			print(tempEnemy," either doesnt exist at this point of the level, or is the incorrect type?")
 		else:
 			tempEnemy.CharacterStat = SaveFile.Enemies[i].duplicate()
+			print(tempEnemy.CharacterStat.CurrentStateName)
+			print(tempEnemy.find_child("StateMachine").CurrentState)
+			tempEnemy.find_child("StateMachine")._StateTransition(tempEnemy.find_child("StateMachine").CurrentState,tempEnemy.CharacterStat.CurrentStateName)
 			tempEnemy.global_position = tempEnemy.CharacterStat.SpawnPos
 			tempEnemy.global_rotation = tempEnemy.CharacterStat.SpawnRotation
 			tempEnemy = null

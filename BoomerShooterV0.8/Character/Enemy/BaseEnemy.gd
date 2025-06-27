@@ -10,12 +10,12 @@ var SelfVector : Vector2 ##the Enemies horizontal position
 @export_category("In Scene Stuff")
 @export var ObstructionCheck : RayCast3D ##raycast used to check if the enemy has an unobstructed view to the target
 @export var EnemyModel : Node3D  ##the EnemyModel
-
-func SetInstance():
-	CharacterStat = CharacterStat.duplicate()
+@onready var Animator : AnimationPlayer = find_child("EnemyAnimator")
+@export var NavAgent : NavigationAgent3D
+@export var IdleTimer : Timer
 
 func HealthChange(HealthChange : float): ## Adds the entered amount of health to the current health of the enemy
-	if HealthChange > 0 and !is_on_floor():
+	if HealthChange < 0 and !is_on_floor():
 		HealthChange *= 1.5
 	CharacterStat.CurrentHealth += HealthChange
 	

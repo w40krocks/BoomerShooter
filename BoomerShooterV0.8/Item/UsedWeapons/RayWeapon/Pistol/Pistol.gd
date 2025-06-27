@@ -32,11 +32,10 @@ func AltAttack():
 
 func WhipContact(body : Node3D):
 	var temp = Vector3(-Manager.Player.transform.basis.z)
-	temp.y = 0.1
+	temp.y = 0.2
 	if body.is_in_group("Launchable"):
 		if body is BaseCharacter:
-			print("made contact with basecharacter")
-			body.velocity += temp * WeaponAnimator.speed_scale * 5
+			body.velocity += temp * WeaponAnimator.speed_scale * 2
 			body.HealthChange(-1 *WeaponAnimator.speed_scale)
 			
 		if body is RigidBody3D:

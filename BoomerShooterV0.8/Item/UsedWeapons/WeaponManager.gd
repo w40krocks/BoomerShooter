@@ -11,6 +11,7 @@ class_name WeaponManager
 
 
 func _ready() -> void:
+	Inventory = Inventory.duplicate()
 	InventoryCheck()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

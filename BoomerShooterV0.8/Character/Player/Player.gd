@@ -9,6 +9,7 @@ class_name PlayerCharacter
 var Momentum : Vector3
 
 func _ready():
+	SetStatsInstance()
 	CharacterStat.CharacterName = self.name
 
 func _process(delta: float) -> void:
@@ -37,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Down"):
 		if not is_on_floor():
 			GroundSlam()
-
 	move_and_slide()
 
 func HealthChange(HealthChange : float):
@@ -72,18 +72,24 @@ func Movement(): ##handles the acceleration, deceleration and limiting character
 			velocity = velocity.limit_length(CharacterStat.MaxAirSpeed)
 		Momentum = velocity
 	else:
-		
-		if Momentum.x != 0 or Momentum.z != 0:
+		if Momentum.z != 0:
 			#applies friction to decelerate the player
 			if is_on_floor():
-				Momentum *= 0.85
+				Momentum.z *= 0.85
 			else:
-				Momentum *= 0.97
+				Momentum.z *= 0.97
+		if Momentum.x != 0:
+			#applies friction to decelerate the player
+			if is_on_floor():
+				Momentum.x *= 0.85
+			else:
+				Momentum.x *= 0.97
 			
-			if abs(Momentum.x) < 0.01:
-				Momentum.x = 0
-			if abs(Momentum.z) < 0.01:
-				Momentum.z = 0
+		if abs(Momentum.x) < 0.01:
+			Momentum.x = 0
+		if abs(Momentum.z) < 0.01:
+			Momentum.z = 0
+		
 		velocity.x = move_toward(velocity.x, Momentum.x, CharacterStat.MoveSpeed)
 		velocity.z = move_toward(velocity.z, Momentum.z, CharacterStat.MoveSpeed)
 

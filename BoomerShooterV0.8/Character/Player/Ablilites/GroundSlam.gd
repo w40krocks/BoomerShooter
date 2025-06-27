@@ -1,8 +1,5 @@
 extends Area3D
 
-
-
-
 func BodyEntered(body: Node3D) -> void:
 	if body.is_in_group("Launchable"):
 		if body is BaseCharacter:

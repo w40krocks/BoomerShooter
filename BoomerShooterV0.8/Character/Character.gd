@@ -13,3 +13,6 @@ func HealthChange(HealthChange : float): ##ran anytime a characters health is to
 
 func Death(): ##ran when the character reaches the death state
 	pass
+
+func SetStatsInstance():
+	CharacterStat = CharacterStat.duplicate()

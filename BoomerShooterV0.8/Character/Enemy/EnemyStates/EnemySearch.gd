@@ -1,4 +1,4 @@
-extends State
+extends BaseEnemyState
 class_name EnemySearch
 
 func Enter():
@@ -8,7 +8,11 @@ func Exit():
 	pass
 
 func Update(_delta : float):
-	pass
+	
+	if Self.SearchForTarget(Self.Target,Self.GetRotationalDistance(Self.Target)):
+		print("within view")
+		if Self.IsTargetUnobstructed(Self.Target):
+			Transitioned.emit(self,"EnemyChase")
 
 func PhysicsUpdate(_delta : float):
 	pass

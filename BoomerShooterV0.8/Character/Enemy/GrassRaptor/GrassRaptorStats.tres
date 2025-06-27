@@ -5,12 +5,17 @@
 
 [resource]
 script = ExtResource("1_grdoo")
-AwarenessZone = 2.0
+AwarenessZone = 3.0
 SearchDistance = 20.0
+RangedAttackDistance = 15.0
+MeleeAttackDistance = 5.0
+RangedDamage = 20.0
+MeleeDamage = 10.0
 ConeOfVision = 0.75
-MoveSpeed = 4.0
-CurrentHealth = 200.0
-MaxHealth = 200.0
+CurrentStateName = ""
+MoveSpeed = 10.0
+CurrentHealth = 100.0
+MaxHealth = 100.0
 DamageParticle = ExtResource("1_f5ycj")
 SpawnPos = Vector3(0, 0, 0)
 SpawnRotation = Vector3(0, 0, 0)

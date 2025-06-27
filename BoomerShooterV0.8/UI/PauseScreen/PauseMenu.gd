@@ -46,7 +46,6 @@ func Button_ExitPressed():
 	sSystem.CreateSaveFile(get_tree().current_scene)
 	get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
 
-
 func Button_RestartPressed():
 	get_tree().reload_current_scene()
 	Engine.time_scale = 1
@@ -55,14 +54,14 @@ func Button_BackPressed():
 	MainPauseOptions.show()
 	OptionsMenu.hide()
 
-
 func Button_ResetPressed():
 	find_parent("Player").find_child("PlayerCam").CamSense = BaseCamSense
 	find_parent("Player").find_child("PlayerCam").fov = BaseFOV
-	
-	
 	CamSenseSlider.value = BaseCamSense
 	FOVSlider.value = BaseFOV
+
+func Button_UserFeedback():
+	OS.shell_open("https://docs.google.com/forms/d/e/1FAIpQLScQgdKE5u6ukxPNBnBz9UXjCK0UODuC2sbhxhhMt5S8YNeG1A/viewform?usp=header")
 
 func SensitivitySliderAltered(NewValue : float):
 	find_parent("Player").find_child("PlayerCam").CamSense = NewValue

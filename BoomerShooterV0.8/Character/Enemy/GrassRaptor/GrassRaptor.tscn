@@ -1,23 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb26x3o0h38cy"]
+[gd_scene load_steps=14 format=3 uid="uid://cb26x3o0h38cy"]
 
 [ext_resource type="Script" uid="uid://4jnsviivm8vc" path="res://Character/Enemy/GrassRaptor/GrassRaptor.gd" id="1_71078"]
 [ext_resource type="Resource" uid="uid://bu3ejtvmmmsgl" path="res://Character/Enemy/GrassRaptor/GrassRaptorStats.tres" id="2_kvke0"]
 [ext_resource type="PackedScene" uid="uid://cmhhwnp51cshq" path="res://Character/Enemy/GrassRaptor/GrassRaptorModel/GrassRaptorV1.tscn" id="2_r8j86"]
 [ext_resource type="Script" uid="uid://dtp8usgsa0jne" path="res://State Machine/StateMachine.gd" id="4_kvke0"]
+[ext_resource type="Script" uid="uid://x3htc2nugxmp" path="res://Character/Enemy/EnemyStates/EnemyDeath.gd" id="5_cdk3f"]
+[ext_resource type="Script" uid="uid://ddaqcmh7uhj7o" path="res://Character/Enemy/EnemyStates/EnemySearch.gd" id="6_4o8tt"]
+[ext_resource type="Script" uid="uid://cnd081le7ii7l" path="res://Character/Enemy/EnemyStates/EnemyChase.gd" id="7_4o8tt"]
+[ext_resource type="Script" uid="uid://doynd3yygvonp" path="res://Character/Enemy/EnemyStates/GrassRaptor/GrassRaptorLeapAttack.gd" id="8_0xyu6"]
+[ext_resource type="Script" uid="uid://dpekh4lks5v5q" path="res://Character/Enemy/EnemyStates/GrassRaptor/GrassRaptorRetreat.gd" id="9_m1ubo"]
+[ext_resource type="Script" uid="uid://bjljqyukgibi" path="res://Character/Enemy/EnemyStates/GrassRaptor/GrassRaptorBite.gd" id="10_mewhl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kvke0"]
+height = 2.62451
+radius = 0.339355
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iiw7"]
-size = Vector3(0.590454, 1.85172, 2.69467)
+size = Vector3(0.590454, 1.35795, 2.69467)
 
-[node name="GrassRaptor" type="CharacterBody3D" node_paths=PackedStringArray("ObstructionCheck", "EnemyModel") groups=["ExplosionTrigger", "Launchable"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4o8tt"]
+size = Vector3(2, 2.5, 1.5)
+
+[node name="GrassRaptor" type="CharacterBody3D" node_paths=PackedStringArray("AttackArea", "ObstructionCheck", "EnemyModel", "NavAgent", "IdleTimer") groups=["ExplosionTrigger", "Launchable"]]
 script = ExtResource("1_71078")
+AttackArea = NodePath("AttackArea")
 ObstructionCheck = NodePath("ObstructionCheck")
 EnemyModel = NodePath("GrassRaptorV1")
+NavAgent = NodePath("NavigationAgent3D")
+IdleTimer = NodePath("IdleTimer")
 CharacterStat = ExtResource("2_kvke0")
 metadata/_custom_type_script = "uid://4jnsviivm8vc"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00970459, -0.123986, -0.532516)
+[node name="TopCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -2.36165e-08, 0.521631, -0.540283)
+shape = SubResource("CylinderShape3D_kvke0")
+
+[node name="MainCollsion" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00970459, -0.157902, -0.532516)
 shape = SubResource("BoxShape3D_1iiw7")
+
+[node name="BottomCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -2.36165e-08, -0.69543, -0.540283)
+shape = SubResource("CylinderShape3D_kvke0")
 
 [node name="GrassRaptorV1" parent="." instance=ExtResource("2_r8j86")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.831258, 0)
@@ -26,8 +50,54 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88466, 0)
 billboard = 2
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("IntialState")]
 script = ExtResource("4_kvke0")
+IntialState = NodePath("EnemySearch")
 metadata/_custom_type_script = "uid://dtp8usgsa0jne"
 
+[node name="EnemyDeath" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("5_cdk3f")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://x3htc2nugxmp"
+
+[node name="EnemySearch" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("6_4o8tt")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://ddaqcmh7uhj7o"
+
+[node name="EnemyChase" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("7_4o8tt")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://cnd081le7ii7l"
+
+[node name="GrassRaptorLeapAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("8_0xyu6")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://doynd3yygvonp"
+
+[node name="GrassRaptorRetreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("9_m1ubo")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://dpekh4lks5v5q"
+
+[node name="GrassRaptorBite" type="Node" parent="StateMachine" node_paths=PackedStringArray("Self")]
+script = ExtResource("10_mewhl")
+Self = NodePath("../..")
+metadata/_custom_type_script = "uid://bjljqyukgibi"
+
 [node name="ObstructionCheck" type="RayCast3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AttackArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.06481)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.186348)
+shape = SubResource("BoxShape3D_4o8tt")
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="Attack"]

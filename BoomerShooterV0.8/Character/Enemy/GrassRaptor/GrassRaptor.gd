@@ -1,9 +1,11 @@
 extends BaseEnemy
 class_name GrassRaptor
 
+@export var AttackArea : Area3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SetInstance()
+	SetStatsInstance()
 	CharacterStat.CharacterName = self.name
 	CharacterStat.SpawnPos = global_position
 	CharacterStat.SpawnRotation = global_rotation
@@ -11,22 +13,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var temp : Vector3
-	temp.x = Target.position.x
-	temp.y = self.position.y
-	temp.z = Target.position.z
-	if Input.is_action_just_pressed("Attack") and CharacterStat.CurrentHealth > 0:
-		look_at(temp)
-		find_child("AnimationPlayer").play("Walk")
 	$Label3D.text = str(CharacterStat.CurrentHealth).substr(0,5)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta *0.75
 	
-	velocity.x = move_toward(velocity.x, 0, CharacterStat.MoveSpeed)
-	velocity.z = move_toward(velocity.z, 0, CharacterStat.MoveSpeed)
+	velocity.x = move_toward(velocity.x, velocity.x *0.95, CharacterStat.MoveSpeed)
+	velocity.z = move_toward(velocity.z, velocity.z *0.95, CharacterStat.MoveSpeed)
 	move_and_slide()
 
 func Death():
-	rotation_degrees.z = 90
+	if CharacterStat.IsAlive:
+		find_child("StateMachine")._StateTransition(find_child("StateMachine").CurrentState,"EnemyDeath")
+
+func Attack(body : Node3D):
+	if body is BaseCharacter:
+		if body == self:
+			pass
+		else:
+			body.HealthChange(-CharacterStat.MeleeDamage)
+			find_child("StateMachine")._StateTransition(find_child("StateMachine").CurrentState,"GrassRaptorRetreat")

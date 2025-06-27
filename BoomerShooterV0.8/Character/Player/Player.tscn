@@ -145,16 +145,16 @@ metadata/_custom_type_script = "uid://byv6238haa58l"
 
 [node name="WeaponManager" type="Node3D" parent="PlayerCam" node_paths=PackedStringArray("IntialWeapon", "WeaponInventory")]
 script = ExtResource("4_ve82l")
-IntialWeapon = NodePath("WeaponInventory/Shotgun")
+IntialWeapon = NodePath("WeaponInventory/Pistol")
 WeaponInventory = NodePath("WeaponInventory")
 Inventory = ExtResource("7_jcxr1")
 metadata/_custom_type_script = "uid://cj8j7mo3pjvuh"
 
 [node name="WeaponInventory" type="Node3D" parent="PlayerCam/WeaponManager"]
 
-[node name="Shotgun" parent="PlayerCam/WeaponManager/WeaponInventory" instance=ExtResource("5_86gxa")]
-
 [node name="Pistol" parent="PlayerCam/WeaponManager/WeaponInventory" instance=ExtResource("6_86gxa")]
+
+[node name="Shotgun" parent="PlayerCam/WeaponManager/WeaponInventory" instance=ExtResource("5_86gxa")]
 
 [node name="CanvasLayer" parent="PlayerCam" node_paths=PackedStringArray("Player") instance=ExtResource("7_5k01n")]
 Player = NodePath("../..")
