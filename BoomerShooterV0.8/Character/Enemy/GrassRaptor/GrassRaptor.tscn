@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cb26x3o0h38cy"]
+[gd_scene load_steps=15 format=3 uid="uid://cb26x3o0h38cy"]
 
 [ext_resource type="Script" uid="uid://4jnsviivm8vc" path="res://Character/Enemy/GrassRaptor/GrassRaptor.gd" id="1_71078"]
 [ext_resource type="Resource" uid="uid://bu3ejtvmmmsgl" path="res://Character/Enemy/GrassRaptor/GrassRaptorStats.tres" id="2_kvke0"]
@@ -20,6 +20,8 @@ size = Vector3(0.590454, 1.35795, 2.69467)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4o8tt"]
 size = Vector3(2, 2.5, 1.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mewhl"]
 
 [node name="GrassRaptor" type="CharacterBody3D" node_paths=PackedStringArray("AttackArea", "ObstructionCheck", "EnemyModel", "NavAgent", "IdleTimer") groups=["ExplosionTrigger", "Launchable"]]
 script = ExtResource("1_71078")
@@ -99,5 +101,9 @@ shape = SubResource("BoxShape3D_4o8tt")
 
 [node name="IdleTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.533115, -1.79763)
+shape = SubResource("SphereShape3D_mewhl")
 
 [connection signal="body_entered" from="AttackArea" to="." method="Attack"]

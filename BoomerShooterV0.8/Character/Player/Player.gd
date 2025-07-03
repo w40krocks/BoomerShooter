@@ -48,8 +48,11 @@ func HealthChange(HealthChange : float):
 	if CharacterStat.CurrentHealth <= 0:
 		Death()
 
-func Death(): ##NOTE-not implemented
-	pass
+func Death(): 
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	find_child("Resume").hide()
+	Engine.time_scale = 0
+	find_child("Control").show()
 
 func PauseSwitch(): ## sets timescale to 0 if unpaused, sets timescale to 1 if paused
 	if Engine.time_scale == 1:

@@ -31,7 +31,8 @@ func PauseSwitch():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
-		PauseSwitch()
+		if get_parent().CharacterStat.CurrentHealth > 0:
+			PauseSwitch()
 
 func Button_ResumePressed():
 	Engine.time_scale = 1

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var FirstWorld :PackedScene = preload("res://Worlds/TestWorld/TestWorld.tscn")
+@onready var FirstWorld :PackedScene = preload("res://Worlds/World1/World1.tscn")
 
 
 func NewGame():

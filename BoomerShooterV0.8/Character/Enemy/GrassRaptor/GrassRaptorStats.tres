@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_grdoo")
 AwarenessZone = 3.0
-SearchDistance = 20.0
+SearchDistance = 60.0
 RangedAttackDistance = 15.0
 MeleeAttackDistance = 5.0
 RangedDamage = 20.0

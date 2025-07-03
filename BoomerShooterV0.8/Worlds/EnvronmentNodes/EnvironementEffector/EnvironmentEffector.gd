@@ -1,7 +1,7 @@
-extends Node
+extends Node3D
 class_name EnvironmentEffector
 
-@export var Effectees : Array ##determines what is effected when this node is triggered, only store Effectees in here
+@export var Effectees : Array[Effectee] ##determines what is effected when this node is triggered, only store Effectees in here
 
 signal Triggered ## Format for emitting (Triggered(self))
 

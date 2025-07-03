@@ -34,6 +34,10 @@ func InventoryCheck():
 		WeaponInventory.get_child(0).Enter()
 		Inventory.CurrentWeapon = WeaponInventory.get_child(0)
 
+func LoadSavedInventory():
+	Inventory.Weapons
+
+
 func _process(delta: float) -> void:
 	if Inventory.CurrentWeapon:
 		Inventory.CurrentWeapon.Update(delta)

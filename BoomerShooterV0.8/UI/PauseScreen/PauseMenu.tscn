@@ -21,17 +21,12 @@ CamSenseLabel = NodePath("OptionsMenu/OptionSliders/CamSenseContainer/MSenseValu
 
 [node name="BasePauseOptions" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -85.5
-offset_right = 98.0
-offset_bottom = 85.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -194.0
+offset_right = 196.0
+grow_vertical = 0
 
 [node name="Resume" type="Button" parent="BasePauseOptions"]
 layout_mode = 2
@@ -50,6 +45,7 @@ layout_mode = 2
 text = "Reset Scene"
 
 [node name="Restart from Checkpoint" type="Button" parent="BasePauseOptions"]
+visible = false
 layout_mode = 2
 text = "Restart from checkpoint"
 

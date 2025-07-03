@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2b28y54uwv5w"]
+
+[ext_resource type="Script" uid="uid://oaf3li7143h2" path="res://UI/CompletionScreen.gd" id="1_ktr4e"]
+[ext_resource type="LabelSettings" uid="uid://d3w7fisj12yf0" path="res://UI/Fonts/AmmoLabel.tres" id="2_1nx6m"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("LABELmaxSecret", "LABELfoundSecret", "LABELMaxEnemy", "LABELEnemyDeaths", "LABELcompletionTime", "LABELdevCompletionTime")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ktr4e")
+LABELmaxSecret = NodePath("PanelContainer/VBoxContainer/CompletionStats/MaximumAmount/SecretMax")
+LABELfoundSecret = NodePath("PanelContainer/VBoxContainer/CompletionStats/AmountAccomplised/SecretAmount")
+LABELMaxEnemy = NodePath("PanelContainer/VBoxContainer/CompletionStats/MaximumAmount/EnemyMax")
+LABELEnemyDeaths = NodePath("PanelContainer/VBoxContainer/CompletionStats/AmountAccomplised/EnemyAmount")
+LABELcompletionTime = NodePath("PanelContainer/VBoxContainer/CompletionTime/Time/PlayerLabel")
+LABELdevCompletionTime = NodePath("PanelContainer/VBoxContainer/CompletionTime/Time/DevLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="CompletionStats" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionStats"]
+layout_mode = 2
+
+[node name="EnemyLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/Labels"]
+layout_mode = 2
+text = "Dead Enemies:"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="SecretsLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/Labels"]
+layout_mode = 2
+text = "Secrets Found:"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="AmountAccomplised" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionStats"]
+layout_mode = 2
+
+[node name="EnemyAmount" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/AmountAccomplised"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="SecretAmount" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/AmountAccomplised"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="Divider" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionStats"]
+layout_mode = 2
+
+[node name="EnemyDivider" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/Divider"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="SecretDivider" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/Divider"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="MaximumAmount" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionStats"]
+layout_mode = 2
+
+[node name="EnemyMax" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/MaximumAmount"]
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="SecretMax" type="Label" parent="PanelContainer/VBoxContainer/CompletionStats/MaximumAmount"]
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="CompletionTime" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Completion time" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionTime"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionTime/Completion time"]
+layout_mode = 2
+text = "Completion time:"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="DevTimeLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionTime/Completion time"]
+layout_mode = 2
+text = "Dev Completion time:"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="Time" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CompletionTime"]
+layout_mode = 2
+
+[node name="PlayerLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionTime/Time"]
+layout_mode = 2
+text = "10:00"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="DevLabel" type="Label" parent="PanelContainer/VBoxContainer/CompletionTime/Time"]
+layout_mode = 2
+text = "10:00"
+label_settings = ExtResource("2_1nx6m")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="Feedback" type="Button" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Give Feedback
+(Opens a google form)"
+
+[node name="Quit" type="Button" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer2/VBoxContainer/Retry" to="." method="Button_RestartPressed"]
+[connection signal="pressed" from="PanelContainer2/VBoxContainer/Feedback" to="." method="Button_UserFeedback"]
+[connection signal="pressed" from="PanelContainer2/VBoxContainer/Quit" to="." method="Button_ExitPressed"]
