@@ -6,14 +6,14 @@
 [resource]
 script = ExtResource("1_8gorj")
 JumpSpeed = 5
-MaxAirSpeed = 30
-MaxGroundSpeed = 16
-MoveSpeed = 0.75
+MaxAirSpeed = 35
+MaxGroundSpeed = 18
+MoveSpeed = 0.5
 CurrentHealth = 100.0
 MaxHealth = 100.0
 DamageParticle = ExtResource("1_s3p0l")
 SpawnPos = Vector3(0, 0, 0)
 SpawnRotation = Vector3(0, 0, 0)
-IsAlive = false
+IsAlive = true
 CharacterName = ""
 metadata/_custom_type_script = "uid://bjr5ugkmjcqll"

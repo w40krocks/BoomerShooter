@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://egikelb8mliw"]
+
+[ext_resource type="AudioStream" uid="uid://cuqy1veq4ova7" path="res://Assets/Audio/Player/Hurt/Hurt1.wav" id="1_yptbl"]
+[ext_resource type="AudioStream" uid="uid://kov4ivc0p0nq" path="res://Assets/Audio/Player/Hurt/Hurt2.wav" id="2_5urhk"]
+[ext_resource type="AudioStream" uid="uid://cqp1gkpmamijw" path="res://Assets/Audio/Player/Hurt/Hurt3.wav" id="3_u4c3o"]
+
+[resource]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("1_yptbl")
+stream_1/stream = ExtResource("2_5urhk")
+stream_2/stream = ExtResource("3_u4c3o")

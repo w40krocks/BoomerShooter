@@ -171,7 +171,7 @@ size = Vector3(2.6, 2.9, 6.9)
 [node name="CSGBox3D2" type="CSGBox3D" parent="Exhibit/TrailerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.1, 2.388)
 operation = 2
-size = Vector3(1, 2.5, 1.5)
+size = Vector3(1, 2.5, 1.75)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Exhibit/TrailerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28101, 0.437356, -0.979325)

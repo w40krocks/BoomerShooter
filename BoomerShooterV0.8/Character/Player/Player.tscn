@@ -1,15 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://bw1nqibf71vxe"]
+[gd_scene load_steps=27 format=3 uid="uid://bw1nqibf71vxe"]
 
 [ext_resource type="Script" uid="uid://dghuo244ti0ew" path="res://Character/Player/Player.gd" id="1_4otma"]
 [ext_resource type="Script" uid="uid://byv6238haa58l" path="res://Character/Player/Playercam/PlayerCam.gd" id="2_m6j64"]
 [ext_resource type="Resource" uid="uid://y5x2epee0ju5" path="res://BaseResources/Player/StartingPlayerStats.tres" id="2_ry8fs"]
 [ext_resource type="Script" uid="uid://ceeema6gf5aq2" path="res://Character/Player/Ablilites/GroundSlam.gd" id="3_ep33s"]
+[ext_resource type="AudioStream" uid="uid://bicmfbwy6410d" path="res://Assets/Audio/Player/thud-82914.wav" id="3_l4pw4"]
+[ext_resource type="AudioStream" uid="uid://dwqo4s66p7tms" path="res://Assets/Audio/Player/Fwoosh.wav" id="3_ubev3"]
+[ext_resource type="AudioStream" uid="uid://86312u2dovps" path="res://Assets/Audio/Player/traditional-stamp-44189.wav" id="4_ubev3"]
 [ext_resource type="Script" uid="uid://cj8j7mo3pjvuh" path="res://Item/UsedWeapons/WeaponManager.gd" id="4_ve82l"]
+[ext_resource type="AudioStream" uid="uid://egikelb8mliw" path="res://Assets/Audio/Player/Hurt/HurtSounds.tres" id="5_1d166"]
 [ext_resource type="PackedScene" uid="uid://ki86jrhl08c6" path="res://Item/UsedWeapons/RayWeapon/Shotgun/shotgun.tscn" id="5_86gxa"]
 [ext_resource type="PackedScene" uid="uid://dpbly3s8vqiu" path="res://Item/UsedWeapons/RayWeapon/Pistol/pistol.tscn" id="6_86gxa"]
+[ext_resource type="AudioStream" uid="uid://ca3vtd8l8imu2" path="res://Assets/Audio/Player/Heal/HealSounds.tres" id="7_1d166"]
 [ext_resource type="PackedScene" uid="uid://dy0rc7xble0je" path="res://UI/PlayerUI.tscn" id="7_5k01n"]
 [ext_resource type="Resource" uid="uid://cls2h775vnfbr" path="res://BaseResources/Items/Weapons/BaseWeaponINV.tres" id="7_jcxr1"]
+[ext_resource type="AudioStream" uid="uid://c82k1e210cu7m" path="res://Assets/Audio/Player/DeathScream.wav" id="8_p46qh"]
 [ext_resource type="PackedScene" uid="uid://b7yga2qvwu7vr" path="res://UI/PauseScreen/PauseMenu.tscn" id="9_ry8fs"]
+[ext_resource type="Texture2D" uid="uid://dfe42xbh5nq6e" path="res://UI/WhitePixel.png" id="10_p1oc2"]
+[ext_resource type="AudioStream" uid="uid://css4lp1w5dlo5" path="res://Assets/Audio/Player/Player_Footsteps.wav" id="12_mfwwi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6j64"]
 
@@ -151,8 +159,19 @@ colors = PackedColorArray(0.28485, 0.28485, 0.28485, 0.690196, 0.454524, 0.45452
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m6j64"]
 height = 0.1
 
-[node name="Player" type="CharacterBody3D" groups=["ExplosionTrigger", "Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("DeathScreen", "FootStepPlayer", "HealthChangePlayer", "ThudPlayer") groups=["ExplosionTrigger", "Player"]]
 script = ExtResource("1_4otma")
+DeathScreen = NodePath("PlayerCam/DeathSprite")
+FootStepPlayer = NodePath("FootSteps")
+HealthChangePlayer = NodePath("HealthChange")
+ThudPlayer = NodePath("Thud")
+Footsteps = ExtResource("12_mfwwi")
+Jump = ExtResource("3_ubev3")
+Slam = ExtResource("3_l4pw4")
+Thud = ExtResource("4_ubev3")
+Hurt = ExtResource("5_1d166")
+Heal = ExtResource("7_1d166")
+DeathScream = ExtResource("8_p46qh")
 CharacterStat = ExtResource("2_ry8fs")
 metadata/_custom_type_script = "uid://dghuo244ti0ew"
 
@@ -182,6 +201,11 @@ metadata/_custom_type_script = "uid://cj8j7mo3pjvuh"
 
 [node name="UI" parent="PlayerCam" node_paths=PackedStringArray("Player") instance=ExtResource("7_5k01n")]
 Player = NodePath("../..")
+
+[node name="DeathSprite" type="Sprite2D" parent="PlayerCam"]
+modulate = Color(1, 0, 0, 0.392157)
+z_index = -10
+texture = ExtResource("10_p1oc2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -218,5 +242,11 @@ script = ExtResource("3_ep33s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundSlamStuff/GroundSlam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_m6j64")
+
+[node name="FootSteps" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Thud" type="AudioStreamPlayer3D" parent="."]
+
+[node name="HealthChange" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="body_entered" from="GroundSlamStuff/GroundSlam" to="GroundSlamStuff/GroundSlam" method="BodyEntered"]

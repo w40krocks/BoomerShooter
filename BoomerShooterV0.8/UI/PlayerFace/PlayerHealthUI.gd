@@ -16,8 +16,9 @@ extends Container
 @export var CurrentAmmoLabel : Label
 @export var AmmoDividerLabel : Label
 @export var MaxAmmoLabel : Label
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(_delta: float) -> void: 
 	_FaceLocation()
 	

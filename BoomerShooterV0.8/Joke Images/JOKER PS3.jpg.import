@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlsrcgoguvfwd"
 path.s3tc="res://.godot/imported/JOKER PS3.jpg-b2765a2d750493b74dbaa677d6d1184b.s3tc.ctex"
+path.etc2="res://.godot/imported/JOKER PS3.jpg-b2765a2d750493b74dbaa677d6d1184b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Joke Images/JOKER PS3.jpg"
-dest_files=["res://.godot/imported/JOKER PS3.jpg-b2765a2d750493b74dbaa677d6d1184b.s3tc.ctex"]
+dest_files=["res://.godot/imported/JOKER PS3.jpg-b2765a2d750493b74dbaa677d6d1184b.s3tc.ctex", "res://.godot/imported/JOKER PS3.jpg-b2765a2d750493b74dbaa677d6d1184b.etc2.ctex"]
 
 [params]
 

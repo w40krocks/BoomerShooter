@@ -54,9 +54,11 @@ func CompletionTimeNormalisation():
 	while temp > 60:
 		MinuteCount +=1
 		temp -= 60
-	
-	PlayerCompletionTimePRETTY = (str(MinuteCount)+ ":"+ str(temp).substr(0,2))
-	
+	if str(temp).get_slice(".",0).length() ==1:
+		PlayerCompletionTimePRETTY = (str(MinuteCount)+ ":0"+ str(temp).substr(0,1))
+	else:
+		PlayerCompletionTimePRETTY = (str(MinuteCount)+ ":"+ str(temp).substr(0,2))
+
 
 func UpdateCompletionTimer():
 	PlayerCompletionTime += 0.1

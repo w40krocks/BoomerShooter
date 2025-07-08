@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dpbly3s8vqiu"]
+[gd_scene load_steps=27 format=4 uid="uid://dpbly3s8vqiu"]
 
 [ext_resource type="Script" uid="uid://d1m1pt5sx1e03" path="res://Item/UsedWeapons/RayWeapon/Pistol/Pistol.gd" id="1_fs367"]
 [ext_resource type="Texture2D" uid="uid://cn8sctd61wpn1" path="res://Item/UsedWeapons/RayWeapon/Pistol/Model/PistolV3_PistolHandle.png" id="2_dssv8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dq1eqpi5t42vv" path="res://Item/UsedWeapons/RayWeapon/Pistol/Model/PistolV3_PistolMetal.png" id="3_j4luq"]
 [ext_resource type="PackedScene" uid="uid://dkmtm7lci0mw7" path="res://Item/UsedWeapons/RayWeapon/WeaponTrail/Gun Trail.tscn" id="3_s36rp"]
 [ext_resource type="Script" uid="uid://cqpk7gff3sgda" path="res://Item/Item Pickup/Ammo/AmmoTypes.gd" id="4_s36rp"]
+[ext_resource type="AudioStream" uid="uid://dcjixf840v06v" path="res://Assets/Audio/Weapon/Pistol/PistolShoot_Effect.wav" id="7_b6obs"]
 
 [sub_resource type="Resource" id="Resource_s36rp"]
 script = ExtResource("4_s36rp")
@@ -240,6 +241,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_tlgb4"]
 length = 0.001
@@ -291,6 +304,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uhaiu"]
 _data = {
@@ -298,6 +323,11 @@ _data = {
 &"Attack": SubResource("Animation_jalo8"),
 &"RESET": SubResource("Animation_tlgb4")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_txrxk"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("7_b6obs")
 
 [node name="Pistol" type="Node3D" node_paths=PackedStringArray("WeaponRay", "EndOfBarrel", "WeaponVisuals", "WeaponAnimator")]
 script = ExtResource("1_fs367")
@@ -372,5 +402,9 @@ libraries = {
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_txrxk")
+volume_db = 80.0
 
 [connection signal="body_entered" from="WeaponVisuals/EndOfBarrel/PistolWhip" to="." method="WhipContact"]

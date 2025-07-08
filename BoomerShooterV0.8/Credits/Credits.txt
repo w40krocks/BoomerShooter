@@ -24,5 +24,33 @@ Format:
 
 3:
 (
+	explosion
+	
+	https://pixabay.com/users/49290858/?tab=sound-effects&order=latest&pagi=1
+	06/07/2025
 	
 )
+
+4:
+(
+	Blunderbuss sound effect
+
+	https://www.youtube.com/watch?v=QO5xlcxfiqo&ab_channel=KentuckyBallistics
+	06/07/2025
+)
+
+5:
+(
+	Lightening bang impact
+
+	https://pixabay.com/sound-effects/search/lightning/?pagi=2
+	06/07/2025
+)
+
+6:
+	(
+		Concrete Footsteps
+		
+		https://pixabay.com/sound-effects/search/footsteps/
+		07/07/2025
+	)
